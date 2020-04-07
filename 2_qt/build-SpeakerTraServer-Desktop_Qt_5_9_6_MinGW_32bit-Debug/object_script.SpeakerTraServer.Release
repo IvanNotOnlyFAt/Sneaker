@@ -1,0 +1,13 @@
+INPUT(
+./release/userform.o
+./release/userinfo.o
+./release/execsql.o
+./release/connectmysql.o
+./release/connectsqlite.o
+./release/main.o
+./release/mainwindow.o
+./release/globalvars.o
+./release/qrc_icons.o
+./release/moc_userform.o
+./release/moc_mainwindow.o
+);

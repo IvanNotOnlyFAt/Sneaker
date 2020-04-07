@@ -24,7 +24,7 @@ create table trader_info
 	);
 
 create table store_info
-	(id			varchar(8),
+	(id			varchar(10),
 	 tra_id		varchar(8),
 	 name 		varchar(40),
 	 merch_type	varchar(40),
@@ -37,11 +37,11 @@ create table store_info
 	
 create table merchandise_info
 	(id			varchar(20),
-	 store_id	varchar(8),
+	 store_id	varchar(10),
 	 name		varchar(40), 
 	 price		varchar(8),
 	 stock		varchar(8),
-	 merch_size	varchar(30),
+	 merch_size	varchar(40),
 	 ad_photo	varchar(8),
 	 descri		varchar(100),
 	 primary key (id),

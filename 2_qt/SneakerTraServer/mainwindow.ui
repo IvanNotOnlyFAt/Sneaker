@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1210</width>
+    <height>810</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QWidget" name="widget" native="true"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuUser_info">
+    <property name="title">
+     <string>sub_system</string>
+    </property>
+    <addaction name="actionUser"/>
+    <addaction name="actionFans"/>
+    <addaction name="actionTrader"/>
+    <addaction name="actionStore"/>
+    <addaction name="actionMerch"/>
+    <addaction name="actionTrolley"/>
+    <addaction name="actionTransa"/>
+    <addaction name="actionHome"/>
+   </widget>
+   <addaction name="menuUser_info"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="contextMenuPolicy">
+    <enum>Qt::DefaultContextMenu</enum>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllToolBarAreas</set>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>60</width>
+     <height>60</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionHome"/>
+   <addaction name="actionUser"/>
+   <addaction name="actionFans"/>
+   <addaction name="actionTrader"/>
+   <addaction name="actionStore"/>
+   <addaction name="actionMerch"/>
+   <addaction name="actionTrolley"/>
+   <addaction name="actionTransa"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionUser">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_06.png</normaloff>:/icons/icon_06.png</iconset>
+   </property>
+   <property name="text">
+    <string>User</string>
+   </property>
+  </action>
+  <action name="actionFans">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_14.png</normaloff>:/icons/icon_14.png</iconset>
+   </property>
+   <property name="text">
+    <string>Fans</string>
+   </property>
+  </action>
+  <action name="actionTrader">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_04.png</normaloff>:/icons/icon_04.png</iconset>
+   </property>
+   <property name="text">
+    <string>Trader</string>
+   </property>
+  </action>
+  <action name="actionStore">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_34.png</normaloff>:/icons/icon_34.png</iconset>
+   </property>
+   <property name="text">
+    <string>Store</string>
+   </property>
+  </action>
+  <action name="actionMerch">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_61.png</normaloff>:/icons/icon_61.png</iconset>
+   </property>
+   <property name="text">
+    <string>Merch</string>
+   </property>
+  </action>
+  <action name="actionTransa">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_51.png</normaloff>:/icons/icon_51.png</iconset>
+   </property>
+   <property name="text">
+    <string>Transa</string>
+   </property>
+  </action>
+  <action name="actionTrolley">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_56.png</normaloff>:/icons/icon_56.png</iconset>
+   </property>
+   <property name="text">
+    <string>Trolley</string>
+   </property>
+  </action>
+  <action name="actionHome">
+   <property name="icon">
+    <iconset resource="icons.qrc">
+     <normaloff>:/icons/icon_64.png</normaloff>:/icons/icon_64.png</iconset>
+   </property>
+   <property name="text">
+    <string>Home</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

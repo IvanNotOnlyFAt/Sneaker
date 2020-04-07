@@ -1,0 +1,13 @@
+INPUT(
+./debug/userform.o
+./debug/userinfo.o
+./debug/execsql.o
+./debug/connectmysql.o
+./debug/connectsqlite.o
+./debug/main.o
+./debug/mainwindow.o
+./debug/globalvars.o
+./debug/qrc_icons.o
+./debug/moc_userform.o
+./debug/moc_mainwindow.o
+);
