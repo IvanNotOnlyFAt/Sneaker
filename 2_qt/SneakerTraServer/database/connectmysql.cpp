@@ -8,7 +8,7 @@ ConnectMySQL::ConnectMySQL()
 }
 bool ConnectMySQL::createConnection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQLDriver");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("localhost");
     db.setDatabaseName("sneakerdb");
     db.setUserName("root");

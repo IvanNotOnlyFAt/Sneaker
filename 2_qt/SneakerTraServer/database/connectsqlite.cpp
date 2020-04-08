@@ -7,7 +7,7 @@ ConnectSQlite::ConnectSQlite()
 }
 bool ConnectSQlite::createConnection()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLiteDriver");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
 
     db.setDatabaseName("../SneakerTraServer/database/sneaker.db");
 

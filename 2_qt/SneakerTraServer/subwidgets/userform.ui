@@ -25,7 +25,7 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QTextBrowser" name="textBrowser_2">
+        <widget class="QTextBrowser" name="textBrowser">
          <property name="enabled">
           <bool>false</bool>
          </property>

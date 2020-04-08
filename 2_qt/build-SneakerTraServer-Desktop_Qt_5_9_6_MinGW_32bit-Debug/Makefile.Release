@@ -817,7 +817,15 @@ release/main.o: ../SneakerTraServer/main.cpp ../SneakerTraServer/mainwindow.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qeventloop.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qdesktopwidget.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qguiapplication.h \
-		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qinputmethod.h
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qinputmethod.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDebug \
+		../SneakerTraServer/database/connectmysql.h \
+		../SneakerTraServer/database/connectsqlite.h \
+		../SneakerTraServer/globalvars.h \
+		../SneakerTraServer/subinfos/userinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/QList \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QMap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/main.o ../SneakerTraServer/main.cpp
 
 release/mainwindow.o: ../SneakerTraServer/mainwindow.cpp ../SneakerTraServer/mainwindow.h \

@@ -31,11 +31,19 @@ private slots:
     void on_pb_cancel_clicked();
     void on_pb_save_clicked();
 
+    void on_tableWidget_clicked(const QModelIndex &index);
 
+    void on_cb_condition_currentIndexChanged(int index);
 
 private:
     Ui::UserForm *ui;
     int m_searchCond;
+    int m_operData;
+
+    void updataTableInfos(void);
+    void initWidgetUnits(void);
+    void pushButtonStatus(void);
+
 };
 
 #endif // USERFORM_H

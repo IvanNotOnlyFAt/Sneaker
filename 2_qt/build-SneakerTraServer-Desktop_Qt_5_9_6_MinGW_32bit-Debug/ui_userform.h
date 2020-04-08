@@ -35,7 +35,7 @@ public:
     QGridLayout *gridLayout_6;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_2;
-    QTextBrowser *textBrowser_2;
+    QTextBrowser *textBrowser;
     QSpacerItem *verticalSpacer;
     QGroupBox *groupBox;
     QGridLayout *gridLayout_4;
@@ -78,16 +78,16 @@ public:
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(-1, -1, -1, 0);
-        textBrowser_2 = new QTextBrowser(UserForm);
-        textBrowser_2->setObjectName(QStringLiteral("textBrowser_2"));
-        textBrowser_2->setEnabled(false);
+        textBrowser = new QTextBrowser(UserForm);
+        textBrowser->setObjectName(QStringLiteral("textBrowser"));
+        textBrowser->setEnabled(false);
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Ignored);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(69);
-        sizePolicy.setHeightForWidth(textBrowser_2->sizePolicy().hasHeightForWidth());
-        textBrowser_2->setSizePolicy(sizePolicy);
+        sizePolicy.setHeightForWidth(textBrowser->sizePolicy().hasHeightForWidth());
+        textBrowser->setSizePolicy(sizePolicy);
 
-        horizontalLayout_2->addWidget(textBrowser_2);
+        horizontalLayout_2->addWidget(textBrowser);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Ignored);
 
@@ -278,7 +278,7 @@ public:
     void retranslateUi(QWidget *UserForm)
     {
         UserForm->setWindowTitle(QApplication::translate("UserForm", "Form", Q_NULLPTR));
-        textBrowser_2->setHtml(QApplication::translate("UserForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        textBrowser->setHtml(QApplication::translate("UserForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
