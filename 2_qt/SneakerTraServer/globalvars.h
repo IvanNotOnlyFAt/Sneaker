@@ -5,6 +5,8 @@
 
 #define USE_DATABASE_MySQL 1
 
+//extern QDateTime m_dateTime;
+
 enum Oper_Data{
     Oper_None,
     Oper_Add,
@@ -15,6 +17,9 @@ enum Oper_Data{
 class GlobalVars
 {
 public:
+
+    static QString g_StrTime;
+
     static UserInfoList *g_userInfoList;
 };
 

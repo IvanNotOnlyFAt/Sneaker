@@ -1,5 +1,8 @@
 #include "userinfo.h"
+#include "globalvars.h"
 #include <QDebug>
+
+
 
 UserInfo::UserInfo()
 {
@@ -9,7 +12,7 @@ UserInfo::UserInfo()
     m_date.clear();
 }
 UserInfo::UserInfo(const QString &id, const QString &pswd,
-          const QString &role, const QString &date)
+          const QString &role, const QString &date = GlobalVars::g_StrTime)
 {
     m_id = id;
     m_pswd = pswd;

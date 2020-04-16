@@ -98,7 +98,7 @@ void UserForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         UserForm *_t = static_cast<UserForm *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        //case 0: _t->on_cb_condition_activated((*reinterpret_cast< int(*)>(_a[1]))); break;
+
         case 1: _t->on_pb_search_clicked(); break;
         case 2: _t->on_pb_modify_clicked(); break;
         case 3: _t->on_pb_delete_clicked(); break;

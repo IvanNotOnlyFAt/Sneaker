@@ -1,5 +1,8 @@
 INPUT(
 ./release/userform.o
+./release/fansinfo.o
+./release/storeinfo.o
+./release/traderinfo.o
 ./release/userinfo.o
 ./release/execsql.o
 ./release/connectmysql.o

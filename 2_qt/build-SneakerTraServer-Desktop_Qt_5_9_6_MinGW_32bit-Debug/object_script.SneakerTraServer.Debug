@@ -1,5 +1,8 @@
 INPUT(
 ./debug/userform.o
+./debug/fansinfo.o
+./debug/storeinfo.o
+./debug/traderinfo.o
 ./debug/userinfo.o
 ./debug/execsql.o
 ./debug/connectmysql.o
