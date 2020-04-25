@@ -2,8 +2,6 @@
 #include "globalvars.h"
 #include <QDebug>
 
-
-
 UserInfo::UserInfo()
 {
     m_id.clear();

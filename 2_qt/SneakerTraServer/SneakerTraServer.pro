@@ -25,6 +25,7 @@ INCLUDEPATH += $$PWD/include
 include(subwidgets/subwidgets.pri)
 include(subinfos/subinfos.pri)
 include(database/database.pri)
+include(loginform/loginform.pri)
 SOURCES += \
         main.cpp \
         mainwindow.cpp \

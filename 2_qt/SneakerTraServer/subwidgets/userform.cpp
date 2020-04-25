@@ -137,6 +137,7 @@ void UserForm::on_pb_add_clicked()
 {
     m_operData = Oper_Add;
     pushButtonStatus();
+    ui->le_id->setEnabled(true);
 }
 
 void UserForm::on_pb_cancel_clicked()

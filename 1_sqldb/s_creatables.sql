@@ -52,7 +52,7 @@ create table merchandise_info
 create table trolley_info
 	(id			varchar(30), 
 	 fans_id	varchar(8),
-	 merch_id	varchar(8), 
+	 merch_id	varchar(20), 
 	 merch_num	varchar(8),
 	 elect_size	varchar(4),	
 	 date		varchar(20),
@@ -63,7 +63,7 @@ create table trolley_info
 	
 create table transaction_info
 	(id			varchar(40), 
-	 tro_id		varchar(20),
+	 tro_id		varchar(30),
 	 pri_sum	varchar(10),
 	 dtime		varchar(30),
 	 primary key (id),

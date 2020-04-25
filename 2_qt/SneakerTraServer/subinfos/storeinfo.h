@@ -1,6 +1,6 @@
 #ifndef STOREINFO_H
 #define STOREINFO_H
-#include "globalvars.h"
+
 
 #include <QString>
 #include <QList>

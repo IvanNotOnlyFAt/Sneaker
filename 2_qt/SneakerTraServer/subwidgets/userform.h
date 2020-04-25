@@ -22,9 +22,7 @@ public:
     };
 
 private slots:
-    void on_cb_condition_activated(int index);
     void on_pb_search_clicked();
-
     void on_pb_modify_clicked();
     void on_pb_delete_clicked();
     void on_pb_add_clicked();
@@ -32,7 +30,6 @@ private slots:
     void on_pb_save_clicked();
 
     void on_tableWidget_clicked(const QModelIndex &index);
-
     void on_cb_condition_currentIndexChanged(int index);
 
 private:

@@ -66,5 +66,13 @@
         <file>icons/icon_63.png</file>
         <file>icons/icon_64.png</file>
         <file>icons/icon_65.png</file>
+        <file>images/back1.png</file>
+        <file>images/back2.png</file>
+        <file>images/back3.png</file>
+        <file>images/back4.png</file>
+        <file>images/back6.png</file>
+        <file>images/back7.png</file>
+        <file>images/banck5.png</file>
+        <file>images/back8.png</file>
     </qresource>
 </RCC>

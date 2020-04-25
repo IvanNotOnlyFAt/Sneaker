@@ -22,7 +22,74 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QWidget" name="widget" native="true"/>
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="currentIndex">
+       <number>8</number>
+      </property>
+      <widget class="QWidget" name="page_Login">
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="0" column="0">
+         <widget class="LoginForm" name="widget_0" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_home">
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QWidget" name="widget_1" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_User">
+       <layout class="QGridLayout" name="gridLayout_8">
+        <item row="0" column="0">
+         <widget class="UserForm" name="widget_2" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Fans">
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="FansForm" name="widget_3" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Trader">
+       <layout class="QGridLayout" name="gridLayout_10">
+        <item row="0" column="0">
+         <widget class="TraderForm" name="widget_4" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Store">
+       <layout class="QGridLayout" name="gridLayout_9">
+        <item row="0" column="0">
+         <widget class="StoreForm" name="widget_5" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Merch">
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="MerchForm" name="widget_6" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Trolley">
+       <layout class="QGridLayout" name="gridLayout_6">
+        <item row="0" column="0">
+         <widget class="TrolleyForm" name="widget_7" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page_Transa">
+       <layout class="QGridLayout" name="gridLayout_5">
+        <item row="0" column="0">
+         <widget class="TranForm" name="widget_8" native="true"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -32,7 +99,7 @@
      <x>0</x>
      <y>0</y>
      <width>1200</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuUser_info">
@@ -159,6 +226,56 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>LoginForm</class>
+   <extends>QWidget</extends>
+   <header>loginform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>UserForm</class>
+   <extends>QWidget</extends>
+   <header>userform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FansForm</class>
+   <extends>QWidget</extends>
+   <header>fansform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TraderForm</class>
+   <extends>QWidget</extends>
+   <header>traderform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StoreForm</class>
+   <extends>QWidget</extends>
+   <header>storeform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>MerchForm</class>
+   <extends>QWidget</extends>
+   <header>merchform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TrolleyForm</class>
+   <extends>QWidget</extends>
+   <header>trolleyform.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TranForm</class>
+   <extends>QWidget</extends>
+   <header>tranform.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>
