@@ -21,6 +21,7 @@ INPUT(
 ./debug/mainwindow.o
 ./debug/globalvars.o
 ./debug/qrc_icons.o
+./debug/qrc_language.o
 ./debug/moc_userform.o
 ./debug/moc_fansform.o
 ./debug/moc_storeform.o

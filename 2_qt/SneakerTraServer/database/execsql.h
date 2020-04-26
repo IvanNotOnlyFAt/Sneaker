@@ -6,6 +6,8 @@
 class ExecSQL
 {
 public:
+    ///////////////////////selectLoginForInfo/////////////////////////////
+    static void selectLoginForInfo(UserInfo &info,const QString &id);
     ///////////////////////UserInfo/////////////////////////////
     static void updateUserInfoList(const QString &sql);
 

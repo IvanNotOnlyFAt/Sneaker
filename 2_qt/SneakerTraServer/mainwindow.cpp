@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -27,12 +27,26 @@ MainWindow::MainWindow(QWidget *parent) :
 //    m_tranform->hide();
     ///stack法
     this->setCentralWidget(ui->stackedWidget);
+    ui->mainToolBar->hide();
     ui->stackedWidget->setCurrentIndex(0);
+
+    connect(ui->widget_login,SIGNAL(signalLoginSuccess(UserInfo)),
+            this,SLOT(slotLoginSuccess(UserInfo)));
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::slotLoginSuccess(UserInfo info)
+{
+    qDebug() << "Welcome to";
+    info.display();
+
+    ui->mainToolBar->show();
+    this->setWindowTitle("SNEAKER|吾鞋 管理系统["+info.getID()+"]");
+    on_actionHome_triggered();
 }
 
 void MainWindow::on_actionHome_triggered()

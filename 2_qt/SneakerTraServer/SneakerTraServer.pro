@@ -39,4 +39,10 @@ FORMS += \
         mainwindow.ui
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    language.qrc
+
+TRANSLATIONS+=en2ch.ts
+
+DISTFILES += \
+    en2ch.ts

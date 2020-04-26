@@ -19,73 +19,105 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow#MainWindow{
+
+
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
+      <property name="styleSheet">
+       <string notr="true">
+</string>
+      </property>
       <property name="currentIndex">
-       <number>8</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_Login">
+       <property name="styleSheet">
+        <string notr="true">QWidget#page_Login{
+background-image: url(:/images/back3.png);
+}</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="LoginForm" name="widget_0" native="true"/>
+         <widget class="LoginForm" name="widget_login" native="true">
+          <property name="styleSheet">
+           <string notr="true">LoginForm#widget_0{
+background-image: url(:/images/back3.png);
+}</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_home">
+       <property name="styleSheet">
+        <string notr="true">QWidget#page_home{
+background-image: url(:/images/back7.png);
+}</string>
+       </property>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="0" column="0">
-         <widget class="QWidget" name="widget_1" native="true"/>
+         <widget class="QWidget" name="widget_home" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_User">
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="0">
-         <widget class="UserForm" name="widget_2" native="true"/>
+         <widget class="UserForm" name="widget_userform" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_Fans">
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
-         <widget class="FansForm" name="widget_3" native="true"/>
+         <widget class="FansForm" name="widget_fansform" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_Trader">
        <layout class="QGridLayout" name="gridLayout_10">
         <item row="0" column="0">
-         <widget class="TraderForm" name="widget_4" native="true"/>
+         <widget class="TraderForm" name="widget_traderform" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_Store">
        <layout class="QGridLayout" name="gridLayout_9">
         <item row="0" column="0">
-         <widget class="StoreForm" name="widget_5" native="true"/>
+         <widget class="StoreForm" name="widget_storeform" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_Merch">
        <layout class="QGridLayout" name="gridLayout_7">
         <item row="0" column="0">
-         <widget class="MerchForm" name="widget_6" native="true"/>
+         <widget class="MerchForm" name="widget_merchform" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_Trolley">
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="0" column="0">
-         <widget class="TrolleyForm" name="widget_7" native="true"/>
+         <widget class="TrolleyForm" name="widget_troellyfoem" native="true"/>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="page_Transa">
        <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
-         <widget class="TranForm" name="widget_8" native="true"/>
+         <widget class="TranForm" name="widget_tranform" native="true"/>
         </item>
        </layout>
       </widget>

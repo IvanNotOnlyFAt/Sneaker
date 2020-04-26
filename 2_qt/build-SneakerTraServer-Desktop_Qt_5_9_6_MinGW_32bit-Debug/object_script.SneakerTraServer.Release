@@ -21,6 +21,7 @@ INPUT(
 ./release/mainwindow.o
 ./release/globalvars.o
 ./release/qrc_icons.o
+./release/qrc_language.o
 ./release/moc_userform.o
 ./release/moc_fansform.o
 ./release/moc_storeform.o

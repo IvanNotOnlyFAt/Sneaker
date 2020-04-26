@@ -11,6 +11,39 @@
 
 #include <QDebug>
 
+///////////////////////selectLoginForInfo/////////////////////////////
+void ExecSQL::selectLoginForInfo(UserInfo &info,const QString &id)
+{
+    QSqlQuery query;
+    QString sql = QString("select * from user_info where id = '%1'").arg(id);
+    qDebug() << sql;
+    if(query.exec(sql))
+    {
+        int id_idx = query.record().indexOf("id");
+        int pswd_idx = query.record().indexOf("pswd");
+        int role_idx = query.record().indexOf("role");
+        int date_idx = query.record().indexOf("date");
+
+        while(query.next())
+        {
+            QString id = query.value(id_idx).toString();
+            QString pswd = query.value(pswd_idx).toString();
+            QString role = query.value(role_idx).toString();
+            QString date = query.value(date_idx).toString();
+
+            qDebug() << "selectLoginForInfo :" << id << pswd << role << date;
+
+            info.setID(id);
+            info.setPswd(pswd);
+            info.setRole(role);
+            info.setDate(date);
+            qDebug() <<"===============================";
+//            info.display();
+        }
+    }
+
+
+}
 ///////////////////////UserInfo/////////////////////////////
 void ExecSQL::updateUserInfoList(const QString &sql)
 {

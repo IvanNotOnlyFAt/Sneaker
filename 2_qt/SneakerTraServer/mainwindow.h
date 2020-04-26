@@ -11,6 +11,9 @@
 #include "trolleyform.h"
 #include "tranform.h"
 
+//class UserInfo;
+#include "userinfo.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -19,11 +22,14 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
+    void slotLoginSuccess(UserInfo info);
+
     void on_actionHome_triggered();
 
     void on_actionUser_triggered();
