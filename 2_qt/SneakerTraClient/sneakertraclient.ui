@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SneakerTraClient</class>
+ <widget class="QMainWindow" name="SneakerTraClient">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>120</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1210</width>
+    <height>810</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>SneakerTraClient</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>60</width>
+    <height>60</height>
+   </size>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonTextBesideIcon</enum>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFansActions">
+    <property name="title">
+     <string>FansActions</string>
+    </property>
+    <addaction name="actionFansInfo"/>
+    <addaction name="actionFansHome"/>
+    <addaction name="actionTrolley"/>
+    <addaction name="actionFansTranscation"/>
+    <addaction name="actionFansChangPswd"/>
+   </widget>
+   <widget class="QMenu" name="menuTraderActions">
+    <property name="title">
+     <string>TraderActions</string>
+    </property>
+    <addaction name="actionTraderInfo"/>
+    <addaction name="actionTraderHome"/>
+    <addaction name="actionStore"/>
+    <addaction name="actionMerch"/>
+    <addaction name="actionTraderTransc"/>
+    <addaction name="actionTraderChangePswd"/>
+   </widget>
+   <addaction name="menuFansActions"/>
+   <addaction name="menuTraderActions"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="iconSize">
+    <size>
+     <width>60</width>
+     <height>60</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFansInfo"/>
+   <addaction name="actionTraderInfo"/>
+   <addaction name="actionFansHome"/>
+   <addaction name="actionTrolley"/>
+   <addaction name="actionFansTranscation"/>
+   <addaction name="actionFansChangPswd"/>
+   <addaction name="actionTraderHome"/>
+   <addaction name="actionStore"/>
+   <addaction name="actionMerch"/>
+   <addaction name="actionTraderTransc"/>
+   <addaction name="actionTraderChangePswd"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionFansInfo">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_47.png</normaloff>:/icons/icon_47.png</iconset>
+   </property>
+   <property name="text">
+    <string>FansInfo</string>
+   </property>
+  </action>
+  <action name="actionTraderInfo">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_04.png</normaloff>:/icons/icon_04.png</iconset>
+   </property>
+   <property name="text">
+    <string>TraderInfo</string>
+   </property>
+  </action>
+  <action name="actionFansHome">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_64.png</normaloff>:/icons/icon_64.png</iconset>
+   </property>
+   <property name="text">
+    <string>FansHome</string>
+   </property>
+  </action>
+  <action name="actionTrolley">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_57.png</normaloff>:/icons/icon_57.png</iconset>
+   </property>
+   <property name="text">
+    <string>Trolley</string>
+   </property>
+  </action>
+  <action name="actionFansTranscation">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_22.png</normaloff>:/icons/icon_22.png</iconset>
+   </property>
+   <property name="text">
+    <string>FansTransc</string>
+   </property>
+  </action>
+  <action name="actionFansChangPswd">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_21.png</normaloff>:/icons/icon_21.png</iconset>
+   </property>
+   <property name="text">
+    <string>FansChangePswd</string>
+   </property>
+  </action>
+  <action name="actionTraderHome">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_66.png</normaloff>:/icons/icon_66.png</iconset>
+   </property>
+   <property name="text">
+    <string>TraderHome</string>
+   </property>
+  </action>
+  <action name="actionStore">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_32.png</normaloff>:/icons/icon_32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Store</string>
+   </property>
+  </action>
+  <action name="actionMerch">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_61.png</normaloff>:/icons/icon_61.png</iconset>
+   </property>
+   <property name="text">
+    <string>Merch</string>
+   </property>
+  </action>
+  <action name="actionTraderTransc">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_25.png</normaloff>:/icons/icon_25.png</iconset>
+   </property>
+   <property name="text">
+    <string>TraderTransc</string>
+   </property>
+  </action>
+  <action name="actionTraderChangePswd">
+   <property name="icon">
+    <iconset resource="icon.qrc">
+     <normaloff>:/icons/icon_23.png</normaloff>:/icons/icon_23.png</iconset>
+   </property>
+   <property name="text">
+    <string>TraderChangePswd</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
+ <connections/>
+</ui>

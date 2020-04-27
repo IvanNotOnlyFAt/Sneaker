@@ -17,13 +17,13 @@ CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -W -Wextra -fe
 INCPATH       = -I../SneakerTraServer -I. -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -I../SneakerTraServer/subwidgets -I../SneakerTraServer/subinfos -I../SneakerTraServer/database -I../SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -Irelease -I. -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LE:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libqtmain.a -LC:/openssl/lib -LC:/Utils/my_sql/my_sql/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Widgets.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Gui.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Sql.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a 
+LIBS        =        -lmingw32 -LE:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libqtmain.a -LC:/openssl/lib -LC:/Utils/my_sql/my_sql/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Widgets.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Gui.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Sql.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a release/SneakerTraServer_resource_res.o 
 QMAKE         = E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = 
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release/SneakerTraServer_resource_res.o
 COPY          = cp -f
 SED           = sed
 COPY_FILE     = cp -f
@@ -159,8 +159,11 @@ DESTDIR_TARGET = release/SneakerTraServer.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_userform.h ui_fansform.h ui_storeform.h ui_merchform.h ui_trolleyform.h ui_tranform.h ui_traderform.h ui_loginform.h ui_mainwindow.h $(OBJECTS) 
+$(DESTDIR_TARGET): ui_userform.h ui_fansform.h ui_storeform.h ui_merchform.h ui_trolleyform.h ui_tranform.h ui_traderform.h ui_loginform.h ui_mainwindow.h $(OBJECTS) release/SneakerTraServer_resource_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.SneakerTraServer.Release  $(LIBS)
+
+release/SneakerTraServer_resource_res.o: SneakerTraServer_resource.rc
+	windres -i SneakerTraServer_resource.rc -o release/SneakerTraServer_resource_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ../SneakerTraServer/SneakerTraServer.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -172,6 +175,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release/userform.o release/fansform.o release/storeform.o release/merchform.o release/trolleyform.o release/tranform.o release/traderform.o release/fansinfo.o release/storeinfo.o release/traderinfo.o release/userinfo.o release/merchinfo.o release/trolleyinfo.o release/traninfo.o release/execsql.o release/connectmysql.o release/connectsqlite.o release/loginform.o release/main.o release/mainwindow.o release/globalvars.o release/qrc_icons.o release/qrc_language.o release/moc_userform.o release/moc_fansform.o release/moc_storeform.o release/moc_merchform.o release/moc_trolleyform.o release/moc_tranform.o release/moc_traderform.o release/moc_loginform.o release/moc_mainwindow.o
+	-$(DEL_FILE) release/SneakerTraServer_resource_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
