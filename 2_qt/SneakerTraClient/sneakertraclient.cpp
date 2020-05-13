@@ -1,6 +1,8 @@
 #include "sneakertraclient.h"
 #include "ui_sneakertraclient.h"
 
+
+
 SneakerTraClient::SneakerTraClient(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SneakerTraClient)
@@ -11,6 +13,13 @@ SneakerTraClient::SneakerTraClient(QWidget *parent) :
     this->setContextMenuPolicy(Qt::NoContextMenu);
 
 
+//    this->setCentralWidget(ui->widget);
+//    FansChangePswdForm *fansChangePswdForm = new FansChangePswdForm(ui->widget);
+//    fansChangePswdForm->show();
+    ///stack法
+    this->setCentralWidget(ui->stackedWidget);
+    ui->mainToolBar->hide();
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 SneakerTraClient::~SneakerTraClient()
@@ -18,6 +27,31 @@ SneakerTraClient::~SneakerTraClient()
     delete ui;
 }
 
+void SneakerTraClient::initFansMS(void)
+{
+
+}
+void SneakerTraClient::initTraderMs(void)
+{
+
+}
+
+void SneakerTraClient::slotUserLogin(QString id, QString pswd)
+{
+
+}
+void SneakerTraClient::slotUserLoginResult(bool res)
+{
+
+}
+void SneakerTraClient::slotUserLogout(void)
+{
+
+}
+void SneakerTraClient::slotUserLogoutResult(bool res)
+{
+
+}
 /////////////////////////////Fans//////////////////////////////////
 
 void SneakerTraClient::on_actionFansInfo_triggered()

@@ -9,6 +9,7 @@
 #include "trolleyinfo.h"
 #include "traninfo.h"
 
+#include <QQueue>
 
 #define USE_DATABASE_MySQL 1
 
@@ -18,10 +19,18 @@ enum Oper_Data{
     Oper_Del,
     Oper_Mdy
 };
-
+enum COMMAND{
+    ///通用请求命令
+    CMD_UserLogin_L = 'L',          //用户登录
+    CMD_UserInfo_I = 'I',           //获取个人信息
+    CMD_ChangePswd_H = 'H',         //修改密码
+    CMD_UserExit_X = 'X',           //用户退出
+    CMD_GetHomePage_M = 'M'         //获取主页
+};
 class GlobalVars
 {
 public:
+    static QQueue<QString> g_msgQueue;//消息队列
 
     static QString g_StrTime;
     static QString g_StrDTime;
@@ -33,6 +42,22 @@ public:
     static MerchInfoList *g_merchInfoList;
     static TrolleyInfoList *g_trolleyInfoList;
     static TranInfoList *g_tranInfoList;
+
+    static UserInfoMap g_userInfoMap;
+    static FansInfoMap g_fansInfoMap;
+    static TraderInfoMap g_traderInfoMap;
+    static StoreInfoMap g_storeInfoMap;
+    static MerchInfoMap g_merchInfoMap;
+    static TrolleyInfoMap g_trolleyInfoMap;
+    static TranInfoMap g_tranInfoMap;
 };
 
 #endif // GLOBALVARS_H
+
+
+
+
+
+
+
+

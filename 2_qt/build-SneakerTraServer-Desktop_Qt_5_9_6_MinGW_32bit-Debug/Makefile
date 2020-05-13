@@ -219,6 +219,7 @@ Makefile: ../SneakerTraServer/SneakerTraServer.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		../SneakerTraServer/subinfos/subinfos.pri \
 		../SneakerTraServer/database/database.pri \
 		../SneakerTraServer/loginform/loginform.pri \
+		../SneakerTraServer/network/network.pri \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf \
@@ -242,6 +243,7 @@ Makefile: ../SneakerTraServer/SneakerTraServer.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Widgets.prl \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Gui.prl \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Sql.prl \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Network.prl \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ../SneakerTraServer/SneakerTraServer.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -402,6 +404,7 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf:
 ../SneakerTraServer/subinfos/subinfos.pri:
 ../SneakerTraServer/database/database.pri:
 ../SneakerTraServer/loginform/loginform.pri:
+../SneakerTraServer/network/network.pri:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf:
@@ -425,6 +428,7 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/qtmaind.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Widgets.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Gui.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Sql.prl:
+E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Network.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../SneakerTraServer/SneakerTraServer.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug

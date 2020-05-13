@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,6 +26,8 @@ include(subwidgets/subwidgets.pri)
 include(subinfos/subinfos.pri)
 include(database/database.pri)
 include(loginform/loginform.pri)
+include(network/network.pri)
+
 SOURCES += \
         main.cpp \
         mainwindow.cpp \

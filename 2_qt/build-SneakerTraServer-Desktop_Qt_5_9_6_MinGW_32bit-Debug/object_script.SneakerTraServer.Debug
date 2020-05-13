@@ -17,6 +17,9 @@ INPUT(
 ./debug/connectmysql.o
 ./debug/connectsqlite.o
 ./debug/loginform.o
+./debug/msgsocket.o
+./debug/msgserver.o
+./debug/msgproc.o
 ./debug/main.o
 ./debug/mainwindow.o
 ./debug/globalvars.o
@@ -30,5 +33,8 @@ INPUT(
 ./debug/moc_tranform.o
 ./debug/moc_traderform.o
 ./debug/moc_loginform.o
+./debug/moc_msgsocket.o
+./debug/moc_msgserver.o
+./debug/moc_msgproc.o
 ./debug/moc_mainwindow.o
 );

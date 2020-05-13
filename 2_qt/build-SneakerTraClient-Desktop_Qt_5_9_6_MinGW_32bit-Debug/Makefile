@@ -217,6 +217,9 @@ Makefile: ../SneakerTraClient/SneakerTraClient.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf \
 		../SneakerTraClient/subfans/subfans.pri \
 		../SneakerTraClient/subtrader/subtrader.pri \
+		../SneakerTraClient/sublogform/sublogform.pri \
+		../SneakerTraClient/subinfos/subinfos.pri \
+		../SneakerTraClient/network/network.pri \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf \
@@ -239,6 +242,7 @@ Makefile: ../SneakerTraClient/SneakerTraClient.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/qtmaind.prl \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Widgets.prl \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Gui.prl \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Network.prl \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile ../SneakerTraClient/SneakerTraClient.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -397,6 +401,9 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_pre.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf:
 ../SneakerTraClient/subfans/subfans.pri:
 ../SneakerTraClient/subtrader/subtrader.pri:
+../SneakerTraClient/sublogform/sublogform.pri:
+../SneakerTraClient/subinfos/subinfos.pri:
+../SneakerTraClient/network/network.pri:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf:
@@ -419,6 +426,7 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/lex.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/qtmaind.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Widgets.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Gui.prl:
+E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Network.prl:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../SneakerTraClient/SneakerTraClient.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug

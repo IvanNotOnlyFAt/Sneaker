@@ -33,8 +33,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="styleSheet">
-       <string notr="true">
-</string>
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -49,7 +48,7 @@ background-image: url(:/images/back3.png);
         <item row="0" column="0">
          <widget class="LoginForm" name="widget_login" native="true">
           <property name="styleSheet">
-           <string notr="true">LoginForm#widget_0{
+           <string notr="true">LoginForm#widget_login{
 background-image: url(:/images/back3.png);
 }</string>
           </property>
@@ -186,7 +185,7 @@ background-image: url(:/images/back7.png);
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionUser">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_06.png</normaloff>:/icons/icon_06.png</iconset>
    </property>
    <property name="text">
@@ -195,7 +194,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionFans">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_14.png</normaloff>:/icons/icon_14.png</iconset>
    </property>
    <property name="text">
@@ -204,7 +203,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionTrader">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_04.png</normaloff>:/icons/icon_04.png</iconset>
    </property>
    <property name="text">
@@ -213,7 +212,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionStore">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_34.png</normaloff>:/icons/icon_34.png</iconset>
    </property>
    <property name="text">
@@ -222,7 +221,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionMerch">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_61.png</normaloff>:/icons/icon_61.png</iconset>
    </property>
    <property name="text">
@@ -231,7 +230,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionTransa">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_51.png</normaloff>:/icons/icon_51.png</iconset>
    </property>
    <property name="text">
@@ -240,7 +239,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionTrolley">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_56.png</normaloff>:/icons/icon_56.png</iconset>
    </property>
    <property name="text">
@@ -249,7 +248,7 @@ background-image: url(:/images/back7.png);
   </action>
   <action name="actionHome">
    <property name="icon">
-    <iconset resource="icons.qrc">
+    <iconset resource="../SneakerTraClient/icon.qrc">
      <normaloff>:/icons/icon_64.png</normaloff>:/icons/icon_64.png</iconset>
    </property>
    <property name="text">
@@ -308,8 +307,6 @@ background-image: url(:/images/back7.png);
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="icons.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

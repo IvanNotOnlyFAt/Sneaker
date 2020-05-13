@@ -11,13 +11,13 @@ MAKEFILE      = Makefile.Release
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
+DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_NEEDS_QMAIN
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -W -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -W -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I../SneakerTraServer -I. -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -I../SneakerTraServer/subwidgets -I../SneakerTraServer/subinfos -I../SneakerTraServer/database -I../SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -Irelease -I. -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ 
+INCPATH       = -I../SneakerTraServer -I. -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -I../SneakerTraServer/subwidgets -I../SneakerTraServer/subinfos -I../SneakerTraServer/database -I../SneakerTraServer/loginform -I../SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -Irelease -I. -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LE:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libqtmain.a -LC:/openssl/lib -LC:/Utils/my_sql/my_sql/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Widgets.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Gui.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Sql.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a release/SneakerTraServer_resource_res.o 
+LIBS        =        -lmingw32 -LE:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libqtmain.a -LC:/openssl/lib -LC:/Utils/my_sql/my_sql/lib -LC:/Utils/postgresql/pgsql/lib -lshell32 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Widgets.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Gui.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Sql.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Network.a E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/libQt5Core.a release/SneakerTraServer_resource_res.o 
 QMAKE         = E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/qmake.exe
 IDC           = idc
 IDL           = midl
@@ -63,6 +63,9 @@ SOURCES       = ../SneakerTraServer/subwidgets/userform.cpp \
 		../SneakerTraServer/database/connectmysql.cpp \
 		../SneakerTraServer/database/connectsqlite.cpp \
 		../SneakerTraServer/loginform/loginform.cpp \
+		../SneakerTraServer/network/msgsocket.cpp \
+		../SneakerTraServer/network/msgserver.cpp \
+		../SneakerTraServer/network/msgproc.cpp \
 		../SneakerTraServer/main.cpp \
 		../SneakerTraServer/mainwindow.cpp \
 		../SneakerTraServer/globalvars.cpp release/qrc_icons.cpp \
@@ -75,6 +78,9 @@ SOURCES       = ../SneakerTraServer/subwidgets/userform.cpp \
 		release/moc_tranform.cpp \
 		release/moc_traderform.cpp \
 		release/moc_loginform.cpp \
+		release/moc_msgsocket.cpp \
+		release/moc_msgserver.cpp \
+		release/moc_msgproc.cpp \
 		release/moc_mainwindow.cpp
 OBJECTS       = release/userform.o \
 		release/fansform.o \
@@ -94,6 +100,9 @@ OBJECTS       = release/userform.o \
 		release/connectmysql.o \
 		release/connectsqlite.o \
 		release/loginform.o \
+		release/msgsocket.o \
+		release/msgserver.o \
+		release/msgproc.o \
 		release/main.o \
 		release/mainwindow.o \
 		release/globalvars.o \
@@ -107,6 +116,9 @@ OBJECTS       = release/userform.o \
 		release/moc_tranform.o \
 		release/moc_traderform.o \
 		release/moc_loginform.o \
+		release/moc_msgsocket.o \
+		release/moc_msgserver.o \
+		release/moc_msgproc.o \
 		release/moc_mainwindow.o
 
 DIST          = en2ch.ts ../SneakerTraServer/subwidgets/userform.h \
@@ -127,6 +139,9 @@ DIST          = en2ch.ts ../SneakerTraServer/subwidgets/userform.h \
 		../SneakerTraServer/database/connectmysql.h \
 		../SneakerTraServer/database/connectsqlite.h \
 		../SneakerTraServer/loginform/loginform.h \
+		../SneakerTraServer/network/msgsocket.h \
+		../SneakerTraServer/network/msgserver.h \
+		../SneakerTraServer/network/msgproc.h \
 		../SneakerTraServer/mainwindow.h \
 		../SneakerTraServer/globalvars.h ../SneakerTraServer/subwidgets/userform.cpp \
 		../SneakerTraServer/subwidgets/fansform.cpp \
@@ -146,6 +161,9 @@ DIST          = en2ch.ts ../SneakerTraServer/subwidgets/userform.h \
 		../SneakerTraServer/database/connectmysql.cpp \
 		../SneakerTraServer/database/connectsqlite.cpp \
 		../SneakerTraServer/loginform/loginform.cpp \
+		../SneakerTraServer/network/msgsocket.cpp \
+		../SneakerTraServer/network/msgserver.cpp \
+		../SneakerTraServer/network/msgproc.cpp \
 		../SneakerTraServer/main.cpp \
 		../SneakerTraServer/mainwindow.cpp \
 		../SneakerTraServer/globalvars.cpp
@@ -171,10 +189,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) SneakerTraServer.zip $(SOURCES) $(DIST) ../SneakerTraServer/SneakerTraServer.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_pre.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/qdevice.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/device_config.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/sanitize.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/gcc-base.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/g++-base.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/angle.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/qconfig.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3danimation.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3danimation_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dcore.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dcore_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dextras.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dextras_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dinput.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dinput_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dlogic.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dlogic_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquick.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquick_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickanimation.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickanimation_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickextras.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickextras_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickinput.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickinput_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickrender.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickrender_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickscene2d.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickscene2d_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3drender.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3drender_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_accessibility_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axbase.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axbase_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axcontainer.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axcontainer_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axserver.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axserver_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_bluetooth.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_bluetooth_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_bootstrap_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_charts.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_charts_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_concurrent.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_concurrent_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_core.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_core_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_datavisualization.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_datavisualization_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_dbus.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_dbus_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_designer.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_designer_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_designercomponents_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_devicediscovery_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_egl_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_fb_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_fontdatabase_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gamepad.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gamepad_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gui.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gui_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_help.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_help_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_location.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_location_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimedia.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimedia_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_network.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_network_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_networkauth.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_networkauth_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_nfc.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_nfc_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_opengl.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_opengl_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_openglextensions.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_openglextensions_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_packetprotocol_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_platformcompositor_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_positioning.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_positioning_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_printsupport.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_printsupport_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_purchasing.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_purchasing_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qml.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qml_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmldebug_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmldevtools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmltest.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmltest_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quick.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quick_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickcontrols2.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickcontrols2_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickparticles_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quicktemplates2_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickwidgets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickwidgets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_remoteobjects.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_remoteobjects_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_repparser.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_repparser_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_script.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_script_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scripttools.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scripttools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scxml.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scxml_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sensors.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sensors_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialbus.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialbus_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialport.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialport_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sql.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sql_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_svg.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_svg_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_testlib.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_testlib_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_texttospeech.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_texttospeech_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_theme_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_uiplugin.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_uitools.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_uitools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_webchannel.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_webchannel_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_websockets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_websockets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_widgets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_widgets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_winextras.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_winextras_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xml.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xml_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xmlpatterns.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_functions.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_config.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++/qmake.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_post.prf .qmake.stash E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/toolchain.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_pre.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf ../SneakerTraServer/subwidgets/subwidgets.pri ../SneakerTraServer/subinfos/subinfos.pri ../SneakerTraServer/database/database.pri ../SneakerTraServer/loginform/loginform.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/build_pass.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qml_debug.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/precompile_header.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/warn_on.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resources.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/moc.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/opengl.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/uic.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qmake_use.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/file_copies.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/windows.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/testcase_targets.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exceptions.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/yacc.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/lex.prf ../SneakerTraServer/SneakerTraServer.pro ../SneakerTraServer/icons.qrc ../SneakerTraServer/language.qrc E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/qtmain.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Widgets.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Gui.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Sql.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Core.prl en2ch.ts en2ch.ts  ../SneakerTraServer/icons.qrc ../SneakerTraServer/language.qrc E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/data/dummy.cpp ../SneakerTraServer/subwidgets/userform.h ../SneakerTraServer/subwidgets/fansform.h ../SneakerTraServer/subwidgets/storeform.h ../SneakerTraServer/subwidgets/merchform.h ../SneakerTraServer/subwidgets/trolleyform.h ../SneakerTraServer/subwidgets/tranform.h ../SneakerTraServer/subwidgets/traderform.h ../SneakerTraServer/subinfos/fansinfo.h ../SneakerTraServer/subinfos/storeinfo.h ../SneakerTraServer/subinfos/traderinfo.h ../SneakerTraServer/subinfos/userinfo.h ../SneakerTraServer/subinfos/merchinfo.h ../SneakerTraServer/subinfos/trolleyinfo.h ../SneakerTraServer/subinfos/traninfo.h ../SneakerTraServer/database/execsql.h ../SneakerTraServer/database/connectmysql.h ../SneakerTraServer/database/connectsqlite.h ../SneakerTraServer/loginform/loginform.h ../SneakerTraServer/mainwindow.h ../SneakerTraServer/globalvars.h ../SneakerTraServer/subwidgets/userform.cpp ../SneakerTraServer/subwidgets/fansform.cpp ../SneakerTraServer/subwidgets/storeform.cpp ../SneakerTraServer/subwidgets/merchform.cpp ../SneakerTraServer/subwidgets/trolleyform.cpp ../SneakerTraServer/subwidgets/tranform.cpp ../SneakerTraServer/subwidgets/traderform.cpp ../SneakerTraServer/subinfos/fansinfo.cpp ../SneakerTraServer/subinfos/storeinfo.cpp ../SneakerTraServer/subinfos/traderinfo.cpp ../SneakerTraServer/subinfos/userinfo.cpp ../SneakerTraServer/subinfos/merchinfo.cpp ../SneakerTraServer/subinfos/trolleyinfo.cpp ../SneakerTraServer/subinfos/traninfo.cpp ../SneakerTraServer/database/execsql.cpp ../SneakerTraServer/database/connectmysql.cpp ../SneakerTraServer/database/connectsqlite.cpp ../SneakerTraServer/loginform/loginform.cpp ../SneakerTraServer/main.cpp ../SneakerTraServer/mainwindow.cpp ../SneakerTraServer/globalvars.cpp ../SneakerTraServer/subwidgets/userform.ui ../SneakerTraServer/subwidgets/fansform.ui ../SneakerTraServer/subwidgets/storeform.ui ../SneakerTraServer/subwidgets/merchform.ui ../SneakerTraServer/subwidgets/trolleyform.ui ../SneakerTraServer/subwidgets/tranform.ui ../SneakerTraServer/subwidgets/traderform.ui ../SneakerTraServer/loginform/loginform.ui ../SneakerTraServer/mainwindow.ui    
+	$(ZIP) SneakerTraServer.zip $(SOURCES) $(DIST) ../SneakerTraServer/SneakerTraServer.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_pre.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/qdevice.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/device_config.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/sanitize.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/gcc-base.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/g++-base.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/common/angle.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/qconfig.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3danimation.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3danimation_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dcore.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dcore_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dextras.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dextras_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dinput.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dinput_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dlogic.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dlogic_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquick.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquick_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickanimation.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickanimation_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickextras.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickextras_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickinput.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickinput_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickrender.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickrender_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickscene2d.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3dquickscene2d_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3drender.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_3drender_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_accessibility_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axbase.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axbase_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axcontainer.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axcontainer_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axserver.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_axserver_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_bluetooth.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_bluetooth_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_bootstrap_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_charts.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_charts_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_concurrent.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_concurrent_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_core.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_core_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_datavisualization.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_datavisualization_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_dbus.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_dbus_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_designer.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_designer_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_designercomponents_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_devicediscovery_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_egl_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_fb_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_fontdatabase_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gamepad.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gamepad_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gui.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_gui_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_help.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_help_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_location.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_location_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimedia.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimedia_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_multimediawidgets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_network.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_network_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_networkauth.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_networkauth_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_nfc.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_nfc_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_opengl.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_opengl_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_openglextensions.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_openglextensions_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_packetprotocol_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_platformcompositor_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_positioning.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_positioning_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_printsupport.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_printsupport_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_purchasing.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_purchasing_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qml.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qml_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmldebug_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmldevtools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmltest.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qmltest_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quick.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quick_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickcontrols2.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickcontrols2_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickparticles_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quicktemplates2_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickwidgets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_quickwidgets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_remoteobjects.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_remoteobjects_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_repparser.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_repparser_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_script.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_script_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scripttools.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scripttools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scxml.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_scxml_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sensors.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sensors_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialbus.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialbus_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialport.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_serialport_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sql.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_sql_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_svg.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_svg_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_testlib.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_testlib_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_texttospeech.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_texttospeech_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_theme_support_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_uiplugin.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_uitools.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_uitools_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_webchannel.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_webchannel_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_websockets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_websockets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_widgets.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_widgets_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_winextras.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_winextras_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xml.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xml_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xmlpatterns.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/modules/qt_lib_xmlpatterns_private.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_functions.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_config.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++/qmake.conf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_post.prf .qmake.stash E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/toolchain.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_pre.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf ../SneakerTraServer/subwidgets/subwidgets.pri ../SneakerTraServer/subinfos/subinfos.pri ../SneakerTraServer/database/database.pri ../SneakerTraServer/loginform/loginform.pri ../SneakerTraServer/network/network.pri E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/build_pass.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qml_debug.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/precompile_header.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/warn_on.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resources.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/moc.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/opengl.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/uic.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qmake_use.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/file_copies.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/windows.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/testcase_targets.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exceptions.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/yacc.prf E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/lex.prf ../SneakerTraServer/SneakerTraServer.pro ../SneakerTraServer/icons.qrc ../SneakerTraServer/language.qrc E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/qtmain.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Widgets.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Gui.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Sql.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Network.prl E:/Qt/Qt5.9.6/5.9.6/mingw53_32/lib/Qt5Core.prl en2ch.ts en2ch.ts  ../SneakerTraServer/icons.qrc ../SneakerTraServer/language.qrc E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/data/dummy.cpp ../SneakerTraServer/subwidgets/userform.h ../SneakerTraServer/subwidgets/fansform.h ../SneakerTraServer/subwidgets/storeform.h ../SneakerTraServer/subwidgets/merchform.h ../SneakerTraServer/subwidgets/trolleyform.h ../SneakerTraServer/subwidgets/tranform.h ../SneakerTraServer/subwidgets/traderform.h ../SneakerTraServer/subinfos/fansinfo.h ../SneakerTraServer/subinfos/storeinfo.h ../SneakerTraServer/subinfos/traderinfo.h ../SneakerTraServer/subinfos/userinfo.h ../SneakerTraServer/subinfos/merchinfo.h ../SneakerTraServer/subinfos/trolleyinfo.h ../SneakerTraServer/subinfos/traninfo.h ../SneakerTraServer/database/execsql.h ../SneakerTraServer/database/connectmysql.h ../SneakerTraServer/database/connectsqlite.h ../SneakerTraServer/loginform/loginform.h ../SneakerTraServer/network/msgsocket.h ../SneakerTraServer/network/msgserver.h ../SneakerTraServer/network/msgproc.h ../SneakerTraServer/mainwindow.h ../SneakerTraServer/globalvars.h ../SneakerTraServer/subwidgets/userform.cpp ../SneakerTraServer/subwidgets/fansform.cpp ../SneakerTraServer/subwidgets/storeform.cpp ../SneakerTraServer/subwidgets/merchform.cpp ../SneakerTraServer/subwidgets/trolleyform.cpp ../SneakerTraServer/subwidgets/tranform.cpp ../SneakerTraServer/subwidgets/traderform.cpp ../SneakerTraServer/subinfos/fansinfo.cpp ../SneakerTraServer/subinfos/storeinfo.cpp ../SneakerTraServer/subinfos/traderinfo.cpp ../SneakerTraServer/subinfos/userinfo.cpp ../SneakerTraServer/subinfos/merchinfo.cpp ../SneakerTraServer/subinfos/trolleyinfo.cpp ../SneakerTraServer/subinfos/traninfo.cpp ../SneakerTraServer/database/execsql.cpp ../SneakerTraServer/database/connectmysql.cpp ../SneakerTraServer/database/connectsqlite.cpp ../SneakerTraServer/loginform/loginform.cpp ../SneakerTraServer/network/msgsocket.cpp ../SneakerTraServer/network/msgserver.cpp ../SneakerTraServer/network/msgproc.cpp ../SneakerTraServer/main.cpp ../SneakerTraServer/mainwindow.cpp ../SneakerTraServer/globalvars.cpp ../SneakerTraServer/subwidgets/userform.ui ../SneakerTraServer/subwidgets/fansform.ui ../SneakerTraServer/subwidgets/storeform.ui ../SneakerTraServer/subwidgets/merchform.ui ../SneakerTraServer/subwidgets/trolleyform.ui ../SneakerTraServer/subwidgets/tranform.ui ../SneakerTraServer/subwidgets/traderform.ui ../SneakerTraServer/loginform/loginform.ui ../SneakerTraServer/mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) release/userform.o release/fansform.o release/storeform.o release/merchform.o release/trolleyform.o release/tranform.o release/traderform.o release/fansinfo.o release/storeinfo.o release/traderinfo.o release/userinfo.o release/merchinfo.o release/trolleyinfo.o release/traninfo.o release/execsql.o release/connectmysql.o release/connectsqlite.o release/loginform.o release/main.o release/mainwindow.o release/globalvars.o release/qrc_icons.o release/qrc_language.o release/moc_userform.o release/moc_fansform.o release/moc_storeform.o release/moc_merchform.o release/moc_trolleyform.o release/moc_tranform.o release/moc_traderform.o release/moc_loginform.o release/moc_mainwindow.o
+	-$(DEL_FILE) release/userform.o release/fansform.o release/storeform.o release/merchform.o release/trolleyform.o release/tranform.o release/traderform.o release/fansinfo.o release/storeinfo.o release/traderinfo.o release/userinfo.o release/merchinfo.o release/trolleyinfo.o release/traninfo.o release/execsql.o release/connectmysql.o release/connectsqlite.o release/loginform.o release/msgsocket.o release/msgserver.o release/msgproc.o release/main.o release/mainwindow.o release/globalvars.o release/qrc_icons.o release/qrc_language.o release/moc_userform.o release/moc_fansform.o release/moc_storeform.o release/moc_merchform.o release/moc_trolleyform.o release/moc_tranform.o release/moc_traderform.o release/moc_loginform.o release/moc_msgsocket.o release/moc_msgserver.o release/moc_msgproc.o release/moc_mainwindow.o
 	-$(DEL_FILE) release/SneakerTraServer_resource_res.o
 
 distclean: clean 
@@ -286,9 +304,9 @@ compiler_moc_predefs_clean:
 release/moc_predefs.h: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -W -Wextra -dM -E -o release/moc_predefs.h E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: release/moc_userform.cpp release/moc_fansform.cpp release/moc_storeform.cpp release/moc_merchform.cpp release/moc_trolleyform.cpp release/moc_tranform.cpp release/moc_traderform.cpp release/moc_loginform.cpp release/moc_mainwindow.cpp
+compiler_moc_header_make_all: release/moc_userform.cpp release/moc_fansform.cpp release/moc_storeform.cpp release/moc_merchform.cpp release/moc_trolleyform.cpp release/moc_tranform.cpp release/moc_traderform.cpp release/moc_loginform.cpp release/moc_msgsocket.cpp release/moc_msgserver.cpp release/moc_msgproc.cpp release/moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release/moc_userform.cpp release/moc_fansform.cpp release/moc_storeform.cpp release/moc_merchform.cpp release/moc_trolleyform.cpp release/moc_tranform.cpp release/moc_traderform.cpp release/moc_loginform.cpp release/moc_mainwindow.cpp
+	-$(DEL_FILE) release/moc_userform.cpp release/moc_fansform.cpp release/moc_storeform.cpp release/moc_merchform.cpp release/moc_trolleyform.cpp release/moc_tranform.cpp release/moc_traderform.cpp release/moc_loginform.cpp release/moc_msgsocket.cpp release/moc_msgserver.cpp release/moc_msgproc.cpp release/moc_mainwindow.cpp
 release/moc_userform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qtwidgetsglobal.h \
@@ -392,7 +410,7 @@ release/moc_userform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidg
 		../SneakerTraServer/subwidgets/userform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/userform.h -o release/moc_userform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/userform.h -o release/moc_userform.cpp
 
 release/moc_fansform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
@@ -497,7 +515,7 @@ release/moc_fansform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidg
 		../SneakerTraServer/subwidgets/fansform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/fansform.h -o release/moc_fansform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/fansform.h -o release/moc_fansform.cpp
 
 release/moc_storeform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
@@ -602,7 +620,7 @@ release/moc_storeform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWid
 		../SneakerTraServer/subwidgets/storeform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/storeform.h -o release/moc_storeform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/storeform.h -o release/moc_storeform.cpp
 
 release/moc_merchform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
@@ -707,7 +725,7 @@ release/moc_merchform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWid
 		../SneakerTraServer/subwidgets/merchform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/merchform.h -o release/moc_merchform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/merchform.h -o release/moc_merchform.cpp
 
 release/moc_trolleyform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
@@ -812,7 +830,7 @@ release/moc_trolleyform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QW
 		../SneakerTraServer/subwidgets/trolleyform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/trolleyform.h -o release/moc_trolleyform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/trolleyform.h -o release/moc_trolleyform.cpp
 
 release/moc_tranform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
@@ -917,7 +935,7 @@ release/moc_tranform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidg
 		../SneakerTraServer/subwidgets/tranform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/tranform.h -o release/moc_tranform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/tranform.h -o release/moc_tranform.cpp
 
 release/moc_traderform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWidget \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qwidget.h \
@@ -1022,7 +1040,7 @@ release/moc_traderform.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QWi
 		../SneakerTraServer/subwidgets/traderform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/traderform.h -o release/moc_traderform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/subwidgets/traderform.h -o release/moc_traderform.cpp
 
 release/moc_loginform.cpp: ../SneakerTraServer/subinfos/userinfo.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
@@ -1131,7 +1149,269 @@ release/moc_loginform.cpp: ../SneakerTraServer/subinfos/userinfo.h \
 		../SneakerTraServer/loginform/loginform.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/loginform/loginform.h -o release/moc_loginform.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/loginform/loginform.h -o release/moc_loginform.cpp
+
+release/moc_msgsocket.cpp: ../SneakerTraServer/globalvars.h \
+		../SneakerTraServer/subinfos/userinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/QList \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qset.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QMap \
+		../SneakerTraServer/subinfos/fansinfo.h \
+		../SneakerTraServer/subinfos/traderinfo.h \
+		../SneakerTraServer/subinfos/storeinfo.h \
+		../SneakerTraServer/subinfos/merchinfo.h \
+		../SneakerTraServer/subinfos/trolleyinfo.h \
+		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QObject \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/QTcpSocket \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		../SneakerTraServer/network/msgsocket.h \
+		release/moc_predefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/network/msgsocket.h -o release/moc_msgsocket.cpp
+
+release/moc_msgserver.cpp: ../SneakerTraServer/network/msgsocket.h \
+		../SneakerTraServer/globalvars.h \
+		../SneakerTraServer/subinfos/userinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/QList \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qset.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QMap \
+		../SneakerTraServer/subinfos/fansinfo.h \
+		../SneakerTraServer/subinfos/traderinfo.h \
+		../SneakerTraServer/subinfos/storeinfo.h \
+		../SneakerTraServer/subinfos/merchinfo.h \
+		../SneakerTraServer/subinfos/trolleyinfo.h \
+		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QObject \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/QTcpSocket \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		../SneakerTraServer/network/msgproc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QThread \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/QTcpServer \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtcpserver.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qhostaddress.h \
+		../SneakerTraServer/network/msgserver.h \
+		release/moc_predefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/network/msgserver.h -o release/moc_msgserver.cpp
+
+release/moc_msgproc.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QThread \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		../SneakerTraServer/network/msgproc.h \
+		release/moc_predefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/network/msgproc.h -o release/moc_msgproc.cpp
 
 release/moc_mainwindow.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QMainWindow \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qmainwindow.h \
@@ -1251,7 +1531,7 @@ release/moc_mainwindow.cpp: E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QMa
 		../SneakerTraServer/mainwindow.h \
 		release/moc_predefs.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/bin/moc.exe
-	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/mainwindow.h -o release/moc_mainwindow.cpp
+	'E:\Qt\Qt5.9.6\5.9.6\mingw53_32\bin\moc.exe' $(DEFINES) --include release/moc_predefs.h -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++ -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/include -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subwidgets -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/subinfos -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/database -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/loginform -IG:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/network -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtANGLE -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork -IE:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore -I. -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IE:/Qt/Qt5.9.6/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward ../SneakerTraServer/mainwindow.h -o release/moc_mainwindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -2293,6 +2573,8 @@ release/userform.o: ../SneakerTraServer/subwidgets/userform.cpp ../SneakerTraSer
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/userform.o ../SneakerTraServer/subwidgets/userform.cpp
 
@@ -2471,6 +2753,8 @@ release/fansform.o: ../SneakerTraServer/subwidgets/fansform.cpp ../SneakerTraSer
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/fansform.o ../SneakerTraServer/subwidgets/fansform.cpp
 
@@ -2648,6 +2932,8 @@ release/storeform.o: ../SneakerTraServer/subwidgets/storeform.cpp ../SneakerTraS
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/storeform.o ../SneakerTraServer/subwidgets/storeform.cpp
 
@@ -2825,6 +3111,8 @@ release/merchform.o: ../SneakerTraServer/subwidgets/merchform.cpp ../SneakerTraS
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/merchform.o ../SneakerTraServer/subwidgets/merchform.cpp
 
@@ -3002,6 +3290,8 @@ release/trolleyform.o: ../SneakerTraServer/subwidgets/trolleyform.cpp ../Sneaker
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/trolleyform.o ../SneakerTraServer/subwidgets/trolleyform.cpp
 
@@ -3179,6 +3469,8 @@ release/tranform.o: ../SneakerTraServer/subwidgets/tranform.cpp ../SneakerTraSer
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/tranform.o ../SneakerTraServer/subwidgets/tranform.cpp
 
@@ -3357,6 +3649,8 @@ release/traderform.o: ../SneakerTraServer/subwidgets/traderform.cpp ../SneakerTr
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		../SneakerTraServer/database/execsql.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/traderform.o ../SneakerTraServer/subwidgets/traderform.cpp
 
@@ -3532,6 +3826,8 @@ release/storeinfo.o: ../SneakerTraServer/subinfos/storeinfo.cpp ../SneakerTraSer
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/storeinfo.o ../SneakerTraServer/subinfos/storeinfo.cpp
 
@@ -3707,6 +4003,8 @@ release/userinfo.o: ../SneakerTraServer/subinfos/userinfo.cpp ../SneakerTraServe
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/userinfo.o ../SneakerTraServer/subinfos/userinfo.cpp
 
@@ -3882,6 +4180,8 @@ release/trolleyinfo.o: ../SneakerTraServer/subinfos/trolleyinfo.cpp ../SneakerTr
 		../SneakerTraServer/subinfos/storeinfo.h \
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/trolleyinfo.o ../SneakerTraServer/subinfos/trolleyinfo.cpp
 
@@ -3973,6 +4273,8 @@ release/traninfo.o: ../SneakerTraServer/subinfos/traninfo.cpp ../SneakerTraServe
 		../SneakerTraServer/subinfos/storeinfo.h \
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/traninfo.o ../SneakerTraServer/subinfos/traninfo.cpp
 
@@ -4065,6 +4367,8 @@ release/execsql.o: ../SneakerTraServer/database/execsql.cpp ../SneakerTraServer/
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql/QSqlQuery \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql/qsqlquery.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtSql/qtsqlglobal.h \
@@ -4309,11 +4613,317 @@ release/loginform.o: ../SneakerTraServer/loginform/loginform.cpp ../SneakerTraSe
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDebug \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QMessageBox \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qmessagebox.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/loginform.o ../SneakerTraServer/loginform/loginform.cpp
+
+release/msgsocket.o: ../SneakerTraServer/network/msgsocket.cpp ../SneakerTraServer/network/msgsocket.h \
+		../SneakerTraServer/globalvars.h \
+		../SneakerTraServer/subinfos/userinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/QList \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qset.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QMap \
+		../SneakerTraServer/subinfos/fansinfo.h \
+		../SneakerTraServer/subinfos/traderinfo.h \
+		../SneakerTraServer/subinfos/storeinfo.h \
+		../SneakerTraServer/subinfos/merchinfo.h \
+		../SneakerTraServer/subinfos/trolleyinfo.h \
+		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QObject \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/QTcpSocket \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QStringBuilder \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QDataStream
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/msgsocket.o ../SneakerTraServer/network/msgsocket.cpp
+
+release/msgserver.o: ../SneakerTraServer/network/msgserver.cpp ../SneakerTraServer/network/msgserver.h \
+		../SneakerTraServer/network/msgsocket.h \
+		../SneakerTraServer/globalvars.h \
+		../SneakerTraServer/subinfos/userinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/QList \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qset.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QMap \
+		../SneakerTraServer/subinfos/fansinfo.h \
+		../SneakerTraServer/subinfos/traderinfo.h \
+		../SneakerTraServer/subinfos/storeinfo.h \
+		../SneakerTraServer/subinfos/merchinfo.h \
+		../SneakerTraServer/subinfos/trolleyinfo.h \
+		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QObject \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/QTcpSocket \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		../SneakerTraServer/network/msgproc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QThread \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/QTcpServer \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qtcpserver.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtNetwork/qhostaddress.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/msgserver.o ../SneakerTraServer/network/msgserver.cpp
+
+release/msgproc.o: ../SneakerTraServer/network/msgproc.cpp ../SneakerTraServer/network/msgproc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QThread \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qthread.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnamespace.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig-bootstrapped.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qconfig.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtcore-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsystemdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qprocessordetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcompilerdetection.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtypeinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsysinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlogging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qflags.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbasicatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_bootstrap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qgenericatomic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_cxx11.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qatomic_msvc.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qglobalstatic.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmutex.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qnumeric.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qversiontagging.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobjectdefs_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstring.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qchar.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrefcount.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qarraydata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringbuilder.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qalgorithms.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiterator.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhashfunctions.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpair.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qbytearraylist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringlist.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qregexp.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qstringmatcher.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qscopedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmetatype.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvarlengtharray.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontainerfwd.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qobject_impl.h \
+		../SneakerTraServer/database/execsql.h \
+		../SneakerTraServer/globalvars.h \
+		../SneakerTraServer/subinfos/userinfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QString \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/QList \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qevent.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtguiglobal.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtgui-config.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qwindowdefs_win.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qregion.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qrect.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmargins.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsize.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qpoint.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdatastream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qiodevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qkeysequence.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvariant.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qmap.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdebug.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qhash.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qtextstream.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qlocale.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qshareddata.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qvector.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qset.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcontiguouscache.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qsharedpointer_impl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurl.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qurlquery.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfile.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qfiledevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qvector2d.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtGui/qtouchdevice.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QMap \
+		../SneakerTraServer/subinfos/fansinfo.h \
+		../SneakerTraServer/subinfos/traderinfo.h \
+		../SneakerTraServer/subinfos/storeinfo.h \
+		../SneakerTraServer/subinfos/merchinfo.h \
+		../SneakerTraServer/subinfos/trolleyinfo.h \
+		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QStringBuilder
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/msgproc.o ../SneakerTraServer/network/msgproc.cpp
 
 release/main.o: ../SneakerTraServer/main.cpp ../SneakerTraServer/mainwindow.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QMainWindow \
@@ -4440,6 +5050,8 @@ release/main.o: ../SneakerTraServer/main.cpp ../SneakerTraServer/mainwindow.h \
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/QApplication \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtWidgets/qapplication.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -4706,6 +5318,8 @@ release/globalvars.o: ../SneakerTraServer/globalvars.cpp ../SneakerTraServer/glo
 		../SneakerTraServer/subinfos/merchinfo.h \
 		../SneakerTraServer/subinfos/trolleyinfo.h \
 		../SneakerTraServer/subinfos/traninfo.h \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QQueue \
+		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qqueue.h \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/QTime \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/include/QtCore/qdatetime.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/globalvars.o ../SneakerTraServer/globalvars.cpp
@@ -4739,6 +5353,15 @@ release/moc_traderform.o: release/moc_traderform.cpp
 
 release/moc_loginform.o: release/moc_loginform.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_loginform.o release/moc_loginform.cpp
+
+release/moc_msgsocket.o: release/moc_msgsocket.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_msgsocket.o release/moc_msgsocket.cpp
+
+release/moc_msgserver.o: release/moc_msgserver.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_msgserver.o release/moc_msgserver.cpp
+
+release/moc_msgproc.o: release/moc_msgproc.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_msgproc.o release/moc_msgproc.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release/moc_mainwindow.o release/moc_mainwindow.cpp
