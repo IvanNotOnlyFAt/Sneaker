@@ -35,10 +35,11 @@ void MsgSocket::parseUserLogin(QString msg)
     QStringList list = msg.remove("L#").split("|");
     QString id = list.at(0);
     QString pswd = list.at(1);
-
+    qDebug() << "id::pswd" << id << " " << pswd;
     if(GlobalVars::g_userInfoMap.contains(id))
     {
         UserInfoList::iterator it = GlobalVars::g_userInfoMap[id];
+
         it->display();
         if(it->getPswd() == pswd)
         {
@@ -54,10 +55,16 @@ void MsgSocket::parseUserLogin(QString msg)
         }else
         {
             QString msg = QString(CMD_UserLogin_L)
-                    % QString("#?|")
-                    % QString("Error: UID or Pswd!");
+                    % QString("#?|") % it->getID()
+                    % "|" % QString("Error: UID or Pswd!");
             this->slotSendMsg(msg);//此socket不进入socketmap
         }
+    }else
+    {
+        QString msg = QString(CMD_UserLogin_L)
+                % QString("#?|") % id
+                % "|" % QString("Error: ID is not exist!");
+        this->slotSendMsg(msg);//此socket不进入socketmap
     }
 }
 void MsgSocket::parseUserExit(QString msg)
@@ -72,6 +79,7 @@ void MsgSocket::parseUserExit(QString msg)
      QString endmsg =QString(CMD_UserExit_X)
              % QString("#!|") % id;
 
+    this->slotSendMsg(endmsg);
 }
 
 void MsgSocket::slotReadyRead()

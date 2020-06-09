@@ -3,9 +3,10 @@
 MsgServer::MsgServer(QObject *parent) :
     QObject(parent)
 {
-    m_server = new QTcpServer(this);
+
     m_socketMap.clear();
     m_msgProc = new MsgProc;
+    m_server = new QTcpServer(this);
 
 
     connect(m_server, SIGNAL(newConnection()),
@@ -13,7 +14,7 @@ MsgServer::MsgServer(QObject *parent) :
     connect(m_msgProc, SIGNAL(signalSendMsgToClient(QString,QString)),
             this, SLOT(slotSendMsgToClient(QString,QString)));
 
-    m_server->listen(QHostAddress::Any, 55555);
+    m_server->listen(QHostAddress::Any, 66666);
     m_msgProc->start();
 
 }
@@ -21,6 +22,11 @@ MsgServer::~MsgServer()
 {
     //退出进程 m_msgProc::m_isExit = ture ,m_msgProc::run()  stop;
     m_msgProc->exitTread();
+
+    ///Blocks(阻塞) the thread until 1：when it returns from run().[run() is finish]
+    /// 1.线程调用wait（）函数时，阻塞一直等到该线程执行完成之后再执行wait（）下面的代码
+    /// 也就是说，线程池中最后取出来的指令执行完之后，再delete 线程，但是线程池中剩下的指令是不再取出的
+    /// 2:QThread::wait(unsigned long time = ULONG_MAX) The ULONG_MAX has elapsed
 
     if(m_msgProc->wait())
     {

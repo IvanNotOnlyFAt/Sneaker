@@ -11,9 +11,9 @@
 #include "trolleyform.h"
 #include "tranform.h"
 
-//class UserInfo;
-#include "userinfo.h"
 
+#include "userinfo.h"
+#include "msgserver.h"
 namespace Ui {
 class MainWindow;
 }
@@ -48,6 +48,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    MsgServer *m_msgServer;
 //    UserForm *m_userForm;
 //    FansForm *m_fansform;
 //    TraderForm *m_traderform;

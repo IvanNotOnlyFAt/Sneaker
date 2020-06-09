@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="widget_login" native="true">
    <property name="geometry">
     <rect>
@@ -113,7 +116,7 @@ QPushButton#pb_forget{
          </font>
         </property>
         <property name="text">
-         <string>admin</string>
+         <string>FAN-401</string>
         </property>
         <property name="frame">
          <bool>true</bool>
@@ -173,7 +176,7 @@ QPushButton#pb_forget{
          </size>
         </property>
         <property name="text">
-         <string>admin</string>
+         <string>123456</string>
         </property>
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>

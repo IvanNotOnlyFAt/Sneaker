@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_TraderHomeForm
 {
 public:
+    QPushButton *pushButton;
 
     void setupUi(QWidget *TraderHomeForm)
     {
         if (TraderHomeForm->objectName().isEmpty())
             TraderHomeForm->setObjectName(QStringLiteral("TraderHomeForm"));
         TraderHomeForm->resize(1110, 800);
+        pushButton = new QPushButton(TraderHomeForm);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(360, 250, 201, 91));
 
         retranslateUi(TraderHomeForm);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QWidget *TraderHomeForm)
     {
         TraderHomeForm->setWindowTitle(QApplication::translate("TraderHomeForm", "Form", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("TraderHomeForm", "T\344\270\273\351\241\265", Q_NULLPTR));
     } // retranslateUi
 
 };

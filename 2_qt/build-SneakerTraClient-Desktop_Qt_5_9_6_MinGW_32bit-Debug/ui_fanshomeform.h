@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_FansHomeForm
 {
 public:
+    QPushButton *pushButton;
 
     void setupUi(QWidget *FansHomeForm)
     {
         if (FansHomeForm->objectName().isEmpty())
             FansHomeForm->setObjectName(QStringLiteral("FansHomeForm"));
         FansHomeForm->resize(1110, 800);
+        pushButton = new QPushButton(FansHomeForm);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(380, 160, 93, 28));
 
         retranslateUi(FansHomeForm);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QWidget *FansHomeForm)
     {
         FansHomeForm->setWindowTitle(QApplication::translate("FansHomeForm", "Form", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("FansHomeForm", "F\344\270\273\351\241\265", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_TrolleyForm
 {
 public:
+    QPushButton *pushButton;
 
     void setupUi(QWidget *TrolleyForm)
     {
         if (TrolleyForm->objectName().isEmpty())
             TrolleyForm->setObjectName(QStringLiteral("TrolleyForm"));
         TrolleyForm->resize(1110, 800);
+        pushButton = new QPushButton(TrolleyForm);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(270, 190, 201, 91));
 
         retranslateUi(TrolleyForm);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QWidget *TrolleyForm)
     {
         TrolleyForm->setWindowTitle(QApplication::translate("TrolleyForm", "Form", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("TrolleyForm", "F\350\264\255\347\211\251\350\275\246\347\256\241\347\220\206", Q_NULLPTR));
     } // retranslateUi
 
 };

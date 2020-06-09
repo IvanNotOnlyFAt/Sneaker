@@ -14,7 +14,10 @@ class TraderInfoForm : public QWidget
 public:
     explicit TraderInfoForm(QWidget *parent = 0);
     ~TraderInfoForm();
-
+public slots:
+    void slotGainTraderInfoResult(bool res);
+protected:
+    void paintEvent(QPaintEvent *);
 private:
     Ui::TraderInfoForm *ui;
 };

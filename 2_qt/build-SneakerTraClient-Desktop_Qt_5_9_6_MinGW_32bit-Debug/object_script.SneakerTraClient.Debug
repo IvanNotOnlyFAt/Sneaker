@@ -6,10 +6,10 @@ INPUT(
 ./debug/fanschangepswdform.o
 ./debug/traderinfoform.o
 ./debug/traderhomeform.o
-./debug/storeform.o
 ./debug/merchform.o
 ./debug/tradertranscform.o
 ./debug/traderchangepswdform.o
+./debug/traderstoreform.o
 ./debug/cloginform.o
 ./debug/fansinfo.o
 ./debug/storeinfo.o
@@ -31,10 +31,10 @@ INPUT(
 ./debug/moc_fanschangepswdform.o
 ./debug/moc_traderinfoform.o
 ./debug/moc_traderhomeform.o
-./debug/moc_storeform.o
 ./debug/moc_merchform.o
 ./debug/moc_tradertranscform.o
 ./debug/moc_traderchangepswdform.o
+./debug/moc_traderstoreform.o
 ./debug/moc_cloginform.o
 ./debug/moc_msgsocket.o
 ./debug/moc_sneakertraclient.o

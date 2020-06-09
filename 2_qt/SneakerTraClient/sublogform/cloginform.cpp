@@ -19,17 +19,19 @@ CLoginForm::~CLoginForm()
 {
     delete ui;
 }
-//void CLoginForm::paintEvent(QPaintEvent *)
-//{
-//    QPainter p(this);
-//    QPixmap pix(":/images/back3.png");
-//    p.drawPixmap(-50,-50,pix);
+void CLoginForm::paintEvent(QPaintEvent *)
+{
+    QPainter p(this);
+    QPixmap pix(":/images/back3.png");
+    p.drawPixmap(0,0,pix);
     
-//}
+}
 void CLoginForm::closeEvent(QCloseEvent *ev)
 {
-    emit signalUserLogout();
-    ev->ignore(); 
+//    emit signalUserLogout();
+    qDebug() << "emit signalUserClose();";
+    emit signalUserClose();
+    ev->ignore();
     //ignore();清除事件对象的接受标志参数，等效于调用setAccepted（false）。
     //清除accept参数表示事件接收者不需要该事件。
 }
@@ -46,6 +48,7 @@ void CLoginForm::userLoginFail(void)
     switch (res){
     case QMessageBox::Retry: ui->le_id->setFocus();break;
     case QMessageBox::Close: emit signalUserLogout();break;
+//    case QMessageBox::Close: emit signalUserClose();break;
     default:
         break;
     }

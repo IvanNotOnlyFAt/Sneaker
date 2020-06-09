@@ -47,102 +47,12 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
-      <property name="currentIndex">
-       <number>0</number>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
-      <widget class="QWidget" name="page_Login">
-       <property name="styleSheet">
-        <string notr="true">
-/*background-image: url(:/images/back3.png);</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="CLoginForm" name="widget_Login" native="true">
-          <property name="styleSheet">
-           <string notr="true">
-</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_FanInfo">
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="0" column="0">
-         <widget class="FansInfoForm" name="widget_FansInfo" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_FansHome">
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="0" column="0">
-         <widget class="FansHomeForm" name="widget_FHome" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_Trolley">
-       <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="TrolleyForm" name="widget_Trolley" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_FansTran">
-       <layout class="QGridLayout" name="gridLayout_6">
-        <item row="0" column="0">
-         <widget class="FansTranscForm" name="widget_FTran" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_FansChangPswd">
-       <layout class="QGridLayout" name="gridLayout_7">
-        <item row="0" column="0">
-         <widget class="FansChangePswdForm" name="widget_FCPswd" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_TraderInfo">
-       <layout class="QGridLayout" name="gridLayout_8">
-        <item row="0" column="0">
-         <widget class="TraderInfoForm" name="widget_TraderInfo" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_TraderHome">
-       <layout class="QGridLayout" name="gridLayout_9">
-        <item row="0" column="0">
-         <widget class="TraderHomeForm" name="widget_THome" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_Store">
-       <layout class="QGridLayout" name="gridLayout_10">
-        <item row="0" column="0">
-         <widget class="StoreForm" name="widget_Store" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_Merch">
-       <layout class="QGridLayout" name="gridLayout_11">
-        <item row="0" column="0">
-         <widget class="MerchForm" name="widget_Merch" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_TraderTran">
-       <layout class="QGridLayout" name="gridLayout_12">
-        <item row="0" column="0">
-         <widget class="TraderTranscForm" name="widget_TTran" native="true"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_TraderChangPswd">
-       <layout class="QGridLayout" name="gridLayout_13">
-        <item row="0" column="0">
-         <widget class="TraderChangePswdForm" name="widget_TCPswd" native="true"/>
-        </item>
-       </layout>
-      </widget>
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
      </widget>
     </item>
    </layout>
@@ -310,80 +220,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>TraderChangePswdForm</class>
-   <extends>QWidget</extends>
-   <header>traderchangepswdform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TraderHomeForm</class>
-   <extends>QWidget</extends>
-   <header>traderhomeform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TraderInfoForm</class>
-   <extends>QWidget</extends>
-   <header>traderinfoform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>FansChangePswdForm</class>
-   <extends>QWidget</extends>
-   <header>fanschangepswdform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>FansHomeForm</class>
-   <extends>QWidget</extends>
-   <header>fanshomeform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>FansInfoForm</class>
-   <extends>QWidget</extends>
-   <header>fansinfoform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>FansTranscForm</class>
-   <extends>QWidget</extends>
-   <header>fanstranscform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>CLoginForm</class>
-   <extends>QWidget</extends>
-   <header>cloginform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TraderTranscForm</class>
-   <extends>QWidget</extends>
-   <header>tradertranscform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>StoreForm</class>
-   <extends>QWidget</extends>
-   <header>storeform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>MerchForm</class>
-   <extends>QWidget</extends>
-   <header>merchform.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TrolleyForm</class>
-   <extends>QWidget</extends>
-   <header>trolleyform.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="icon.qrc"/>
  </resources>

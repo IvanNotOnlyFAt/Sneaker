@@ -7,6 +7,10 @@ QDateTime m_dateTime = QDateTime::currentDateTime();
 QString GlobalVars::g_StrTime = m_dateTime.toString("yyyy-MM-dd");
 QString GlobalVars::g_StrDTime = m_dateTime.toString("yyyyMMddhhmmsszzz");
 
+UserInfo *GlobalVars::g_localUser = new UserInfo;
+FansInfo *GlobalVars::g_localFans = new FansInfo;
+TraderInfo *GlobalVars::g_localTrader = new TraderInfo;
+
 UserInfoList *GlobalVars::g_userInfoList = new UserInfoList;
 FansInfoList *GlobalVars::g_fansInfoList = new FansInfoList;
 TraderInfoList *GlobalVars::g_traderInfoList = new TraderInfoList;

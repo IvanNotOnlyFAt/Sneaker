@@ -8,7 +8,7 @@
 #include "trolleyform.h"
 
 #include "merchform.h"
-#include "storeform.h"
+#include "traderstoreform.h"
 #include "traderchangepswdform.h"
 #include "traderhomeform.h"
 #include "traderinfoform.h"
@@ -16,7 +16,7 @@
 
 #include "msgsocket.h"
 #include <QMainWindow>
-#include <QCloseEvent>
+
 namespace Ui {
 class SneakerTraClient;
 }
@@ -33,6 +33,7 @@ public slots:
     void slotUserLoginResult(bool res);
     void slotUserLogout(void);
     void slotUserLogoutResult(bool res);
+    void slotUserClose(void);
 
 protected:
     void closeEvent(QCloseEvent *ev);
@@ -50,11 +51,29 @@ private slots:
     void on_actionTraderTransc_triggered();
     void on_actionTraderChangePswd_triggered();
 
+
 private:
     Ui::SneakerTraClient *ui;
+//    bool m_isCloseLog;
 
     bool m_isCloseSystem;
     MsgSocket *m_msgSocket;
+    CLoginForm *m_cloginForm;
+    FansInfoForm *m_fansInfoForm;
+    TraderInfoForm *m_traderInfoForm;
+
+    FansHomeForm *m_fansHomeForm;
+    TrolleyForm *m_trolleyForm;
+    FansTranscForm *m_fansTranscForm;
+    FansChangePswdForm *m_fansChangePswdForm;
+
+    TraderHomeForm *m_traderHomeForm;
+    TraderStoreForm *m_traderStoreForm;
+    MerchForm *m_merchForm;
+    TraderTranscForm *m_traderTranscForm;
+    TraderChangePswdForm *m_traderChangePswd;
+
+    int m_logIndex;
 
     void initFansMS(void);
     void initTraderMs(void);

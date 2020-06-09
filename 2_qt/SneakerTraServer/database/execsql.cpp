@@ -49,7 +49,7 @@ void ExecSQL::updateUserInfoList(const QString &sql)
 {
     QSqlQuery query;
     GlobalVars::g_userInfoList->clear();
-
+    GlobalVars::g_userInfoMap.clear();
     if(query.exec(sql))
     {
         int id_idx = query.record().indexOf("id");
@@ -70,6 +70,12 @@ void ExecSQL::updateUserInfoList(const QString &sql)
 
             GlobalVars::g_userInfoList->append(info);
 //            info.display();
+        }
+
+        for(UserInfoList::iterator it = GlobalVars::g_userInfoList->begin();
+            it != GlobalVars::g_userInfoList->end(); it++)
+        {
+           GlobalVars::g_userInfoMap.insert(it->getID(), it);
         }
     }
 
@@ -153,6 +159,7 @@ void ExecSQL::updateFansInfoList(const QString &sql)
 {
     QSqlQuery query;
     GlobalVars::g_fansInfoList->clear();
+    GlobalVars::g_fansInfoMap.clear();
 
     if(query.exec(sql))
     {
@@ -172,6 +179,11 @@ void ExecSQL::updateFansInfoList(const QString &sql)
 
             GlobalVars::g_fansInfoList->append(info);
 //            info.display();
+        }
+        for(FansInfoList::iterator it = GlobalVars::g_fansInfoList->begin();
+            it != GlobalVars::g_fansInfoList->end(); it++)
+        {
+           GlobalVars::g_fansInfoMap.insert(it->getID(), it);
         }
     }
 
@@ -244,6 +256,7 @@ void ExecSQL::updateTraderInfoList(const QString &sql)
 {
     QSqlQuery query;
     GlobalVars::g_traderInfoList->clear();
+    GlobalVars::g_traderInfoMap.clear();
 
     if(query.exec(sql))
     {
@@ -265,6 +278,11 @@ void ExecSQL::updateTraderInfoList(const QString &sql)
 
             GlobalVars::g_traderInfoList->append(info);
 //            info.display();
+        }
+        for(TraderInfoList::iterator it = GlobalVars::g_traderInfoList->begin();
+            it != GlobalVars::g_traderInfoList->end(); it++)
+        {
+            GlobalVars::g_traderInfoMap.insert(it->getID(),it);
         }
     }
 

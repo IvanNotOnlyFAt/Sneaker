@@ -13,7 +13,7 @@ MsgSocket::MsgSocket(QThread *parent) :
     connect(m_tcpSocket, SIGNAL(readyRead()),
             this, SLOT(slotReadyRead()));
 
-    m_tcpSocket->connectToHost("localhost", 55555);
+    m_tcpSocket->connectToHost("localhost", 66666);
 }
 MsgSocket::~MsgSocket()
 {
@@ -58,17 +58,68 @@ void MsgSocket::parseUserAsk(QString msg)
 ///解析通用请求命令
 void MsgSocket::parseUserLogin(QString data)
 {
-
+    qDebug() << "MsgSocket::parseUserLogin";
+    QStringList list = data.split("|");
+    int res = data.at(0).toLatin1();
+    if(res == RES_Down)
+    {
+        GlobalVars::g_localUser->setID(list.at(1));
+        GlobalVars::g_localUser->setPswd(list.at(2));
+        GlobalVars::g_localUser->setRole(list.at(3));
+        GlobalVars::g_localUser->setDate(list.at(4));
+        emit signalUserLoginResult(true);
+    }else
+    {
+        emit signalUserLoginResult(false);
+    }
 }
 void MsgSocket::parseUserInfo(QString data)
 {
-
-}
-void MsgSocket::parseChangePswd(QString data)
-{
-
+    qDebug() << "MsgSocket::parseUserInfo";
+    QStringList list = data.split("|");
+    int res = data.at(0).toLatin1();
+    if(res == RES_Down)
+    {
+        if(GlobalVars::g_localUser->getRole() == "鞋友")
+        {
+            GlobalVars::g_localFans->setID(list.at(1));
+            GlobalVars::g_localFans->setNickName(list.at(2));
+            GlobalVars::g_localFans->setTele(list.at(3));
+            emit signalGainFansInfo(true);
+        }else if(GlobalVars::g_localUser->getRole() == "鞋商")
+        {
+            GlobalVars::g_localTrader->setID(list.at(1));
+            GlobalVars::g_localTrader->setName(list.at(2));
+            GlobalVars::g_localTrader->setID_Num(list.at(3));
+            GlobalVars::g_localTrader->setTele(list.at(4));
+            emit signalGainTraderInfo(true);
+        }
+    }else
+    {
+        if(GlobalVars::g_localUser->getRole() == "鞋友")
+        {
+            emit signalGainFansInfo(false);
+        }else if(GlobalVars::g_localUser->getRole() == "鞋商")
+        {
+            emit signalGainTraderInfo(false);
+        }
+    }
 }
 void MsgSocket::parseUserExit(QString data)
+{
+    qDebug() << "MsgSocket::parseUserExit";
+    QStringList list = data.split("|");
+    int res = data.at(0).toLatin1();
+    QString uid = list.at(1);
+    if((res == RES_Down) && (uid == GlobalVars::g_localUser->getID()))
+    {
+        emit signalUserLogoutResult(true);
+    }else
+    {
+        emit signalUserLogoutResult(false);
+    }
+}
+void MsgSocket::parseChangePswd(QString data)
 {
 
 }
@@ -76,7 +127,10 @@ void MsgSocket::parseGetHomePage(QString data)
 {
 
 }
+/////////////////////////解析鞋友请求命令/////////////////////
 
+
+/////////////////////////解析鞋商请求命令////////////////////
 
 ///////////////////slot////////////////////
 void MsgSocket::slotReadyRead()
@@ -105,7 +159,7 @@ void MsgSocket::slotReadyRead()
 void MsgSocket::slotSendMsg(QString msg)
 {
     QByteArray buffer;
-    QDataStream out(m_tcpSocket);
+    QDataStream out(&buffer, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_6);
 
     out << (quint16)0;

@@ -6,10 +6,10 @@ INPUT(
 ./release/fanschangepswdform.o
 ./release/traderinfoform.o
 ./release/traderhomeform.o
-./release/storeform.o
 ./release/merchform.o
 ./release/tradertranscform.o
 ./release/traderchangepswdform.o
+./release/traderstoreform.o
 ./release/cloginform.o
 ./release/fansinfo.o
 ./release/storeinfo.o
@@ -31,10 +31,10 @@ INPUT(
 ./release/moc_fanschangepswdform.o
 ./release/moc_traderinfoform.o
 ./release/moc_traderhomeform.o
-./release/moc_storeform.o
 ./release/moc_merchform.o
 ./release/moc_tradertranscform.o
 ./release/moc_traderchangepswdform.o
+./release/moc_traderstoreform.o
 ./release/moc_cloginform.o
 ./release/moc_msgsocket.o
 ./release/moc_sneakertraclient.o

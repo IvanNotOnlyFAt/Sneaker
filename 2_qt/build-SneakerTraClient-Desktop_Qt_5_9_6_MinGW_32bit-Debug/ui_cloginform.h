@@ -50,6 +50,7 @@ public:
         if (CLoginForm->objectName().isEmpty())
             CLoginForm->setObjectName(QStringLiteral("CLoginForm"));
         CLoginForm->resize(1200, 800);
+        CLoginForm->setStyleSheet(QStringLiteral(""));
         widget_login = new QWidget(CLoginForm);
         widget_login->setObjectName(QStringLiteral("widget_login"));
         widget_login->setGeometry(QRect(540, 170, 570, 491));
@@ -224,10 +225,10 @@ public:
     {
         CLoginForm->setWindowTitle(QApplication::translate("CLoginForm", "Form", Q_NULLPTR));
         pb_logup->setText(QApplication::translate("CLoginForm", "\345\205\215\350\264\271\346\263\250\345\206\214", Q_NULLPTR));
-        le_id->setText(QApplication::translate("CLoginForm", "admin", Q_NULLPTR));
+        le_id->setText(QApplication::translate("CLoginForm", "FAN-401", Q_NULLPTR));
         label_2->setText(QApplication::translate("CLoginForm", "\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
         pb_forget->setText(QApplication::translate("CLoginForm", "\345\277\230\350\256\260\345\257\206\347\240\201", Q_NULLPTR));
-        le_pswd->setText(QApplication::translate("CLoginForm", "admin", Q_NULLPTR));
+        le_pswd->setText(QApplication::translate("CLoginForm", "123456", Q_NULLPTR));
         pb_login->setText(QApplication::translate("CLoginForm", "\347\253\213     \345\215\263    \347\231\273    \345\275\225", Q_NULLPTR));
         label->setText(QApplication::translate("CLoginForm", "\350\264\246\345\217\267\357\274\232", Q_NULLPTR));
         label_3->setText(QApplication::translate("CLoginForm", "                                                     <\345\256\242\346\210\267\347\253\257\347\211\210>", Q_NULLPTR));

@@ -150,7 +150,7 @@ public:
         gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
         widget_login = new LoginForm(page_Login);
         widget_login->setObjectName(QStringLiteral("widget_login"));
-        widget_login->setStyleSheet(QLatin1String("LoginForm#widget_0{\n"
+        widget_login->setStyleSheet(QLatin1String("LoginForm#widget_login{\n"
 "background-image: url(:/images/back3.png);\n"
 "}"));
 
@@ -299,7 +299,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

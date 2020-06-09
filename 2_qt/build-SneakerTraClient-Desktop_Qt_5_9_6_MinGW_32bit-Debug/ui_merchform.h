@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_MerchForm
 {
 public:
+    QPushButton *pushButton;
 
     void setupUi(QWidget *MerchForm)
     {
         if (MerchForm->objectName().isEmpty())
             MerchForm->setObjectName(QStringLiteral("MerchForm"));
         MerchForm->resize(1110, 800);
+        pushButton = new QPushButton(MerchForm);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(370, 210, 201, 91));
 
         retranslateUi(MerchForm);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QWidget *MerchForm)
     {
         MerchForm->setWindowTitle(QApplication::translate("MerchForm", "Form", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("MerchForm", "T\345\225\206\345\223\201\347\256\241\347\220\206", Q_NULLPTR));
     } // retranslateUi
 
 };

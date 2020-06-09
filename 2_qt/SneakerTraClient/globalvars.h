@@ -33,6 +33,10 @@ public:
     static QString g_StrTime;
     static QString g_StrDTime;
 
+    static UserInfo *g_localUser;
+    static FansInfo *g_localFans;
+    static TraderInfo *g_localTrader;
+
     static UserInfoList *g_userInfoList;
     static FansInfoList *g_fansInfoList;
     static TraderInfoList *g_traderInfoList;

@@ -28,6 +28,8 @@ include(subtrader/subtrader.pri)
 include(sublogform/sublogform.pri)
 include(subinfos/subinfos.pri)
 include(network/network.pri)
+include(subfansitem/subfansitem.pri)
+include(subtraderitem/subtraderitem.pri)
 
 
 TRANSLATIONS += en2ch.ts

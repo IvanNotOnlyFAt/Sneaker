@@ -12,7 +12,7 @@ public:
     ~MsgSocket();
     void exitThread(void);
 signals:
-    void signalChangPswdSuccess();
+//    void signalChangPswdSuccess();
 
     void signalUserLoginResult(bool res);
     void signalUserLogoutResult(bool res);
@@ -20,7 +20,7 @@ signals:
     void signalGainTraderInfo(bool res);
 public slots:
     void slotReadyRead();
-    void slotSendMsg(QString msg);
+    void slotSendMsg(QString msg);//用于有线程的时候与发送信号连接
 protected:
     void run();
 private:

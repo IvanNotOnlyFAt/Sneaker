@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>StoreForm</class>
- <widget class="QWidget" name="StoreForm">
+ <class>TraderStoreItem</class>
+ <widget class="QWidget" name="TraderStoreItem">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1110</width>
-    <height>800</height>
+    <width>1060</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">

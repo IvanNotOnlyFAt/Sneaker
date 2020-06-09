@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_TraderChangePswdForm
 {
 public:
+    QPushButton *pushButton;
 
     void setupUi(QWidget *TraderChangePswdForm)
     {
         if (TraderChangePswdForm->objectName().isEmpty())
             TraderChangePswdForm->setObjectName(QStringLiteral("TraderChangePswdForm"));
         TraderChangePswdForm->resize(1110, 800);
+        pushButton = new QPushButton(TraderChangePswdForm);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(280, 210, 201, 91));
 
         retranslateUi(TraderChangePswdForm);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QWidget *TraderChangePswdForm)
     {
         TraderChangePswdForm->setWindowTitle(QApplication::translate("TraderChangePswdForm", "Form", Q_NULLPTR));
+        pushButton->setText(QApplication::translate("TraderChangePswdForm", "T\344\277\256\346\224\271\345\257\206\347\240\201", Q_NULLPTR));
     } // retranslateUi
 
 };
