@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MsgSocket_t {
-    QByteArrayData data[10];
-    char stringdata0[102];
+    QByteArrayData data[13];
+    char stringdata0[134];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,12 +40,16 @@ QT_MOC_LITERAL(5, 46, 6), // "socket"
 QT_MOC_LITERAL(6, 53, 18), // "signalLogoutSocket"
 QT_MOC_LITERAL(7, 72, 13), // "slotReadyRead"
 QT_MOC_LITERAL(8, 86, 11), // "slotSendMsg"
-QT_MOC_LITERAL(9, 98, 3) // "msg"
+QT_MOC_LITERAL(9, 98, 3), // "msg"
+QT_MOC_LITERAL(10, 102, 11), // "slotSendImg"
+QT_MOC_LITERAL(11, 114, 7), // "commend"
+QT_MOC_LITERAL(12, 122, 11) // "imagebuffer"
 
     },
     "MsgSocket\0signalRegisterSocket\0\0id\0"
     "MsgSocket*\0socket\0signalLogoutSocket\0"
-    "slotReadyRead\0slotSendMsg\0msg"
+    "slotReadyRead\0slotSendMsg\0msg\0slotSendImg\0"
+    "commend\0imagebuffer"
 };
 #undef QT_MOC_LITERAL
 
@@ -55,7 +59,7 @@ static const uint qt_meta_data_MsgSocket[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -63,12 +67,13 @@ static const uint qt_meta_data_MsgSocket[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   34,    2, 0x06 /* Public */,
-       6,    2,   39,    2, 0x06 /* Public */,
+       1,    2,   39,    2, 0x06 /* Public */,
+       6,    2,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       7,    0,   44,    2, 0x0a /* Public */,
-       8,    1,   45,    2, 0x0a /* Public */,
+       7,    0,   49,    2, 0x0a /* Public */,
+       8,    1,   50,    2, 0x0a /* Public */,
+      10,    2,   53,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, 0x80000000 | 4,    3,    5,
@@ -77,6 +82,7 @@ static const uint qt_meta_data_MsgSocket[] = {
  // slots: parameters
     QMetaType::Void,
     QMetaType::Bool, QMetaType::QString,    9,
+    QMetaType::Bool, QMetaType::QString, QMetaType::QByteArray,   11,   12,
 
        0        // eod
 };
@@ -91,6 +97,8 @@ void MsgSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 1: _t->signalLogoutSocket((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< MsgSocket*(*)>(_a[2]))); break;
         case 2: _t->slotReadyRead(); break;
         case 3: { bool _r = _t->slotSendMsg((*reinterpret_cast< QString(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 4: { bool _r = _t->slotSendImg((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -156,13 +164,13 @@ int MsgSocket::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

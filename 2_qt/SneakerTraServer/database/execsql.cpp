@@ -406,6 +406,12 @@ void ExecSQL::searchAllStoreInfos()
     QString querryString = QString("select * from store_info");
     qDebug() << querryString;
     updateStoreInfoList(querryString);
+//    GlobalVars::g_storeInfoMap.clear();
+//    for(StoreInfoList::iterator it = GlobalVars::g_storeInfoList->begin();
+//        it != GlobalVars::g_storeInfoList->end(); it++)
+//    {
+//        GlobalVars::g_storeInfoMap.insert(it->getID(),it);
+//    }
 }
 void ExecSQL::searchStoreInfoForID(const QString &value)
 {

@@ -3,6 +3,7 @@
 
 #include "msgsocket.h"
 #include "msgproc.h"
+#include "imageproc.h"
 
 #include <QObject>
 #include <QTcpServer>
@@ -20,11 +21,13 @@ public slots:
     void slotRegisterSocket(QString id, MsgSocket *socket);
     void slotLogoutSocket(QString id, MsgSocket *socket);
     void slotSendMsgToClient(QString id, QString msg);
+    void slotSendImgToClient(QString id, QString commond,QByteArray imagebuffer);
 private:
     QTcpServer *m_server;
 
     ///one thread
     MsgProc *m_msgProc;
+    ImageProc *m_imageProc;
     SocketMap m_socketMap;
 
 };

@@ -84,20 +84,45 @@ void MsgSocket::parseUserExit(QString msg)
 
 void MsgSocket::slotReadyRead()
 {
-    qDebug() << "MsgSocket::slotReadyRead()";
-    QDataStream in(m_socket);
-    in.setVersion(QDataStream::Qt_4_6);
+    qDebug() << "MsgSocket::slotReadyRead() Recv: " << m_socket->bytesAvailable();
+    /////////////////////////Split Big Image///////////////////////////
 
-    if(m_tcpBlockSize == 0)
+    if(m_socket->bytesAvailable() == 65536)
     {
-        if(m_socket->bytesAvailable() < sizeof(quint16))
+        m_recvArray.append(m_socket->readAll());
+    }else
+    {
+        m_recvArray.append(m_socket->readAll());
+    /////////////////////////////////////////////////////////////////
+        QDataStream in(m_recvArray);
+        in.setVersion(QDataStream::Qt_4_6);
+
+        if(m_tcpBlockSize == 0)
+        {
+            if(m_recvArray.size() < sizeof(quint16))
+                return;
+            in >> m_tcpBlockSize;
+        }
+
+        if(m_recvArray.size() < m_tcpBlockSize)
             return;
-        in >> m_tcpBlockSize;
+        ///判断数据类型
+        in >> m_msgtype;
+        qDebug() << "m_msgtype: " << m_msgtype;
+        switch(m_msgtype)
+        {
+        case Type_Text: processTextDate(in); break;
+        case Type_Image: processImageDate(in); break;
+        default: break;
+        }
+
     }
+    m_tcpBlockSize = 0;
+    m_recvArray.clear();
+}
 
-    if(m_socket->bytesAvailable() < m_tcpBlockSize)
-        return;
-
+void MsgSocket::processTextDate(QDataStream &in)
+{
     QString msg;
     in >> msg;
     qDebug() << "Server Recv: " << msg;
@@ -116,19 +141,29 @@ void MsgSocket::slotReadyRead()
         GlobalVars::g_msgQueue.enqueue(msg);
     }
     ///////////////////////////////////////////////
-    m_tcpBlockSize = 0;
+}
+
+void MsgSocket::processImageDate(QDataStream &in)
+{
+
 }
 bool MsgSocket::slotSendMsg(QString msg)
 {
     //QByteArray buffer是通道载体；QDataStream 是管理模式设置
     QByteArray buffer;
     QDataStream out(&buffer,QIODevice::WriteOnly);
-
+    m_msgtype = Type_Text;
     out << (quint16)0;
+    out << m_msgtype;
     out << msg;
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16));
+    out << (quint16)(buffer.size() - sizeof(quint16) - sizeof(quint8));
 
     qDebug() << "Server Send: " << msg;
     return m_socket->write(buffer);
 }
+bool MsgSocket::slotSendImg(QString commend,QByteArray imagebuffer)
+{
+
+}
+

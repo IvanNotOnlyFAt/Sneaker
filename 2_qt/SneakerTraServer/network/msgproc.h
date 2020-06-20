@@ -8,6 +8,7 @@ class MsgProc : public QThread
 signals:
     void signalSendMsgToClient(QString id,QString msg);
 
+
 public:
     explicit MsgProc(QObject *parent = 0);
     void exitTread(void); //退出进程
@@ -24,7 +25,9 @@ private:
     void parseChangePswd(QString data);
     void parseGetHomePage(QString data);
     ///解析鞋友请求命令
+
     ///解析鞋商请求命令
+    void parseTraderStore(QString data);
 };
 
 #endif // MSGPROC_H

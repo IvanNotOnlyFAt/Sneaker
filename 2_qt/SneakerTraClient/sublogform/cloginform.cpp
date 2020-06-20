@@ -70,6 +70,17 @@ void CLoginForm::on_pb_login_clicked()
                              ui->le_pswd->text());
     }
 }
+void CLoginForm::keyPressEvent(QKeyEvent *ev)
+{
+//    qDebug() << "keyPressEvent" << ev->key();
+    switch(ev->key())
+    {
+    case Qt::Key_Return: on_pb_login_clicked(); break;
+    case Qt::Key_Enter: on_pb_login_clicked(); break;
+    default:
+        QWidget::keyPressEvent(ev);
+    }
+}
 
 void CLoginForm::on_pb_logup_clicked()
 {

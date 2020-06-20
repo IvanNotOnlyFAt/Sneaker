@@ -12,7 +12,10 @@
 #include <QQueue>
 
 #define USE_DATABASE_MySQL 1
-
+enum Meg_Type{
+    Type_Text,
+    Type_Image
+};
 enum Oper_Data{
     Oper_None,
     Oper_Add,
@@ -25,7 +28,11 @@ enum COMMAND{
     CMD_UserInfo_I = 'I',           //获取个人信息
     CMD_ChangePswd_H = 'H',         //修改密码
     CMD_UserExit_X = 'X',           //用户退出
-    CMD_GetHomePage_M = 'M'         //获取主页
+    CMD_GetHomePage_M = 'M',         //获取主页
+    ///鞋友请求命令
+
+    ///鞋商请求命令
+    CMD_TraderStore_S = 'S'         //获取商铺id
 };
 class GlobalVars
 {

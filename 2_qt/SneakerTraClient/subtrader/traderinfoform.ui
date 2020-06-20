@@ -133,6 +133,9 @@ QLineEdit{border-width:0;border-style:outset}</string>
         <height>60</height>
        </size>
       </property>
+      <property name="text">
+       <string/>
+      </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
@@ -197,6 +200,9 @@ QLineEdit{border-width:0;border-style:outset}</string>
         <height>60</height>
        </size>
       </property>
+      <property name="text">
+       <string/>
+      </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
@@ -234,6 +240,9 @@ QLineEdit{border-width:0;border-style:outset}</string>
         <width>16777215</width>
         <height>60</height>
        </size>
+      </property>
+      <property name="text">
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

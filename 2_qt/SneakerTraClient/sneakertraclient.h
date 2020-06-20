@@ -50,7 +50,7 @@ private slots:
     void on_actionMerch_triggered();
     void on_actionTraderTransc_triggered();
     void on_actionTraderChangePswd_triggered();
-
+    void slotRefreshStoreData();
 
 private:
     Ui::SneakerTraClient *ui;
@@ -58,6 +58,7 @@ private:
 
     bool m_isCloseSystem;
     MsgSocket *m_msgSocket;
+
     CLoginForm *m_cloginForm;
     FansInfoForm *m_fansInfoForm;
     TraderInfoForm *m_traderInfoForm;
@@ -77,6 +78,7 @@ private:
 
     void initFansMS(void);
     void initTraderMs(void);
+    void refreshTraderStore(void);
 
 
 };

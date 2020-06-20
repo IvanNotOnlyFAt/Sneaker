@@ -19,6 +19,7 @@ INPUT(
 ./debug/trolleyinfo.o
 ./debug/traninfo.o
 ./debug/msgsocket.o
+./debug/traderstoreitem.o
 ./debug/main.o
 ./debug/sneakertraclient.o
 ./debug/globalvars.o
@@ -37,5 +38,6 @@ INPUT(
 ./debug/moc_traderstoreform.o
 ./debug/moc_cloginform.o
 ./debug/moc_msgsocket.o
+./debug/moc_traderstoreitem.o
 ./debug/moc_sneakertraclient.o
 );

@@ -13,6 +13,20 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QLineEdit{
+color: rgb(255, 0, 0);
+}
+QLineEdit#le_traderid{
+background-color:transparent;
+border-width:0;border-style:outset
+}
+QLineEdit#le_tradername{
+background-color:transparent;
+border-width:0;border-style:outset
+}
+</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout_5">
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_4">
@@ -186,6 +200,9 @@ p, li { white-space: pre-wrap; }
               <height>0</height>
              </size>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -245,6 +262,9 @@ p, li { white-space: pre-wrap; }
               <height>0</height>
              </size>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item>
@@ -298,7 +318,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <layout class="QGridLayout" name="gridLayout">
         <item row="0" column="0">
-         <widget class="QListView" name="listView"/>
+         <widget class="QListWidget" name="listWidget"/>
         </item>
        </layout>
       </widget>

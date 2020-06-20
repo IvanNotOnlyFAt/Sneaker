@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QCloseEvent>
+#include <QKeyEvent>
 namespace Ui {
 class CLoginForm;
 }
@@ -28,6 +29,7 @@ private slots:
 protected:
     void paintEvent(QPaintEvent *);
     void closeEvent(QCloseEvent *ev);
+    void keyPressEvent(QKeyEvent *ev);
 
 
 private:

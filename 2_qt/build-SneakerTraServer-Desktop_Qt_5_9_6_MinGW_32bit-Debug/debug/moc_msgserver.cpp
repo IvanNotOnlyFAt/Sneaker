@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MsgServer_t {
-    QByteArrayData data[10];
-    char stringdata0[110];
+    QByteArrayData data[13];
+    char stringdata0[150];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,13 +40,17 @@ QT_MOC_LITERAL(5, 51, 10), // "MsgSocket*"
 QT_MOC_LITERAL(6, 62, 6), // "socket"
 QT_MOC_LITERAL(7, 69, 16), // "slotLogoutSocket"
 QT_MOC_LITERAL(8, 86, 19), // "slotSendMsgToClient"
-QT_MOC_LITERAL(9, 106, 3) // "msg"
+QT_MOC_LITERAL(9, 106, 3), // "msg"
+QT_MOC_LITERAL(10, 110, 19), // "slotSendImgToClient"
+QT_MOC_LITERAL(11, 130, 7), // "commond"
+QT_MOC_LITERAL(12, 138, 11) // "imagebuffer"
 
     },
     "MsgServer\0slotNewConnection\0\0"
     "slotRegisterSocket\0id\0MsgSocket*\0"
     "socket\0slotLogoutSocket\0slotSendMsgToClient\0"
-    "msg"
+    "msg\0slotSendImgToClient\0commond\0"
+    "imagebuffer"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,7 +60,7 @@ static const uint qt_meta_data_MsgServer[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,16 +68,18 @@ static const uint qt_meta_data_MsgServer[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x0a /* Public */,
-       3,    2,   35,    2, 0x0a /* Public */,
-       7,    2,   40,    2, 0x0a /* Public */,
-       8,    2,   45,    2, 0x0a /* Public */,
+       1,    0,   39,    2, 0x0a /* Public */,
+       3,    2,   40,    2, 0x0a /* Public */,
+       7,    2,   45,    2, 0x0a /* Public */,
+       8,    2,   50,    2, 0x0a /* Public */,
+      10,    3,   55,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, 0x80000000 | 5,    4,    6,
     QMetaType::Void, QMetaType::QString, 0x80000000 | 5,    4,    6,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    4,    9,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QByteArray,    4,   11,   12,
 
        0        // eod
 };
@@ -88,6 +94,7 @@ void MsgServer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 1: _t->slotRegisterSocket((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< MsgSocket*(*)>(_a[2]))); break;
         case 2: _t->slotLogoutSocket((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< MsgSocket*(*)>(_a[2]))); break;
         case 3: _t->slotSendMsgToClient((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 4: _t->slotSendImgToClient((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QByteArray(*)>(_a[3]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -136,13 +143,13 @@ int MsgServer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
     return _id;
 }

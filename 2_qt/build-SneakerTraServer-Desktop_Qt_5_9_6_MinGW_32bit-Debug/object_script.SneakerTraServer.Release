@@ -20,6 +20,7 @@ INPUT(
 ./release/msgsocket.o
 ./release/msgserver.o
 ./release/msgproc.o
+./release/imageproc.o
 ./release/main.o
 ./release/mainwindow.o
 ./release/globalvars.o
@@ -36,5 +37,6 @@ INPUT(
 ./release/moc_msgsocket.o
 ./release/moc_msgserver.o
 ./release/moc_msgproc.o
+./release/moc_imageproc.o
 ./release/moc_mainwindow.o
 );

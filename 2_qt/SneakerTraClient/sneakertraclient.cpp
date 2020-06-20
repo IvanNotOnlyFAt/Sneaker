@@ -57,7 +57,6 @@ SneakerTraClient::SneakerTraClient(QWidget *parent) :
     ui->stackedWidget->insertWidget(7,m_traderTranscForm);
     ui->stackedWidget->insertWidget(8,m_traderChangePswd);
     ui->stackedWidget->insertWidget(9,m_cloginForm);
-    //为了用m_cloginForm对象进行connect，所以后续再把登录界面插入到stackedwidget
     ui->stackedWidget->insertWidget(10,m_fansInfoForm);
     ui->stackedWidget->insertWidget(11,m_traderInfoForm);
     ui->stackedWidget->setCurrentIndex(9);
@@ -82,6 +81,11 @@ void SneakerTraClient::slotUserClose(void)
 }
 void SneakerTraClient::closeEvent(QCloseEvent *ev)
 {
+//    qDebug() << "1111111111111" <<m_msgSocket->connectStatus();
+//    if(!m_msgSocket->connectStatus())  //如果没有连接是可以退出关闭的
+//    {
+//        m_isCloseSystem = true;
+//    }
     //accept标志也可以用accept（）设置，并用ignore（）清除。
     if(!m_isCloseSystem)
     {
@@ -120,15 +124,22 @@ void SneakerTraClient::initTraderMs(void)
     this->setWindowTitle(title);
     connect(m_msgSocket, SIGNAL(signalGainTraderInfo(bool)),
             m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));
-
+    connect(m_msgSocket, SIGNAL(signalGainStoreInfo(bool)),
+            m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));
+    connect(m_traderInfoForm, SIGNAL(signalRefreshStoreData()),
+            this, SLOT(slotRefreshStoreData()));
+    connect(m_traderStoreForm, SIGNAL(signalRefreshStoreData()),
+            this, SLOT(slotRefreshStoreData()));
     ui->mainToolBar->removeAction(ui->actionFansChangPswd);
     ui->mainToolBar->removeAction(ui->actionFansHome);
     ui->mainToolBar->removeAction(ui->actionTrolley);
     ui->mainToolBar->removeAction(ui->actionFansInfo);
     ui->mainToolBar->removeAction(ui->actionFansTranscation);
-
     on_actionTraderInfo_triggered();
+
 }
+
+
 ///////////////////////SLOT//////////////////////////////////
 void SneakerTraClient::slotUserLogin(QString id, QString pswd)
 {
@@ -142,6 +153,11 @@ void SneakerTraClient::slotUserLoginResult(bool res)
 {
     if(res)
     {
+        ///用户详细信息请求
+        QString msg = QString(CMD_UserInfo_I)
+                % QString("#") % QString(GlobalVars::g_localUser->getID())
+                % QString("|") % QString(GlobalVars::g_localUser->getRole());
+        m_msgSocket->slotSendMsg(msg);
         if(GlobalVars::g_localUser->getRole() == "鞋友")
         {
             initFansMS();
@@ -151,11 +167,6 @@ void SneakerTraClient::slotUserLoginResult(bool res)
         }
         ui->mainToolBar->show();
 
-        ///用户详细信息请求
-        QString msg = QString(CMD_UserInfo_I)
-                % QString("#") % QString(GlobalVars::g_localUser->getID())
-                % QString("|") % QString(GlobalVars::g_localUser->getRole());
-        m_msgSocket->slotSendMsg(msg);
     }else
     {
         m_cloginForm->userLoginFail();
@@ -176,6 +187,7 @@ void SneakerTraClient::slotUserLogoutResult(bool res)
         this->close();
     }
 }
+
 /////////////////////////////Fans//////////////////////////////////
 
 void SneakerTraClient::on_actionFansInfo_triggered()
@@ -295,4 +307,17 @@ void SneakerTraClient::on_actionTraderChangePswd_triggered()
     ui->actionTraderHome->setEnabled(true);
     ui->actionTraderInfo->setEnabled(true);
     ui->actionTraderTransc->setEnabled(true);
+}
+//=======================================================//
+void SneakerTraClient::slotRefreshStoreData()
+{
+    refreshTraderStore();
+}
+void SneakerTraClient::refreshTraderStore()
+{
+    ///鞋商商铺详细信息请求
+    GlobalVars::g_storeInfoList->clear();
+    QString msgforstore = QString(CMD_TraderStore_S)
+            % QString("#") % QString(GlobalVars::g_localUser->getID());
+    m_msgSocket->slotSendMsg(msgforstore);
 }

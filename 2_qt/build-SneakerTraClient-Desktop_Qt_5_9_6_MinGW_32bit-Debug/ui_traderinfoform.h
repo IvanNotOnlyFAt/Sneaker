@@ -187,8 +187,11 @@ public:
         TraderInfoForm->setWindowTitle(QApplication::translate("TraderInfoForm", "Form", Q_NULLPTR));
         label->setText(QApplication::translate("TraderInfoForm", "\350\264\246    \345\217\267\357\274\232", Q_NULLPTR));
         le_id->setText(QString());
+        le_name->setText(QString());
         label_2->setText(QApplication::translate("TraderInfoForm", "\345\247\223    \345\220\215\357\274\232", Q_NULLPTR));
         label_5->setText(QApplication::translate("TraderInfoForm", "\350\272\253\344\273\275\350\257\201\345\217\267\357\274\232", Q_NULLPTR));
+        le_idnum->setText(QString());
+        le_tele->setText(QString());
         label_6->setText(QApplication::translate("TraderInfoForm", "\347\224\265    \350\257\235\357\274\232", Q_NULLPTR));
         label_4->setText(QApplication::translate("TraderInfoForm", "\351\236\213  \345\225\206  \344\277\241  \346\201\257", Q_NULLPTR));
     } // retranslateUi

@@ -210,7 +210,6 @@ Makefile: ../SneakerTraClient/SneakerTraClient.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_config.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++/qmake.conf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/toolchain.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_pre.prf \
@@ -220,6 +219,8 @@ Makefile: ../SneakerTraClient/SneakerTraClient.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		../SneakerTraClient/sublogform/sublogform.pri \
 		../SneakerTraClient/subinfos/subinfos.pri \
 		../SneakerTraClient/network/network.pri \
+		../SneakerTraClient/subfansitem/subfansitem.pri \
+		../SneakerTraClient/subtraderitem/subtraderitem.pri \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf \
@@ -394,7 +395,6 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_functions.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/qt_config.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/win32-g++/qmake.conf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/spec_post.prf:
-.qmake.stash:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/toolchain.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_pre.prf:
@@ -404,6 +404,8 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf:
 ../SneakerTraClient/sublogform/sublogform.pri:
 ../SneakerTraClient/subinfos/subinfos.pri:
 ../SneakerTraClient/network/network.pri:
+../SneakerTraClient/subfansitem/subfansitem.pri:
+../SneakerTraClient/subtraderitem/subtraderitem.pri:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf:

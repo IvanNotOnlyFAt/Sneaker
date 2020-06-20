@@ -6,6 +6,7 @@ MsgServer::MsgServer(QObject *parent) :
 
     m_socketMap.clear();
     m_msgProc = new MsgProc;
+    m_imageProc = new ImageProc;
     m_server = new QTcpServer(this);
 
 
@@ -13,15 +14,19 @@ MsgServer::MsgServer(QObject *parent) :
             this, SLOT(slotNewConnection()));
     connect(m_msgProc, SIGNAL(signalSendMsgToClient(QString,QString)),
             this, SLOT(slotSendMsgToClient(QString,QString)));
+    connect(m_imageProc, SIGNAL(signalSendImgToClient(QString,QString,QByteArray)),
+            this, SLOT(slotSendImgToClient(QString,QString,QByteArray)));
 
     m_server->listen(QHostAddress::Any, 66666);
     m_msgProc->start();
+//    m_imageProc->start();
 
 }
 MsgServer::~MsgServer()
 {
     //退出进程 m_msgProc::m_isExit = ture ,m_msgProc::run()  stop;
     m_msgProc->exitTread();
+    m_imageProc->exitTread();
 
     ///Blocks(阻塞) the thread until 1：when it returns from run().[run() is finish]
     /// 1.线程调用wait（）函数时，阻塞一直等到该线程执行完成之后再执行wait（）下面的代码
@@ -31,6 +36,10 @@ MsgServer::~MsgServer()
     if(m_msgProc->wait())
     {
         delete m_msgProc;
+    }
+    if(m_imageProc->wait())
+    {
+        delete m_imageProc;
     }
 }
 
@@ -63,5 +72,13 @@ void MsgServer::slotSendMsgToClient(QString id, QString msg)
     if(m_socketMap.contains(id))
     {
         m_socketMap[id]->slotSendMsg(msg);
+    }
+}
+
+void MsgServer::slotSendImgToClient(QString id, QString commond, QByteArray imagebuffer)
+{
+    if(m_socketMap.contains(id))
+    {
+        m_socketMap[id]->slotSendImg(commond,imagebuffer);
     }
 }

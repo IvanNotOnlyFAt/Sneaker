@@ -20,9 +20,9 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QWidget>
 
@@ -56,13 +56,25 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QGroupBox *groupBox_2;
     QGridLayout *gridLayout;
-    QTableWidget *tableWidget;
+    QListWidget *listWidget;
 
     void setupUi(QWidget *TraderStoreForm)
     {
         if (TraderStoreForm->objectName().isEmpty())
             TraderStoreForm->setObjectName(QStringLiteral("TraderStoreForm"));
         TraderStoreForm->resize(1110, 800);
+        TraderStoreForm->setStyleSheet(QLatin1String("QLineEdit{\n"
+"color: rgb(255, 0, 0);\n"
+"}\n"
+"QLineEdit#le_traderid{\n"
+"background-color:transparent;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+"QLineEdit#le_tradername{\n"
+"background-color:transparent;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+""));
         gridLayout_5 = new QGridLayout(TraderStoreForm);
         gridLayout_5->setObjectName(QStringLiteral("gridLayout_5"));
         gridLayout_4 = new QGridLayout();
@@ -166,6 +178,7 @@ public:
         sizePolicy4.setHeightForWidth(le_traderid->sizePolicy().hasHeightForWidth());
         le_traderid->setSizePolicy(sizePolicy4);
         le_traderid->setMinimumSize(QSize(250, 0));
+        le_traderid->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(le_traderid);
 
@@ -194,6 +207,7 @@ public:
         sizePolicy6.setHeightForWidth(le_tradername->sizePolicy().hasHeightForWidth());
         le_tradername->setSizePolicy(sizePolicy6);
         le_tradername->setMinimumSize(QSize(250, 0));
+        le_tradername->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(le_tradername);
 
@@ -220,10 +234,10 @@ public:
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         gridLayout = new QGridLayout(groupBox_2);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        tableWidget = new QTableWidget(groupBox_2);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        listWidget = new QListWidget(groupBox_2);
+        listWidget->setObjectName(QStringLiteral("listWidget"));
 
-        gridLayout->addWidget(tableWidget, 0, 0, 1, 1);
+        gridLayout->addWidget(listWidget, 0, 0, 1, 1);
 
 
         gridLayout_4->addWidget(groupBox_2, 2, 0, 1, 3);

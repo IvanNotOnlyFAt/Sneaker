@@ -14,6 +14,8 @@ class TraderInfoForm : public QWidget
 public:
     explicit TraderInfoForm(QWidget *parent = 0);
     ~TraderInfoForm();
+signals:
+    void signalRefreshStoreData(void);
 public slots:
     void slotGainTraderInfoResult(bool res);
 protected:

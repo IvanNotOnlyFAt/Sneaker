@@ -20,6 +20,7 @@ INPUT(
 ./debug/msgsocket.o
 ./debug/msgserver.o
 ./debug/msgproc.o
+./debug/imageproc.o
 ./debug/main.o
 ./debug/mainwindow.o
 ./debug/globalvars.o
@@ -36,5 +37,6 @@ INPUT(
 ./debug/moc_msgsocket.o
 ./debug/moc_msgserver.o
 ./debug/moc_msgproc.o
+./debug/moc_imageproc.o
 ./debug/moc_mainwindow.o
 );
