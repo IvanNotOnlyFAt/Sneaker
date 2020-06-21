@@ -51,6 +51,7 @@ private slots:
     void on_actionTraderTransc_triggered();
     void on_actionTraderChangePswd_triggered();
     void slotRefreshStoreData();
+    void slotApplyStoreLogo();
 
 private:
     Ui::SneakerTraClient *ui;
@@ -78,7 +79,6 @@ private:
 
     void initFansMS(void);
     void initTraderMs(void);
-    void refreshTraderStore(void);
 
 
 };

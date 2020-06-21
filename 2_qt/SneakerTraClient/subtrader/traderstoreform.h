@@ -20,6 +20,7 @@ public:
     ~TraderStoreForm();
 signals:
     void signalRefreshStoreData(void);
+    void signalApplyStoreLogo(void);
 private slots:
     void on_cb_condition_currentIndexChanged(int index);
 
@@ -27,6 +28,7 @@ private slots:
 
     void on_pb_applystore_clicked();
     void slotGainStoreInfoResult(bool res);
+    void slotGainStoreLogoResult(bool res);
 private:
     Ui::TraderStoreForm *ui;
 

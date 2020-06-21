@@ -126,16 +126,19 @@ void SneakerTraClient::initTraderMs(void)
             m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));
     connect(m_msgSocket, SIGNAL(signalGainStoreInfo(bool)),
             m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));
-    connect(m_traderInfoForm, SIGNAL(signalRefreshStoreData()),
-            this, SLOT(slotRefreshStoreData()));
     connect(m_traderStoreForm, SIGNAL(signalRefreshStoreData()),
             this, SLOT(slotRefreshStoreData()));
+    connect(m_traderStoreForm, SIGNAL(signalApplyStoreLogo()),
+            this, SLOT(slotApplyStoreLogo()));
+    //////////////////////相关界面配置/////////////////////////
     ui->mainToolBar->removeAction(ui->actionFansChangPswd);
     ui->mainToolBar->removeAction(ui->actionFansHome);
     ui->mainToolBar->removeAction(ui->actionTrolley);
     ui->mainToolBar->removeAction(ui->actionFansInfo);
     ui->mainToolBar->removeAction(ui->actionFansTranscation);
     on_actionTraderInfo_triggered();
+    //////////////////////相关数据请求/////////////////////////
+    slotRefreshStoreData();
 
 }
 
@@ -158,6 +161,8 @@ void SneakerTraClient::slotUserLoginResult(bool res)
                 % QString("#") % QString(GlobalVars::g_localUser->getID())
                 % QString("|") % QString(GlobalVars::g_localUser->getRole());
         m_msgSocket->slotSendMsg(msg);
+        bool flag = m_msgSocket->wiatToWriteSuccess();  //为防止粘包之后不好解析，一条一条发
+        qDebug() << "用户详细信息请求但语句写入：" <<flag;
         if(GlobalVars::g_localUser->getRole() == "鞋友")
         {
             initFansMS();
@@ -311,13 +316,23 @@ void SneakerTraClient::on_actionTraderChangePswd_triggered()
 //=======================================================//
 void SneakerTraClient::slotRefreshStoreData()
 {
-    refreshTraderStore();
-}
-void SneakerTraClient::refreshTraderStore()
-{
     ///鞋商商铺详细信息请求
     GlobalVars::g_storeInfoList->clear();
     QString msgforstore = QString(CMD_TraderStore_S)
             % QString("#") % QString(GlobalVars::g_localUser->getID());
     m_msgSocket->slotSendMsg(msgforstore);
 }
+
+void SneakerTraClient::slotApplyStoreLogo()
+{
+    QString msgforstore = QString(CMD_ApplyImage_P) % QString(CMD_TraderStore_S)
+            % QString("#") % QString(GlobalVars::g_localUser->getID());
+    for(StoreInfoList::Iterator it = GlobalVars::g_storeInfoList->begin();
+        it != GlobalVars::g_storeInfoList->end(); it++)
+    {
+        QString msg = QString("|") % it->getID();
+        msgforstore.append(msg);
+    }
+    m_msgSocket->slotSendMsg(msgforstore);
+}
+

@@ -25,7 +25,6 @@ void TraderInfoForm::slotGainTraderInfoResult(bool res)
         ui->le_name->setText(GlobalVars::g_localTrader->getName());
         ui->le_idnum->setText(GlobalVars::g_localTrader->getID_Num());
         ui->le_tele->setText(GlobalVars::g_localTrader->getTele());
-        emit signalRefreshStoreData();
     }
 }
 void TraderInfoForm::paintEvent(QPaintEvent *)

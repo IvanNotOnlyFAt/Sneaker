@@ -77,6 +77,13 @@ void TraderStoreForm::slotGainStoreInfoResult(bool res)
             ui->listWidget->setItemWidget(newItem,traderStoreItem);//在item位置插入widget
             newItem->setSizeHint(QSize(1060,152));
         }
+
+        emit signalApplyStoreLogo();
     }
+
+}
+
+void TraderStoreForm::slotGainStoreLogoResult(bool res)
+{
 
 }

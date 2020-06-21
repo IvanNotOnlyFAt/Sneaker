@@ -28,11 +28,12 @@ enum COMMAND{
     CMD_UserInfo_I = 'I',           //获取个人信息
     CMD_ChangePswd_H = 'H',         //修改密码
     CMD_UserExit_X = 'X',           //用户退出
-    CMD_GetHomePage_M = 'M',         //获取主页
-    ///鞋友请求命令
+    CMD_GetHomePage_Z = 'Z',         //获取主页
 
+    ///鞋友请求命令
     ///鞋商请求命令
-    CMD_TraderStore_S = 'S'         //获取商铺id
+    CMD_TraderStore_S = 'S',         //获取商铺id
+    CMD_ApplyImage_P = 'P'           //请求图片
 };
 class GlobalVars
 {

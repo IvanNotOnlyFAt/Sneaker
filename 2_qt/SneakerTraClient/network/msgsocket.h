@@ -12,6 +12,7 @@ public:
     ~MsgSocket();
     void exitThread(void);
 //    bool connectStatus();
+    bool wiatToWriteSuccess();//等待上一条发完之后再发
 signals:
 //    void signalChangPswdSuccess();
 

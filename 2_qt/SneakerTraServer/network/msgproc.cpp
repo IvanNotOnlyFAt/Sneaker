@@ -38,7 +38,7 @@ void MsgProc::parseUserAsk(QString msg)
         ///通用请求命令
     case CMD_UserInfo_I: parseUserInfo(list.at(1));break;
     case CMD_ChangePswd_H: parseChangePswd(list.at(1));break;
-    case CMD_GetHomePage_M: parseGetHomePage(list.at(1));break;
+    case CMD_GetHomePage_Z: parseGetHomePage(list.at(1));break;
         ///解析鞋友请求命令
 
         ///解析鞋商请求命令

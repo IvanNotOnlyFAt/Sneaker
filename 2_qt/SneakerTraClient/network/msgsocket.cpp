@@ -25,6 +25,11 @@ void MsgSocket::exitThread(void)
     m_isExit = true;
 }
 
+bool MsgSocket::wiatToWriteSuccess()
+{
+    return m_tcpSocket->waitForBytesWritten();
+}
+
 //bool MsgSocket::connectStatus()
 //{
 //    qDebug() << "m_tcpSocket->isValid()" <<m_tcpSocket->isValid();
@@ -56,7 +61,7 @@ void MsgSocket::parseUserAsk(QString msg)
     case CMD_UserInfo_I: parseUserInfo(list.at(1)); break;
     case CMD_ChangePswd_H: parseChangePswd(list.at(1)); break;
     case CMD_UserExit_X: parseUserExit(list.at(1)); break;
-    case CMD_GetHomePage_M: parseGetHomePage(list.at(1));break;
+    case CMD_GetHomePage_Z: parseGetHomePage(list.at(1));break;
     ///鞋友请求命令
 
     ///鞋商命令请求
