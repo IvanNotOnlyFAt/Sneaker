@@ -42,14 +42,14 @@ QT_MOC_LITERAL(7, 72, 13), // "slotReadyRead"
 QT_MOC_LITERAL(8, 86, 11), // "slotSendMsg"
 QT_MOC_LITERAL(9, 98, 3), // "msg"
 QT_MOC_LITERAL(10, 102, 11), // "slotSendImg"
-QT_MOC_LITERAL(11, 114, 7), // "commend"
+QT_MOC_LITERAL(11, 114, 7), // "command"
 QT_MOC_LITERAL(12, 122, 11) // "imagebuffer"
 
     },
     "MsgSocket\0signalRegisterSocket\0\0id\0"
     "MsgSocket*\0socket\0signalLogoutSocket\0"
     "slotReadyRead\0slotSendMsg\0msg\0slotSendImg\0"
-    "commend\0imagebuffer"
+    "command\0imagebuffer"
 };
 #undef QT_MOC_LITERAL
 

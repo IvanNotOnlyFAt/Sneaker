@@ -32,7 +32,7 @@ private:
     void processImageDate(QDataStream &in);
     bool m_isExit;
     quint16 m_tcpBlockSize;
-    quint8 m_msgtype;
+
     QTcpSocket *m_tcpSocket;
     QByteArray m_recvArray;
 

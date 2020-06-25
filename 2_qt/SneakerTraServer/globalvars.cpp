@@ -5,6 +5,7 @@ QDateTime m_dateTime = QDateTime::currentDateTime();
 //引用静态数据成员格式：<类名>::<静态成员名>
 ///静态变量的初始化
 QQueue<QString> GlobalVars::g_msgQueue;
+QQueue<QString> GlobalVars::g_imageMsgQueue;
 
 QString GlobalVars::g_StrTime = m_dateTime.toString("yyyy-MM-dd");
 QString GlobalVars::g_StrDTime = m_dateTime.toString("yyyyMMddhhmmsszzz");

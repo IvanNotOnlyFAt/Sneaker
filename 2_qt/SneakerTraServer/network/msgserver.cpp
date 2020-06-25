@@ -16,10 +16,12 @@ MsgServer::MsgServer(QObject *parent) :
             this, SLOT(slotSendMsgToClient(QString,QString)));
     connect(m_imageProc, SIGNAL(signalSendImgToClient(QString,QString,QByteArray)),
             this, SLOT(slotSendImgToClient(QString,QString,QByteArray)));
+    connect(m_imageProc, SIGNAL(signalSendMsgToClient(QString,QString)),
+            this, SLOT(slotSendMsgToClient(QString,QString)));
 
     m_server->listen(QHostAddress::Any, 66666);
     m_msgProc->start();
-//    m_imageProc->start();
+    m_imageProc->start();
 
 }
 MsgServer::~MsgServer()
@@ -75,10 +77,10 @@ void MsgServer::slotSendMsgToClient(QString id, QString msg)
     }
 }
 
-void MsgServer::slotSendImgToClient(QString id, QString commond, QByteArray imagebuffer)
+void MsgServer::slotSendImgToClient(QString id, QString command, QByteArray imagebuffer)
 {
     if(m_socketMap.contains(id))
     {
-        m_socketMap[id]->slotSendImg(commond,imagebuffer);
+        m_socketMap[id]->slotSendImg(command,imagebuffer);
     }
 }

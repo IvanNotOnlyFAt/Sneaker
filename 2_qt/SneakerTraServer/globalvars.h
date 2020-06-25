@@ -39,6 +39,7 @@ class GlobalVars
 {
 public:
     static QQueue<QString> g_msgQueue;//消息队列
+    static QQueue<QString> g_imageMsgQueue;//图片消息队列
 
     static QString g_StrTime;
     static QString g_StrDTime;

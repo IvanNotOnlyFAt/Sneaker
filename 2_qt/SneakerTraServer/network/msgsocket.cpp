@@ -96,28 +96,41 @@ void MsgSocket::slotReadyRead()
     /////////////////////////////////////////////////////////////////
         QDataStream in(m_recvArray);
         in.setVersion(QDataStream::Qt_4_6);
+        int totalLen = m_recvArray.size();
 
-        if(m_tcpBlockSize == 0)
+        while( totalLen )
         {
-            if(m_recvArray.size() < sizeof(quint16))
+            if(m_tcpBlockSize == 0)
+            {
+                if(m_recvArray.size() < sizeof(quint16))
+                    return;
+                in >> m_tcpBlockSize;
+            }
+
+            if(m_recvArray.size() < m_tcpBlockSize)
                 return;
-            in >> m_tcpBlockSize;
-        }
+            ///判断数据类型
+            quint8 msgtype;
+            in >> msgtype;
+            qDebug() << "msgtype: " << msgtype;
 
-        if(m_recvArray.size() < m_tcpBlockSize)
-            return;
-        ///判断数据类型
-        in >> m_msgtype;
-        qDebug() << "m_msgtype: " << m_msgtype;
-        switch(m_msgtype)
-        {
-        case Type_Text: processTextDate(in); break;
-        case Type_Image: processImageDate(in); break;
-        default: break;
+            switch(msgtype)
+            {
+            case Type_Text: processTextDate(in); break;
+            case Type_Image: processImageDate(in); break;
+            default: break;
+            }
+            ///////////////////////////////////////
+            ///解决粘包问题
+            QByteArray tempbuffer;
+            tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint16));
+            //返回此轮消息的
+            m_recvArray = tempbuffer;
+            totalLen = m_recvArray.size();
+            m_tcpBlockSize = 0;
+            //////////////////////////////////////
         }
-
     }
-    m_tcpBlockSize = 0;
     m_recvArray.clear();
 }
 
@@ -127,15 +140,18 @@ void MsgSocket::processTextDate(QDataStream &in)
     in >> msg;
     qDebug() << "Server Recv: " << msg;
     ////////////////////////////////////////////////////////
-    QStringList list = msg.split("#");
-    qDebug() << "list: " << list;
-    QString headmsg = list.at(0);
+
+    int headmsg = msg.at(0).toLatin1();
+
     if(headmsg == CMD_UserLogin_L)
     {
         parseUserLogin(msg);
     }else if(headmsg == CMD_UserExit_X)
     {
         parseUserExit(msg);
+    }else if(headmsg == CMD_ApplyImage_P)
+    {
+        GlobalVars::g_imageMsgQueue.enqueue(msg);
     }else
     {
         GlobalVars::g_msgQueue.enqueue(msg);
@@ -147,23 +163,61 @@ void MsgSocket::processImageDate(QDataStream &in)
 {
 
 }
+
+
 bool MsgSocket::slotSendMsg(QString msg)
 {
     //QByteArray buffer是通道载体；QDataStream 是管理模式设置
     QByteArray buffer;
     QDataStream out(&buffer,QIODevice::WriteOnly);
-    m_msgtype = Type_Text;
+    out.setVersion(QDataStream::Qt_4_6);
+
+    quint8 msgtype;
+    msgtype = Type_Text;
     out << (quint16)0;
-    out << m_msgtype;
+    out << msgtype;
     out << msg;
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16) - sizeof(quint8));
+    out << (quint16)(buffer.size() - sizeof(quint16));
 
     qDebug() << "Server Send: " << msg;
-    return m_socket->write(buffer);
-}
-bool MsgSocket::slotSendImg(QString commend,QByteArray imagebuffer)
-{
+    m_socket->write(buffer);
+    if(wiatToWriteSuccess())
+    {
+        qDebug() << "wiatToWriteSuccess Send: " << true;
+        return true;
 
+    }else
+    {
+        qDebug() << "wiatToWriteSuccess Send: " << false;
+        return false;
+    }
+
+}
+bool MsgSocket::slotSendImg(QString command, QByteArray imagebuffer)
+{
+    QByteArray buffer;
+    QDataStream out(&buffer,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_6);
+
+    quint8 msgtype;
+    msgtype = Type_Image;
+
+    out << (quint16)0;
+    out << msgtype;
+    out << command;
+    out << imagebuffer;
+    out.device()->seek(0);
+    out << (quint16)(buffer.size() - sizeof(quint16));
+
+    qDebug() << "Server Send image: " << command << imagebuffer.size();
+
+    return m_socket->write(buffer);
+
+}
+
+bool MsgSocket::wiatToWriteSuccess()
+{
+    return m_socket->waitForBytesWritten();
 }
 

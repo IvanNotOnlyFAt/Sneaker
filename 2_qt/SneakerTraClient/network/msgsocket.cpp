@@ -25,10 +25,7 @@ void MsgSocket::exitThread(void)
     m_isExit = true;
 }
 
-bool MsgSocket::wiatToWriteSuccess()
-{
-    return m_tcpSocket->waitForBytesWritten();
-}
+
 
 //bool MsgSocket::connectStatus()
 //{
@@ -193,31 +190,46 @@ void MsgSocket::slotReadyRead()
     }else
     {
         m_recvArray.append(m_tcpSocket->readAll());
+
     /////////////////////////////////////////////////////////////////
         QDataStream in(m_recvArray);
         in.setVersion(QDataStream::Qt_4_6);
 
-        if(m_tcpBlockSize == 0)
+        int totalLen = m_recvArray.size();
+
+        while( totalLen )
         {
-            if(m_recvArray.size() < sizeof(quint16))
+            if(m_tcpBlockSize == 0)
+            {
+                if(m_recvArray.size() < sizeof(quint16))
+                    return;
+                in >> m_tcpBlockSize;
+            }
+
+            if(m_recvArray.size() < m_tcpBlockSize)
                 return;
-            in >> m_tcpBlockSize;
-        }
+            ///判断数据类型
+            quint8 msgtype;
+            in >> msgtype;
+            qDebug() << "msgtype: " << msgtype;
 
-        if(m_recvArray.size() < m_tcpBlockSize)
-            return;
-        ///判断数据类型
-        in >> m_msgtype;
-        qDebug() << "m_msgtype: " << m_msgtype;
-        switch(m_msgtype)
-        {
-        case Type_Text: processTextDate(in); break;
-        case Type_Image: processImageDate(in); break;
-        default: break;
+            switch(msgtype)
+            {
+            case Type_Text: processTextDate(in); break;
+            case Type_Image: processImageDate(in); break;
+            default: break;
+            }
+            ///////////////////////////////////////
+            ///解决粘包问题
+            QByteArray tempbuffer;
+            tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint16));
+            //返回此轮消息的
+            m_recvArray = tempbuffer;
+            totalLen = m_recvArray.size();
+            m_tcpBlockSize = 0;
+            //////////////////////////////////////
         }
-
     }
-    m_tcpBlockSize = 0;
     m_recvArray.clear();
 }
 void MsgSocket::processTextDate(QDataStream &in)
@@ -243,13 +255,15 @@ void MsgSocket::slotSendMsg(QString msg)
     QByteArray buffer;
     QDataStream out(&buffer, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_6);
-    m_msgtype = Type_Text;
+
+    quint8 msgtype;
+    msgtype = Type_Text;
     out << (quint16)0;
-    out << m_msgtype;
+    out << msgtype;
     out << msg;
 
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16) - sizeof(quint8));
+    out << (quint16)(buffer.size() - sizeof(quint16));
 
     m_tcpSocket->write(buffer);
     qDebug() << "Client Send: " << msg;
@@ -258,4 +272,8 @@ void MsgSocket::slotSendMsg(QString msg)
 void MsgSocket::slotSendImg(QString commond, QByteArray image)
 {
 
+}
+bool MsgSocket::wiatToWriteSuccess()
+{
+    return m_tcpSocket->waitForBytesWritten();
 }
