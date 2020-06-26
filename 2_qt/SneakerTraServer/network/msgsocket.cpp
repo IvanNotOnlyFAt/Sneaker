@@ -122,9 +122,9 @@ void MsgSocket::slotReadyRead()
             }
             ///////////////////////////////////////
             ///解决粘包问题
+            ///返回此轮消息之后的消息，并将其重新赋给m_recvArray，循环条件为totalLen
             QByteArray tempbuffer;
             tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint16));
-            //返回此轮消息的
             m_recvArray = tempbuffer;
             totalLen = m_recvArray.size();
             m_tcpBlockSize = 0;
@@ -182,16 +182,7 @@ bool MsgSocket::slotSendMsg(QString msg)
 
     qDebug() << "Server Send: " << msg;
     m_socket->write(buffer);
-    if(wiatToWriteSuccess())
-    {
-        qDebug() << "wiatToWriteSuccess Send: " << true;
-        return true;
-
-    }else
-    {
-        qDebug() << "wiatToWriteSuccess Send: " << false;
-        return false;
-    }
+    return wiatToWriteSuccess();
 
 }
 bool MsgSocket::slotSendImg(QString command, QByteArray imagebuffer)

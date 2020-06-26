@@ -68,16 +68,14 @@ void ImageProc::parseStoreImageApply(QString data)
 //        QString imagefilePath = QString("G:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/storelogos/")
 //                % storeid % QString(".jpg");
         QImage logoimg(imagefilePath);
-        if(logoimg.isNull())
-        {
-            res = false;
-            break;
-        }
+
+
         QString msg = QString("|") % QString(storeid) ;
         filename.append(msg);
         ds_image << QString("%");
         ds_image << logoimg;
-        qDebug() << storeid << "'s logoimg.size()" <<logoimg.size();
+        qDebug() << storeid << "'s logoimg.size(): " <<logoimg.size();
+        qDebug() << storeid << "'s imagebuffer.size(): " <<imagebuffer.size();
     }
     if(res)
     {
