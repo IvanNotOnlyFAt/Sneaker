@@ -12,6 +12,7 @@
 #include "msgsocket.h"
 
 #include <QQueue>
+#include <QImage>
 enum Meg_Type{
     Type_Text,
     Type_Image
@@ -35,6 +36,7 @@ enum COMMAND{
     CMD_ApplyImage_P = 'P'           //请求图片
 
 };
+typedef QMap<QString,QImage> ImageMap;
 
 class GlobalVars
 {
@@ -56,6 +58,8 @@ public:
     static TranInfoList *g_tranInfoList;
 
     static QQueue<QString> g_msgQueue;
+
+    static ImageMap g_storeLogoImageMap;
 };
 
 #endif // GLOBALVARS_H

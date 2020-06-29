@@ -220,6 +220,7 @@ Makefile: ../SneakerTraServer/SneakerTraServer.pro E:/Qt/Qt5.9.6/5.9.6/mingw53_3
 		../SneakerTraServer/database/database.pri \
 		../SneakerTraServer/loginform/loginform.pri \
 		../SneakerTraServer/network/network.pri \
+		../SneakerTraServer/filepath/filepath.pri \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf \
 		E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf \
@@ -405,6 +406,7 @@ E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/win32/default_pre.prf:
 ../SneakerTraServer/database/database.pri:
 ../SneakerTraServer/loginform/loginform.pri:
 ../SneakerTraServer/network/network.pri:
+../SneakerTraServer/filepath/filepath.pri:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/resolve_config.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/exclusive_builds_post.prf:
 E:/Qt/Qt5.9.6/5.9.6/mingw53_32/mkspecs/features/default_post.prf:

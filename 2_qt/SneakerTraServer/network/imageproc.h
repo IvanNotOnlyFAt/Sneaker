@@ -17,7 +17,7 @@ protected:
 public slots:
 private:
     bool m_isExit;
-    QString m_logoRelativePath;
+
     ///////////////////////////////////////
     void parseUserImageAsk(QString msg);
     ///解析通用图片请求命令 - 登录退出在MsgSocket中实现

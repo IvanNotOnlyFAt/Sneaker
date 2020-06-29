@@ -61,6 +61,17 @@ void TraderStoreForm::slotGainStoreInfoResult(bool res)
     qDebug() << "TraderStoreForm::slotGainStoreInfoResult" << res;
     if(res)
     {
+        emit signalApplyStoreLogo();
+    }
+
+}
+
+void TraderStoreForm::slotGainStoreLogoResult(bool res)
+{
+    qDebug() << "TraderStoreForm::slotGainStoreLogoResult" << res;
+
+    if(res)
+    {
         ui->listWidget->clear();
         ui->le_traderid->setText(GlobalVars::g_localTrader->getID());
         ui->le_tradername->setText(GlobalVars::g_localTrader->getName());
@@ -78,12 +89,5 @@ void TraderStoreForm::slotGainStoreInfoResult(bool res)
             newItem->setSizeHint(QSize(1060,152));
         }
 
-        emit signalApplyStoreLogo();
     }
-
-}
-
-void TraderStoreForm::slotGainStoreLogoResult(bool res)
-{
-
 }

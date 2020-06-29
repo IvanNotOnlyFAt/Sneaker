@@ -21,6 +21,7 @@ INPUT(
 ./release/msgserver.o
 ./release/msgproc.o
 ./release/imageproc.o
+./release/filepathcontents.o
 ./release/main.o
 ./release/mainwindow.o
 ./release/globalvars.o

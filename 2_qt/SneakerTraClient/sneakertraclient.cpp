@@ -123,13 +123,18 @@ void SneakerTraClient::initTraderMs(void)
     QString title = QString("Sneaker|吾鞋  鞋商-[" % GlobalVars::g_localUser->getID() % "]");
     this->setWindowTitle(title);
     connect(m_msgSocket, SIGNAL(signalGainTraderInfo(bool)),
-            m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));
+            m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));    //商户信息
     connect(m_msgSocket, SIGNAL(signalGainStoreInfo(bool)),
-            m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));
+            m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));    //商店信息
+    connect(m_msgSocket, SIGNAL(signalGainStoreLogo(bool)),
+            m_traderStoreForm, SLOT(slotGainStoreLogoResult(bool)));    //商店图片
+
     connect(m_traderStoreForm, SIGNAL(signalRefreshStoreData()),
             this, SLOT(slotRefreshStoreData()));
     connect(m_traderStoreForm, SIGNAL(signalApplyStoreLogo()),
             this, SLOT(slotApplyStoreLogo()));
+
+
     //////////////////////相关界面配置/////////////////////////
     ui->mainToolBar->removeAction(ui->actionFansChangPswd);
     ui->mainToolBar->removeAction(ui->actionFansHome);
@@ -317,6 +322,7 @@ void SneakerTraClient::on_actionTraderChangePswd_triggered()
 void SneakerTraClient::slotRefreshStoreData()
 {
     ///鞋商商铺详细信息请求
+    GlobalVars::g_storeLogoImageMap.clear();
     GlobalVars::g_storeInfoList->clear();
     QString msgforstore = QString(CMD_TraderStore_S)
             % QString("#") % QString(GlobalVars::g_localUser->getID());

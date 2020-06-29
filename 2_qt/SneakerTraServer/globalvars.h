@@ -35,6 +35,8 @@ enum COMMAND{
     CMD_TraderStore_S = 'S',         //获取商铺id
     CMD_ApplyImage_P = 'P'           //请求图片
 };
+typedef QMap<QString, QByteArray> ImageMap;
+
 class GlobalVars
 {
 public:
@@ -59,6 +61,7 @@ public:
     static MerchInfoMap g_merchInfoMap;
     static TrolleyInfoMap g_trolleyInfoMap;
     static TranInfoMap g_tranInfoMap;
+
 };
 
 #endif // GLOBALVARS_H

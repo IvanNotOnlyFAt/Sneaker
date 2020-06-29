@@ -1,5 +1,6 @@
 #include "imageproc.h"
 #include "globalvars.h"
+#include "filepathcontents.h"
 
 #include <QDebug>
 #include <QImage>
@@ -8,7 +9,7 @@
 ImageProc::ImageProc(QObject *parent) :
     QThread(parent)
 {
-    m_logoRelativePath = "../storelogos/";
+
 
     m_isExit = false;
 }
@@ -64,34 +65,40 @@ void ImageProc::parseStoreImageApply(QString data)
     for(int i = 1; i < list.length(); i++)
     {
         QString storeid = list.at(i);
-        QString imagefilePath = m_logoRelativePath % storeid % QString(".jpg");
-//        QString imagefilePath = QString("G:/lianhang/program/SneakerPro/Sneaker/2_qt/SneakerTraServer/storelogos/")
-//                % storeid % QString(".jpg");
-        QImage logoimg(imagefilePath);
+
+        QImage logoimg;
+        logoimg.load(FilePathContents::getStoreLogoPath(storeid));
 
 
-        QString msg = QString("|") % QString(storeid) ;
+        if(logoimg.isNull())
+        {
+            res = false;
+        }
+
+        QString msg = QString("|") % QString(storeid);
         filename.append(msg);
-        ds_image << QString("%");
+
         ds_image << logoimg;
+        ds_image << QString('%');//图片用%隔开
+//        qDebug() << FilePathContents::getStoreLogoPath(storeid);
         qDebug() << storeid << "'s logoimg.size(): " <<logoimg.size();
-        qDebug() << storeid << "'s imagebuffer.size(): " <<imagebuffer.size();
     }
+
+    qDebug()<< "imagebuffer.size(): " <<imagebuffer.size();
     if(res)
     {
         QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderStore_S)
                 % QString("#!|") % QString(traid);
         command.append(filename);
 
-        emit signalSendImgToClient(traid,filename,imagebuffer);
+        emit signalSendImgToClient(traid,command,imagebuffer);
     }else
     {
         QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderStore_S)
                 % QString("#?|")
                 % QString(traid) % QString("|")
                 % QString("Error: Stores' Image Missing");
-        qDebug() << " Error: Stores' Image Missing ";
-//        emit signalSendMsgToClient(traid, command);
+        emit signalSendMsgToClient(traid, command);
     }
 
 }

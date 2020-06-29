@@ -30,7 +30,7 @@ private:
 
     bool m_storeStatus;
     int m_index;
-    StoreInfo m_storeInfo;
+//    StoreInfo m_storeInfo;
     QString m_logoPath;
     QString m_logoFilePath;
 

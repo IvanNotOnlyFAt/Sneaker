@@ -2,7 +2,8 @@
 #include "globalvars.h"
 
 #include <QDebug>
-
+#include <QImage>
+#include <QBuffer>
 MsgSocket::MsgSocket(QThread *parent) :
     QThread(parent)
 {
@@ -66,6 +67,19 @@ void MsgSocket::parseUserAsk(QString msg)
     default:
         break;
     }
+}
+
+void MsgSocket::parseApplyImage(QString command, QByteArray imagpacket)
+{
+    int cmd = command.at(0).toLatin1();
+
+    QStringList list = command.split("#");
+    switch (cmd) {
+    case CMD_TraderStore_S: recvStoreImage(list.at(1), imagpacket); break;
+    default:
+        break;
+    }
+
 }
 ///解析通用请求命令
 void MsgSocket::parseUserLogin(QString data)
@@ -178,6 +192,39 @@ void MsgSocket::parseTraderStore(QString data)
     }
 
 }
+
+void MsgSocket::recvStoreImage(QString command, QByteArray imagpacket)
+{
+    qDebug() << "MsgSocket::recvStoreImage" << command;
+    int res = command.at(0).toLatin1();
+    QStringList list = command.split("|");
+    if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
+            QDataStream in(&imagpacket, QIODevice::ReadOnly);
+            for(int i = 2; i < list.length(); i++)
+            {
+                QImage img;
+                QString strSplit;
+
+                in >> img;
+                in >> strSplit;
+
+                GlobalVars::g_storeLogoImageMap.insert(list.at(i), img);
+                qDebug() << list.at(i) << img.size();
+            }
+            emit signalGainStoreLogo(true);
+        }else
+        {
+            emit signalGainStoreLogo(false);
+        }
+    }else
+    {
+        emit signalGainStoreLogo(false);
+    }
+
+}
 ///////////////////slot////////////////////
 void MsgSocket::slotReadyRead()
 {
@@ -247,7 +294,20 @@ void MsgSocket::processTextDate(QDataStream &in)
 
 void MsgSocket::processImageDate(QDataStream &in)
 {
+    QString command;
+    QByteArray imagpacket;
 
+    in >> command;
+    in >> imagpacket;
+
+    qDebug() << "Client Recv Command:" << command;
+
+    int cmd = command.at(0).toLatin1();
+    switch (cmd) {
+    case CMD_ApplyImage_P: parseApplyImage(command.remove(CMD_ApplyImage_P), imagpacket); break;
+    default:
+        break;
+    }
 }
 
 void MsgSocket::slotSendMsg(QString msg)

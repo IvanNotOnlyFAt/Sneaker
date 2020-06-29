@@ -20,3 +20,5 @@ TrolleyInfoList *GlobalVars::g_trolleyInfoList = new TrolleyInfoList;
 TranInfoList *GlobalVars::g_tranInfoList = new TranInfoList;
 
 QQueue<QString> GlobalVars::g_msgQueue;
+
+ImageMap GlobalVars::g_storeLogoImageMap;

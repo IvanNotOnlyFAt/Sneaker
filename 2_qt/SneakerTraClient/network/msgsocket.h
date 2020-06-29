@@ -21,6 +21,7 @@ signals:
     void signalGainFansInfo(bool res);
     void signalGainTraderInfo(bool res);
     void signalGainStoreInfo(bool res);
+    void signalGainStoreLogo(bool res);
 public slots:
     void slotReadyRead();
     void slotSendMsg(QString msg);//用于有线程的时候与发送信号连接
@@ -37,6 +38,8 @@ private:
     QByteArray m_recvArray;
 
     void parseUserAsk(QString msg);
+
+    void parseApplyImage(QString command, QByteArray imagpacket);
     ///解析通用请求命令
     void parseUserLogin(QString data);
     void parseUserInfo(QString data);
@@ -47,6 +50,8 @@ private:
 
     ///鞋商命令请求
     void parseTraderStore(QString data);
+    void recvStoreImage(QString command,  QByteArray imagpacket);
+
 };
 
 #endif // MSGSOCKET_H

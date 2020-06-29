@@ -27,6 +27,7 @@ include(subinfos/subinfos.pri)
 include(database/database.pri)
 include(loginform/loginform.pri)
 include(network/network.pri)
+include(filepath/filepath.pri)
 
 SOURCES += \
         main.cpp \

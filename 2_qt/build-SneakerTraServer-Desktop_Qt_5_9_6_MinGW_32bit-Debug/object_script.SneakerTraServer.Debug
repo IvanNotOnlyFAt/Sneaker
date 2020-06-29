@@ -21,6 +21,7 @@ INPUT(
 ./debug/msgserver.o
 ./debug/msgproc.o
 ./debug/imageproc.o
+./debug/filepathcontents.o
 ./debug/main.o
 ./debug/mainwindow.o
 ./debug/globalvars.o
