@@ -20,6 +20,7 @@ INPUT(
 ./release/traninfo.o
 ./release/msgsocket.o
 ./release/traderstoreitem.o
+./release/applystoreform.o
 ./release/main.o
 ./release/sneakertraclient.o
 ./release/globalvars.o
@@ -39,5 +40,6 @@ INPUT(
 ./release/moc_cloginform.o
 ./release/moc_msgsocket.o
 ./release/moc_traderstoreitem.o
+./release/moc_applystoreform.o
 ./release/moc_sneakertraclient.o
 );

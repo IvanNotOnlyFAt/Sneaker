@@ -11,6 +11,7 @@ TraderStoreForm::TraderStoreForm(QWidget *parent) :
     ui(new Ui::TraderStoreForm)
 {
     m_searchCond = Search_None;
+    m_applyWidget = 0;
     ui->setupUi(this);
 
 }
@@ -54,6 +55,13 @@ void TraderStoreForm::on_pb_search_clicked()
 void TraderStoreForm::on_pb_applystore_clicked()
 {
     qDebug() << "TraderStoreForm::on_pb_applystore_clicked";
+
+    m_applyWidget = 0;//多开用模态阻塞来避免，0是为了避免野指针
+    m_applyWidget = new ApplyStoreForm( GlobalVars::g_localTrader->getID(), this);
+    m_applyWidget->show();
+    connect(m_applyWidget, SIGNAL(signalApplyAddStore()),
+            this, SLOT(slotApplyAddStore()));
+
 }
 
 void TraderStoreForm::slotGainStoreInfoResult(bool res)

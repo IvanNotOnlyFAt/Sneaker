@@ -59,12 +59,36 @@ public:
         TraderStoreItem->resize(1060, 152);
         TraderStoreItem->setMinimumSize(QSize(1060, 0));
         TraderStoreItem->setMaximumSize(QSize(1060, 16777215));
-        TraderStoreItem->setStyleSheet(QLatin1String("QLineEdit{\n"
+        TraderStoreItem->setStyleSheet(QLatin1String("QLineEdit#le_id{\n"
 "background-color:transparent;\n"
 "	color: rgb(85, 0, 255);\n"
 "	font: 75 12pt \"Adobe Devanagari\";\n"
+"	border-width:0;border-style:outset\n"
 "}\n"
-"QLineEdit{border-width:0;border-style:outset}"));
+"QLineEdit#le_type{\n"
+"background-color:transparent;\n"
+"	color: rgb(85, 0, 255);\n"
+"	font: 75 12pt \"Adobe Devanagari\";\n"
+"	border-width:0;border-style:outset\n"
+"}\n"
+"QLineEdit#le_date{\n"
+"background-color:transparent;\n"
+"	color: rgb(85, 0, 255);\n"
+"	font: 75 12pt \"Adobe Devanagari\";\n"
+"	border-width:0;border-style:outset\n"
+"}\n"
+"QLineEdit#le_name{\n"
+"background-color:transparent;\n"
+"	color: rgb(85, 0, 255);\n"
+"	font: 75 12pt \"Adobe Devanagari\";\n"
+"	border-width:0;border-style:outset\n"
+"}\n"
+"QLineEdit#le_status{\n"
+"background-color:transparent;\n"
+"	color: rgb(85, 0, 255);\n"
+"	font: 75 12pt \"Adobe Devanagari\";\n"
+"	border-width:0;border-style:outset\n"
+"}"));
         layoutWidget = new QWidget(TraderStoreItem);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(8, 10, 1041, 137));

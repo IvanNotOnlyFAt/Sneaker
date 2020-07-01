@@ -26,12 +26,36 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLineEdit{
+   <string notr="true">QLineEdit#le_id{
 background-color:transparent;
 	color: rgb(85, 0, 255);
 	font: 75 12pt &quot;Adobe Devanagari&quot;;
+	border-width:0;border-style:outset
 }
-QLineEdit{border-width:0;border-style:outset}</string>
+QLineEdit#le_type{
+background-color:transparent;
+	color: rgb(85, 0, 255);
+	font: 75 12pt &quot;Adobe Devanagari&quot;;
+	border-width:0;border-style:outset
+}
+QLineEdit#le_date{
+background-color:transparent;
+	color: rgb(85, 0, 255);
+	font: 75 12pt &quot;Adobe Devanagari&quot;;
+	border-width:0;border-style:outset
+}
+QLineEdit#le_name{
+background-color:transparent;
+	color: rgb(85, 0, 255);
+	font: 75 12pt &quot;Adobe Devanagari&quot;;
+	border-width:0;border-style:outset
+}
+QLineEdit#le_status{
+background-color:transparent;
+	color: rgb(85, 0, 255);
+	font: 75 12pt &quot;Adobe Devanagari&quot;;
+	border-width:0;border-style:outset
+}</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">

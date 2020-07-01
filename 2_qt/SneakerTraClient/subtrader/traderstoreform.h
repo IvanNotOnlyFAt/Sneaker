@@ -1,6 +1,8 @@
 #ifndef TRADERSTOREFORM_H
 #define TRADERSTOREFORM_H
 
+#include "applystoreform.h"
+
 #include <QWidget>
 
 namespace Ui {
@@ -29,10 +31,13 @@ private slots:
     void on_pb_applystore_clicked();
     void slotGainStoreInfoResult(bool res);
     void slotGainStoreLogoResult(bool res);
+
+    void slotApplyAddStore();
 private:
     Ui::TraderStoreForm *ui;
 
     int m_searchCond;
+    ApplyStoreForm *m_applyWidget;
 };
 
 #endif // TRADERSTOREFORM_H

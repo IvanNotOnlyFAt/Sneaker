@@ -20,6 +20,7 @@ INPUT(
 ./debug/traninfo.o
 ./debug/msgsocket.o
 ./debug/traderstoreitem.o
+./debug/applystoreform.o
 ./debug/main.o
 ./debug/sneakertraclient.o
 ./debug/globalvars.o
@@ -39,5 +40,6 @@ INPUT(
 ./debug/moc_cloginform.o
 ./debug/moc_msgsocket.o
 ./debug/moc_traderstoreitem.o
+./debug/moc_applystoreform.o
 ./debug/moc_sneakertraclient.o
 );

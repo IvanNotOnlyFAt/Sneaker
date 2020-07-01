@@ -2,6 +2,7 @@
 #define TRADERSTOREITEM_H
 
 #include "storeinfo.h"
+#include "applystoreform.h"
 
 #include <QWidget>
 
@@ -30,9 +31,10 @@ private:
 
     bool m_storeStatus;
     int m_index;
-//    StoreInfo m_storeInfo;
+    StoreInfo m_storeInfo;
     QString m_logoPath;
     QString m_logoFilePath;
+    ApplyStoreForm *m_modifyStoreInfo;
 
 };
 
