@@ -10,7 +10,46 @@
 /// QSqlTableModel  editable data model for a single database table.相当于不用SQL语句二用封装好的类
 
 #include <QDebug>
+#include <QList>
+///////////////////////registeredNewInfo/////////////////////////////
+///tool---max()
+int ExecSQL::getMax(QList<int> list)
+{
+    int max = 0;
+    for(int i = list.length()-1; i >= 0; i--)
+    {
+        if(max < list.at(i))
+        {
+            max = list.at(i);
+        }
+    }
+    return max;
+}
 
+QString ExecSQL::getNewRegisterStoreID()
+{
+    QString sql = QString("select id from store_info");
+    QSqlQuery query;
+    QList<int> storeList;
+    int newIDNum = 0;
+
+    if(query.exec(sql))
+    {
+        int id_idx = query.record().indexOf("id");
+        while (query.next())
+        {
+            QString id = query.value(id_idx).toString();
+
+            QStringList list = id.split("-");
+            QString tmp = list.at(1);
+            storeList.append(tmp.toInt());
+        }
+    }
+    newIDNum = getMax(storeList) + 1;
+    QString newID = QString("ST-") + QString::number(newIDNum);
+    qDebug() <<  "Get New Register StoreID =" << newID;
+    return newID;
+}
 ///////////////////////selectLoginForInfo/////////////////////////////
 void ExecSQL::selectLoginForInfo(UserInfo &info,const QString &id)
 {
@@ -367,6 +406,7 @@ bool ExecSQL::modifyTraderInfoForIdNum(const QString &id, const QString &value)
 void ExecSQL::updateStoreInfoList(const QString &sql)
 {
     QSqlQuery query;
+    GlobalVars::g_storeInfoMap.clear();
     GlobalVars::g_storeInfoList->clear();
 
     if(query.exec(sql))
@@ -395,6 +435,11 @@ void ExecSQL::updateStoreInfoList(const QString &sql)
 
             GlobalVars::g_storeInfoList->append(info);
 //            info.display();
+        }
+        for(StoreInfoList::iterator it = GlobalVars::g_storeInfoList->begin();
+            it != GlobalVars::g_storeInfoList->end(); it++)
+        {
+            GlobalVars::g_storeInfoMap.insert(it->getID(),it);
         }
     }
 
@@ -931,5 +976,7 @@ bool ExecSQL::modifyTranInfoForDTime(const QString &id, const QString &value)
     qDebug() << queryString;
     return query.exec(queryString);
 }
+
+
 
 

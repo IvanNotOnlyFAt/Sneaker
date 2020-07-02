@@ -20,9 +20,14 @@ class TraderStoreForm : public QWidget
 public:
     explicit TraderStoreForm(QWidget *parent = 0);
     ~TraderStoreForm();
+
 signals:
+    void signalAddStore(QString msg,QByteArray image);
     void signalRefreshStoreData(void);
     void signalApplyStoreLogo(void);
+
+
+
 private slots:
     void on_cb_condition_currentIndexChanged(int index);
 
@@ -32,12 +37,13 @@ private slots:
     void slotGainStoreInfoResult(bool res);
     void slotGainStoreLogoResult(bool res);
 
-    void slotApplyAddStore();
+    void slotApplyAddStore(QString msg,QByteArray image);
 private:
     Ui::TraderStoreForm *ui;
 
     int m_searchCond;
     ApplyStoreForm *m_applyWidget;
+
 };
 
 #endif // TRADERSTOREFORM_H

@@ -6,6 +6,8 @@
 class ExecSQL
 {
 public:
+    ///////////////////////registeredNewInfo/////////////////////////////
+    static QString getNewRegisterStoreID(void);
     ///////////////////////selectLoginForInfo/////////////////////////////
     static void selectLoginForInfo(UserInfo &info,const QString &id);
     ///////////////////////UserInfo/////////////////////////////
@@ -128,6 +130,10 @@ public:
     static bool modifyTranInfoForTroID(const QString &id, const QString &value);
     static bool modifyTranInfoForPriSum(const QString &id, const QString &value);
     static bool modifyTranInfoForDTime(const QString &id, const QString &value);
+private:
+    static int getMax(QList<int> list);
+
+
 
 };
 

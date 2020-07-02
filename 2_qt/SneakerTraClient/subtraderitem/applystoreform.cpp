@@ -1,10 +1,13 @@
 #include "applystoreform.h"
 #include "ui_applystoreform.h"
+#include "globalvars.h"
 
 #include <QDebug>
 #include <QFileDialog>
 #include <QSize>
 #include <QMessageBox>
+#include <QStringBuilder>
+
 ApplyStoreForm::ApplyStoreForm(QString traid, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ApplyStoreForm)
@@ -124,20 +127,19 @@ void ApplyStoreForm::on_pb_applystore_clicked()
                     if(res == QMessageBox::Ok)
                     {
                         m_isCloseWidget = false;
-                        qDebug() << "提交申请";
-                        StoreInfo addinfo;
-//                        addinfo.setID(ui->le_storeid->text());
 
-
-                        addinfo.setTra_ID(ui->le_traderid->text());
-                        addinfo.setName(ui->le_storename->text());
-                        addinfo.setMerType(ui->le_storetype->text());
-                        addinfo.setLocation(ui->le_storelocation->text());
-                        addinfo.setDate(ui->le_redate->text());
-                        addinfo.setLogo(ui->le_storelogo->text());
-//                        QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderStore_S)
-//                                % QString("#!|") % QString(traid);
-
+                        QString command = QString(CMD_AddInfoImage_A) % QString(CMD_TraderStore_S)
+                                % QString("#") % QString(ui->le_traderid->text())
+                                % QString("|") % QString(ui->le_storename->text())
+                                % QString("|") % QString(ui->le_storetype->text())
+                                % QString("|") % QString(ui->le_storelocation->text())
+                                % QString("|") % QString(ui->le_storelogo->text())
+                                % QString("|") % QString(ui->le_redate->text());
+                        QByteArray buffer;
+                        QDataStream ds_image(&buffer,QIODevice::WriteOnly);
+                        ds_image << m_tempimg;
+                        emit signalApplyAddStore(command, buffer);
+                        qDebug() << "Commit the Store Apply !!";
 
                     }
                     /************************************/

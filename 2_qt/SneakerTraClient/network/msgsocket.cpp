@@ -329,9 +329,25 @@ void MsgSocket::slotSendMsg(QString msg)
     qDebug() << "Client Send: " << msg;
 }
 
-void MsgSocket::slotSendImg(QString commond, QByteArray image)
+void MsgSocket::slotSendImg(QString command, QByteArray image)
 {
+    QByteArray buffer;
+    QDataStream out(&buffer,QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_6);
 
+    quint8 msgtype;
+    msgtype = Type_Image;
+
+    out << (quint16)0;
+    out << msgtype;
+    out << command;
+    out << image;
+    out.device()->seek(0);
+    out << (quint16)(buffer.size() - sizeof(quint16));
+
+    qDebug() << "Server Send image: " << command << buffer.size();
+
+    return m_tcpSocket->write(buffer);
 }
 bool MsgSocket::wiatToWriteSuccess()
 {

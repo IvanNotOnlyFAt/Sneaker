@@ -59,8 +59,8 @@ void TraderStoreForm::on_pb_applystore_clicked()
     m_applyWidget = 0;//多开用模态阻塞来避免，0是为了避免野指针
     m_applyWidget = new ApplyStoreForm( GlobalVars::g_localTrader->getID(), this);
     m_applyWidget->show();
-    connect(m_applyWidget, SIGNAL(signalApplyAddStore()),
-            this, SLOT(slotApplyAddStore()));
+    connect(m_applyWidget, SIGNAL(signalApplyAddStore(QString,QByteArray)),
+            this, SLOT(slotApplyAddStore(QString,QByteArray)));
 
 }
 
@@ -98,4 +98,9 @@ void TraderStoreForm::slotGainStoreLogoResult(bool res)
         }
 
     }
+}
+
+void TraderStoreForm::slotApplyAddStore(QString msg, QByteArray image)
+{
+    emit signalAddStore(msg, image);
 }

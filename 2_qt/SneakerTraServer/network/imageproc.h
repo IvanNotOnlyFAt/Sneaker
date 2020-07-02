@@ -19,7 +19,9 @@ private:
     bool m_isExit;
 
     ///////////////////////////////////////
-    void parseUserImageAsk(QString msg);
+    void parseFisUserImageAsk(QString msg);
+    void parseApplyImageAsk(QString msg);
+    void parseAddImageAsk(QString msg);
     ///解析通用图片请求命令 - 登录退出在MsgSocket中实现
 
     ///解析鞋友图片请求命令
@@ -27,6 +29,7 @@ private:
     ///解析鞋商图片请求命令
     void parseStoreImageApply(QString data);
     void parseMerchImageApply(QString data);
+    void parseStoreAddApply(QString data);
 
 
 };

@@ -130,9 +130,11 @@ void SneakerTraClient::initTraderMs(void)
             m_traderStoreForm, SLOT(slotGainStoreLogoResult(bool)));    //商店图片
 
     connect(m_traderStoreForm, SIGNAL(signalRefreshStoreData()),
-            this, SLOT(slotRefreshStoreData()));
+            this, SLOT(slotRefreshStoreData()));                        //更新商店信息
     connect(m_traderStoreForm, SIGNAL(signalApplyStoreLogo()),
-            this, SLOT(slotApplyStoreLogo()));
+            this, SLOT(slotApplyStoreLogo()));                          //申请商店图片
+    connect(m_traderStoreForm, SIGNAL(signalAddStore(QString,QByteArray)),
+            this,SLOT(slotAddStore(QString,QByteArray)));        //申请开店
 
 
     //////////////////////相关界面配置/////////////////////////
@@ -340,5 +342,10 @@ void SneakerTraClient::slotApplyStoreLogo()
         msgforstore.append(msg);
     }
     m_msgSocket->slotSendMsg(msgforstore);
+}
+
+void SneakerTraClient::slotAddStore(QString msg, QByteArray image)
+{
+    m_msgSocket->slotSendImg(msg, image);
 }
 

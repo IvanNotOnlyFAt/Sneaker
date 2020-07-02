@@ -52,6 +52,7 @@ private slots:
     void on_actionTraderChangePswd_triggered();
     void slotRefreshStoreData();
     void slotApplyStoreLogo();
+    void slotAddStore(QString msg, QByteArray image);
 
 private:
     Ui::SneakerTraClient *ui;

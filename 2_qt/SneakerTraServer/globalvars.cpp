@@ -25,4 +25,4 @@ StoreInfoMap GlobalVars::g_storeInfoMap;
 MerchInfoMap GlobalVars::g_merchInfoMap;
 TrolleyInfoMap GlobalVars::g_trolleyInfoMap;
 TranInfoMap GlobalVars::g_tranInfoMap;
-
+ImageMap GlobalVars::g_imgQueueMap;

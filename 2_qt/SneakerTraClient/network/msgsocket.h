@@ -25,7 +25,7 @@ signals:
 public slots:
     void slotReadyRead();
     void slotSendMsg(QString msg);//用于有线程的时候与发送信号连接
-    void slotSendImg(QString commond,QByteArray image);
+    void slotSendImg(QString command,QByteArray image);
 protected:
     void run();
 private:

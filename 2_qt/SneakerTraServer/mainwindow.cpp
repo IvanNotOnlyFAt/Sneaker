@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->widget_login,SIGNAL(signalLoginSuccess(UserInfo)),
             this,SLOT(slotLoginSuccess(UserInfo)));
     m_msgServer = new MsgServer;
+
 }
 
 MainWindow::~MainWindow()

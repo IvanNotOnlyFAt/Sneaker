@@ -9,6 +9,7 @@
 #include <QImage>
 #include <QCloseEvent>
 #include <QMouseEvent>
+#include <QByteArray>
 namespace Ui {
 class ApplyStoreForm;
 }
@@ -23,8 +24,8 @@ public:
     ~ApplyStoreForm();
 
 signals:
-    void signalApplyAddStore();
-    void signalApplyModifyStore();
+    void signalApplyAddStore(QString msg,QByteArray image);
+//    void signalApplyModifyStore();
 
 protected:
     void closeEvent(QCloseEvent *event);

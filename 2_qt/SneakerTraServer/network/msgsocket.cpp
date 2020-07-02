@@ -161,7 +161,16 @@ void MsgSocket::processTextDate(QDataStream &in)
 
 void MsgSocket::processImageDate(QDataStream &in)
 {
+    QString command;
+    QByteArray imagpacket;
 
+    in >> command;
+    in >> imagpacket;
+
+    qDebug() << "Client Recv Command:" << command;
+    QStringList list = command.split("#");
+    GlobalVars::g_imageMsgQueue.enqueue(command);
+    GlobalVars::g_imgQueueMap.insert(list.at(1),imagpacket);
 }
 
 
