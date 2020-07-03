@@ -53,7 +53,7 @@ private slots:
     void slotRefreshStoreData();
     void slotApplyStoreLogo();
     void slotAddStore(QString msg, QByteArray image);
-
+    void slotDeleteStoreItem(QString msg);
 private:
     Ui::SneakerTraClient *ui;
 //    bool m_isCloseLog;

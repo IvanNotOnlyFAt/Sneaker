@@ -24,10 +24,12 @@ private:
     void parseUserInfo(QString data);
     void parseChangePswd(QString data);
     void parseGetHomePage(QString data);
+    void parseRemoveInfo(QString data);
     ///解析鞋友请求命令
 
     ///解析鞋商请求命令
     void parseTraderStore(QString data);
+    void parseStoreDelete(QString data);
 };
 
 #endif // MSGPROC_H

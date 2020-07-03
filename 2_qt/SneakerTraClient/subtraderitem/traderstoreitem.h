@@ -17,7 +17,8 @@ class TraderStoreItem : public QWidget
 public:
     explicit TraderStoreItem(StoreInfo info, QWidget *parent = 0);
     ~TraderStoreItem();
-
+signals:
+    void signalDeleteStore(QString msg);
 private slots:
     void on_pb_switch_clicked();
 

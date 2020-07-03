@@ -31,7 +31,7 @@ enum COMMAND{
     CMD_GetHomePage_Z = 'Z',         //获取主页
     CMD_AddInfoImage_A = 'A',         //提交注册信息
     CMD_ApplyImage_P = 'P',          //请求图片
-
+    CMD_RemoveInfo_D = 'D',         //注销信息
     ///鞋友请求命令
 
     ///鞋商请求命令

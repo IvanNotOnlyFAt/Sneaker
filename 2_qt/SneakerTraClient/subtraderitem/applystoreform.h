@@ -21,6 +21,7 @@ class ApplyStoreForm : public QWidget
 public:
     explicit ApplyStoreForm(QString traid,QWidget *parent = 0);
     ApplyStoreForm( StoreInfo info, QWidget *parent = 0);
+    void applyOrModifyResult(bool res, QString msg);
     ~ApplyStoreForm();
 
 signals:

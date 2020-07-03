@@ -1,9 +1,10 @@
 #include "traderstoreitem.h"
 #include "ui_traderstoreitem.h"
 #include "globalvars.h"
+
 #include <QDebug>
 #include <QImage>
-
+#include <QStringBuilder>
 TraderStoreItem::TraderStoreItem(StoreInfo info, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TraderStoreItem)
@@ -53,6 +54,11 @@ void TraderStoreItem::on_pb_change_clicked()
 void TraderStoreItem::on_pb_delete_clicked()
 {
     qDebug() << "TraderStoreItem::on_pb_delete_clicked()";
+    QString command = QString(CMD_RemoveInfo_D) % QString(CMD_TraderStore_S)
+            % QString("#") % QString(m_storeInfo.getTra_ID())
+            % QString("|") % QString(m_storeInfo.getID());
+
+    emit signalDeleteStore(command);
 
 
 }

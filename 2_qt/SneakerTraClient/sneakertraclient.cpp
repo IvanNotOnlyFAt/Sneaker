@@ -126,16 +126,21 @@ void SneakerTraClient::initTraderMs(void)
             m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));    //商户信息
     connect(m_msgSocket, SIGNAL(signalGainStoreInfo(bool)),
             m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));    //商店信息
+    connect(m_msgSocket, SIGNAL(signalApplyStoreResult(bool,QString)),
+            m_traderStoreForm, SLOT(slotApplyStoreResult(bool,QString)));    //商店申请
     connect(m_msgSocket, SIGNAL(signalGainStoreLogo(bool)),
-            m_traderStoreForm, SLOT(slotGainStoreLogoResult(bool)));    //商店图片
+            m_traderStoreForm, SLOT(slotGainStoreLogoResult(bool)));        //商店图片
+    connect(m_msgSocket, SIGNAL(signalDeleteStoreResult(bool)),
+            m_traderStoreForm, SLOT(slotDeleteStoreResult(bool)));        //商店图片
 
     connect(m_traderStoreForm, SIGNAL(signalRefreshStoreData()),
             this, SLOT(slotRefreshStoreData()));                        //更新商店信息
     connect(m_traderStoreForm, SIGNAL(signalApplyStoreLogo()),
             this, SLOT(slotApplyStoreLogo()));                          //申请商店图片
     connect(m_traderStoreForm, SIGNAL(signalAddStore(QString,QByteArray)),
-            this,SLOT(slotAddStore(QString,QByteArray)));        //申请开店
-
+            this,SLOT(slotAddStore(QString,QByteArray)));               //申请开店
+    connect(m_traderStoreForm, SIGNAL(signalDeleteStoreItem(QString)),
+            this, SLOT(slotDeleteStoreItem(QString)));//申请注销店铺
 
     //////////////////////相关界面配置/////////////////////////
     ui->mainToolBar->removeAction(ui->actionFansChangPswd);
@@ -347,5 +352,10 @@ void SneakerTraClient::slotApplyStoreLogo()
 void SneakerTraClient::slotAddStore(QString msg, QByteArray image)
 {
     m_msgSocket->slotSendImg(msg, image);
+}
+
+void SneakerTraClient::slotDeleteStoreItem(QString msg)
+{
+    m_msgSocket->slotSendMsg(msg);
 }
 

@@ -95,6 +95,8 @@ void TraderStoreForm::slotGainStoreLogoResult(bool res)
             TraderStoreItem *traderStoreItem = new TraderStoreItem(info);
             ui->listWidget->setItemWidget(newItem,traderStoreItem);//在item位置插入widget
             newItem->setSizeHint(QSize(1060,152));
+            connect(traderStoreItem,SIGNAL(signalDeleteStore(QString)),
+                    this, SLOT(slotDeleteStore(QString)));
         }
 
     }
@@ -103,4 +105,31 @@ void TraderStoreForm::slotGainStoreLogoResult(bool res)
 void TraderStoreForm::slotApplyAddStore(QString msg, QByteArray image)
 {
     emit signalAddStore(msg, image);
+}
+
+void TraderStoreForm::slotApplyStoreResult(bool res, QString msg)
+{
+    m_applyWidget->applyOrModifyResult(res,msg);
+    if(res)
+    {
+        //更新店铺列表数据
+        ui->cb_condition->setCurrentIndex(Search_None);
+        on_pb_search_clicked();
+    }
+}
+
+void TraderStoreForm::slotDeleteStoreResult(bool res)
+{
+    if(res)
+    {
+        //更新店铺列表数据
+        ui->cb_condition->setCurrentIndex(Search_None);
+        on_pb_search_clicked();
+
+    }
+}
+
+void TraderStoreForm::slotDeleteStore(QString msg)
+{
+    emit signalDeleteStoreItem(msg);
 }

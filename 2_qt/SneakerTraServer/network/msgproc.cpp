@@ -1,6 +1,7 @@
 #include "msgproc.h"
 
 #include "execsql.h"
+#include "filepathcontents.h"
 
 #include <QDebug>
 #include <QStringBuilder>
@@ -39,6 +40,7 @@ void MsgProc::parseUserAsk(QString msg)
     case CMD_UserInfo_I: parseUserInfo(list.at(1));break;
     case CMD_ChangePswd_H: parseChangePswd(list.at(1));break;
     case CMD_GetHomePage_Z: parseGetHomePage(list.at(1));break;
+    case CMD_RemoveInfo_D: parseRemoveInfo(msg.right(msg.size()-1));break;
         ///解析鞋友请求命令
 
         ///解析鞋商请求命令
@@ -49,6 +51,22 @@ void MsgProc::parseUserAsk(QString msg)
 }
 
 ///解析通用请求命令 - 登录退出在MsgSocket中实现
+void MsgProc::parseRemoveInfo(QString data)
+{
+
+    QStringList list = data.split("#");
+    int cmd = data.at(0).toLatin1();
+    switch(cmd){
+        ///通用请求命令
+
+        ///解析鞋友请求命令
+
+        ///解析鞋商请求命令
+    case CMD_TraderStore_S:parseStoreDelete(list.at(1));break;
+    default:
+        break;
+    }
+}
 void MsgProc::parseUserInfo(QString data)
 {
     qDebug() << "MsgProc::parseUserInfo" << data;
@@ -94,6 +112,7 @@ void MsgProc::parseGetHomePage(QString data)
 {
     qDebug() << "MsgProc::parseGetHomePage" << data;
 }
+
 ///解析鞋友请求命令
 
 ///解析鞋商请求命令
@@ -130,6 +149,46 @@ void MsgProc::parseTraderStore(QString data)
         QString msg = QString(CMD_TraderStore_S)
                 % QString("#?|") % QString(traid)
                 % "|" % QString("Error: DataError-None Stores");
+        emit signalSendMsgToClient(traid,msg);
+    }
+
+}
+
+void MsgProc::parseStoreDelete(QString data)
+{
+
+    QStringList list = data.split("|");
+    qDebug() << "MsgProc::parseStoreDelete" << list;
+    QString traid = list.at(0);
+    QString storeid = list.at(1);
+    if(ExecSQL::removeStoreInfo(storeid))
+    {
+        ExecSQL::searchAllStoreInfos();
+
+        QString fileName = FilePathContents::getStoreLogoPath(storeid);//图片保存路径
+
+        QFile logo(fileName);
+        if(logo.exists())
+        {
+            qDebug() <<"==图片存在，准备删除==";
+            if(logo.remove())
+            {
+                qDebug() <<"==图片删除成功==";
+                QString msg = QString(CMD_RemoveInfo_D) % QString(CMD_TraderStore_S)
+                        % QString("#!|") % QString(traid)
+                        % "|" % QString("Success Delete ") % QString(storeid);
+                emit signalSendMsgToClient(traid,msg);
+            }else
+            {
+                qDebug() <<"==图片删除失败！！！！！！！==";
+            }
+        }
+
+    }else
+    {
+        QString msg = QString(CMD_RemoveInfo_D) % QString(CMD_TraderStore_S)
+                % QString("#?|") % QString(traid)
+                % "|" % QString("Error: Delete Stores Fail");
         emit signalSendMsgToClient(traid,msg);
     }
 

@@ -60,6 +60,8 @@ void MsgSocket::parseUserAsk(QString msg)
     case CMD_ChangePswd_H: parseChangePswd(list.at(1)); break;
     case CMD_UserExit_X: parseUserExit(list.at(1)); break;
     case CMD_GetHomePage_Z: parseGetHomePage(list.at(1));break;
+    case CMD_AddInfoImage_A: parseAddInfoImage(msg.right(msg.size()-1));break;
+    case CMD_RemoveInfo_D: parseRemoveInfo(msg.right(msg.size()-1));break;
     ///鞋友请求命令
 
     ///鞋商命令请求
@@ -68,7 +70,7 @@ void MsgSocket::parseUserAsk(QString msg)
         break;
     }
 }
-
+/////////////////////////////双字符的第二次解析//////////////////////////////////
 void MsgSocket::parseApplyImage(QString command, QByteArray imagpacket)
 {
     int cmd = command.at(0).toLatin1();
@@ -81,6 +83,31 @@ void MsgSocket::parseApplyImage(QString command, QByteArray imagpacket)
     }
 
 }
+
+void MsgSocket::parseAddInfoImage(QString data)
+{
+    int cmd = data.at(0).toLatin1();
+
+    QStringList list = data.split("#");
+    switch (cmd) {
+    case CMD_TraderStore_S: recvStoreApplyResult(list.at(1)); break;
+    default:
+        break;
+    }
+}
+
+void MsgSocket::parseRemoveInfo(QString data)
+{
+    int cmd = data.at(0).toLatin1();
+
+    QStringList list = data.split("#");
+    switch (cmd) {
+    case CMD_TraderStore_S: recvStoreDeleteResult(list.at(1)); break;
+    default:
+        break;
+    }
+}
+///////////////////////////////////////////////////////////
 ///解析通用请求命令
 void MsgSocket::parseUserLogin(QString data)
 {
@@ -203,6 +230,8 @@ void MsgSocket::recvStoreImage(QString command, QByteArray imagpacket)
         if(list.at(1) == GlobalVars::g_localTrader->getID())
         {
             QDataStream in(&imagpacket, QIODevice::ReadOnly);
+            in.setVersion(QDataStream::Qt_4_6);
+
             for(int i = 2; i < list.length(); i++)
             {
                 QImage img;
@@ -222,6 +251,45 @@ void MsgSocket::recvStoreImage(QString command, QByteArray imagpacket)
     }else
     {
         emit signalGainStoreLogo(false);
+    }
+
+}
+
+void MsgSocket::recvStoreApplyResult(QString data)
+{
+    qDebug() << "MsgSocket::recvStoreApplyResult" << data;
+    int res = data.at(0).toLatin1();
+    QStringList list = data.split("|");
+    if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
+            emit signalApplyStoreResult(true,list.at(2));
+        }else
+        {
+            emit signalApplyStoreResult(false,list.at(2));
+        }
+    }else
+    {
+        emit signalApplyStoreResult(false,list.at(2));
+    }
+
+}
+
+void MsgSocket::recvStoreDeleteResult(QString data)
+{
+    qDebug() << "MsgSocket::recvStoreDeleteResult" << data;
+    int res = data.at(0).toLatin1();
+    QStringList list = data.split("|");
+    if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
+            emit signalDeleteStoreResult(true);
+        }
+    }else
+    {
+        emit signalDeleteStoreResult(false);
     }
 
 }
@@ -262,8 +330,8 @@ void MsgSocket::slotReadyRead()
 
             switch(msgtype)
             {
-            case Type_Text: processTextDate(in); break;
-            case Type_Image: processImageDate(in); break;
+            case Type_Text: processTextDate(in); break;   //处理文本消息
+            case Type_Image: processImageDate(in); break; //处理图片消息
             default: break;
             }
             ///////////////////////////////////////
@@ -304,7 +372,7 @@ void MsgSocket::processImageDate(QDataStream &in)
 
     int cmd = command.at(0).toLatin1();
     switch (cmd) {
-    case CMD_ApplyImage_P: parseApplyImage(command.remove(CMD_ApplyImage_P), imagpacket); break;
+    case CMD_ApplyImage_P: parseApplyImage(command.right(command.size()-1), imagpacket); break;
     default:
         break;
     }
@@ -345,9 +413,9 @@ void MsgSocket::slotSendImg(QString command, QByteArray image)
     out.device()->seek(0);
     out << (quint16)(buffer.size() - sizeof(quint16));
 
-    qDebug() << "Server Send image: " << command << buffer.size();
+    qDebug() << "Client Send image: " << command << buffer.size() << "其中图片：" << image.size();
 
-    return m_tcpSocket->write(buffer);
+    m_tcpSocket->write(buffer);
 }
 bool MsgSocket::wiatToWriteSuccess()
 {

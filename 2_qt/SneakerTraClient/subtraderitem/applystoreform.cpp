@@ -55,6 +55,44 @@ ApplyStoreForm::ApplyStoreForm(StoreInfo info, QWidget *parent):
 
 }
 
+void ApplyStoreForm::applyOrModifyResult(bool res, QString msg)
+{
+    m_isCloseWidget = true;
+    /////////////////////对话窗口创建///////////////////
+    QMessageBox msgResult;
+    msgResult.setMinimumSize(222,152);
+    msgResult.setMaximumSize(222,152);
+
+    QPushButton *okbtn = new QPushButton(QString("确定"));
+    QPushButton *cancelbtn = new QPushButton(QString("取消"));
+    msgResult.addButton(okbtn, QMessageBox::AcceptRole);
+    msgResult.addButton(cancelbtn, QMessageBox::RejectRole);
+    if(res)
+    {
+        /////////////界面修改为修改界面//////////////////
+        ui->le_storeid->setText(msg);
+        ui->pb_modify->setEnabled(true);
+        ui->pb_applystore->setEnabled(false);
+
+        msgResult.setText("成功");
+        msgResult.setInformativeText("申请成功，是否关闭");
+        msgResult.setIcon(QMessageBox::Information);
+
+    }else
+    {
+        qDebug() << msg;
+        msgResult.setText("失败");
+        msgResult.setInformativeText(msg);
+        msgResult.setIcon(QMessageBox::Critical);
+    }
+    /////////////////////检测按键///////////////////
+    msgResult.exec();
+    if (msgResult.clickedButton() == okbtn)
+    {
+          this->close();
+    }
+}
+
 ApplyStoreForm::~ApplyStoreForm()
 {
     delete ui;
@@ -70,6 +108,7 @@ ApplyStoreForm::~ApplyStoreForm()
 void ApplyStoreForm::closeEvent(QCloseEvent *event)
 {
 
+
     if(!m_isCloseWidget)
     {
         QMessageBox::information(this, tr("提示"), tr("等待申请或更改结果"), tr("确定"), tr("取消"), 0, 1);
@@ -77,7 +116,6 @@ void ApplyStoreForm::closeEvent(QCloseEvent *event)
     }else
     {
         event->accept();
-        qDebug() << "closeEvent ";
     }
 
 }

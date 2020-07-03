@@ -25,6 +25,7 @@ signals:
     void signalAddStore(QString msg,QByteArray image);
     void signalRefreshStoreData(void);
     void signalApplyStoreLogo(void);
+    void signalDeleteStoreItem(QString msg);
 
 
 
@@ -38,6 +39,9 @@ private slots:
     void slotGainStoreLogoResult(bool res);
 
     void slotApplyAddStore(QString msg,QByteArray image);
+    void slotApplyStoreResult(bool res, QString msg);
+    void slotDeleteStoreResult(bool res);
+    void slotDeleteStore(QString msg);
 private:
     Ui::TraderStoreForm *ui;
 
