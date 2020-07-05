@@ -123,24 +123,40 @@ void SneakerTraClient::initTraderMs(void)
     QString title = QString("Sneaker|吾鞋  鞋商-[" % GlobalVars::g_localUser->getID() % "]");
     this->setWindowTitle(title);
     connect(m_msgSocket, SIGNAL(signalGainTraderInfo(bool)),
-            m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));    //商户信息
-    connect(m_msgSocket, SIGNAL(signalGainStoreInfo(bool)),
-            m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));    //商店信息
-    connect(m_msgSocket, SIGNAL(signalApplyStoreResult(bool,QString)),
-            m_traderStoreForm, SLOT(slotApplyStoreResult(bool,QString)));    //商店申请
-    connect(m_msgSocket, SIGNAL(signalGainStoreLogo(bool)),
-            m_traderStoreForm, SLOT(slotGainStoreLogoResult(bool)));        //商店图片
-    connect(m_msgSocket, SIGNAL(signalDeleteStoreResult(bool)),
-            m_traderStoreForm, SLOT(slotDeleteStoreResult(bool)));        //商店图片
-
+            m_traderInfoForm, SLOT(slotGainTraderInfoResult(bool)));    //商户信息结果
+    /***********************************商店*********************************************/
+    ///申请
     connect(m_traderStoreForm, SIGNAL(signalRefreshStoreData()),
-            this, SLOT(slotRefreshStoreData()));                        //更新商店信息
+            this, SLOT(slotRefreshStoreData()));                        //更新商店信息申请
     connect(m_traderStoreForm, SIGNAL(signalApplyStoreLogo()),
             this, SLOT(slotApplyStoreLogo()));                          //申请商店图片
     connect(m_traderStoreForm, SIGNAL(signalAddStore(QString,QByteArray)),
             this,SLOT(slotAddStore(QString,QByteArray)));               //申请开店
     connect(m_traderStoreForm, SIGNAL(signalDeleteStoreItem(QString)),
-            this, SLOT(slotDeleteStoreItem(QString)));//申请注销店铺
+            this, SLOT(slotDeleteStoreItem(QString)));              //申请注销店铺
+    ///结果
+    connect(m_msgSocket, SIGNAL(signalGainStoreInfo(bool)),
+            m_traderStoreForm, SLOT(slotGainStoreInfoResult(bool)));    //商店信息结果
+    connect(m_msgSocket, SIGNAL(signalApplyStoreResult(bool,QString)),
+            m_traderStoreForm, SLOT(slotApplyStoreResult(bool,QString)));    //商店开通申请结果
+    connect(m_msgSocket, SIGNAL(signalGainStoreLogo(bool)),
+            m_traderStoreForm, SLOT(slotGainStoreLogoResult(bool)));        //商店图片结果
+    connect(m_msgSocket, SIGNAL(signalDeleteStoreResult(bool)),
+            m_traderStoreForm, SLOT(slotDeleteStoreResult(bool)));        //商店删除结果
+
+    /*************************************商品*******************************************/
+    ///申请
+    connect(m_traderStoreForm, SIGNAL(signalAroundMerch()),
+            m_merchForm, SLOT(slotAroundMerch()));        //商品页开始初始化申请
+    connect(m_merchForm, SIGNAL(signalRefreshMerchData()),
+            this, SLOT(slotRefreshMerchData()));          //商品页申请
+    connect(m_merchForm, SIGNAL(signalApplyMerchPhoto()),
+            this, SLOT(slotApplyMerchPhoto()));                      //商品图片申请
+    ///结果
+    connect(m_msgSocket, SIGNAL(signalGainMerchInfo(bool)),
+            m_merchForm, SLOT(slotGainMerchInfoResult(bool)));    //商品信息结果
+    connect(m_msgSocket, SIGNAL(signalGainMerchHostPhoto(bool)),
+            m_merchForm, SLOT(slotGainMerchHostPhotoResult(bool)));        //商品图片结果
 
     //////////////////////相关界面配置/////////////////////////
     ui->mainToolBar->removeAction(ui->actionFansChangPswd);
@@ -349,6 +365,19 @@ void SneakerTraClient::slotApplyStoreLogo()
     m_msgSocket->slotSendMsg(msgforstore);
 }
 
+void SneakerTraClient::slotApplyMerchPhoto()
+{
+    QString msgformerch = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
+            % QString("#") % QString(GlobalVars::g_localUser->getID());
+    for(MerchInfoList::Iterator it = GlobalVars::g_merchInfoList->begin();
+        it != GlobalVars::g_merchInfoList->end(); it++)
+    {
+        QString msg = QString("|") % it->getID();
+        msgformerch.append(msg);
+    }
+    m_msgSocket->slotSendMsg(msgformerch);
+}
+
 void SneakerTraClient::slotAddStore(QString msg, QByteArray image)
 {
     m_msgSocket->slotSendImg(msg, image);
@@ -357,5 +386,21 @@ void SneakerTraClient::slotAddStore(QString msg, QByteArray image)
 void SneakerTraClient::slotDeleteStoreItem(QString msg)
 {
     m_msgSocket->slotSendMsg(msg);
+}
+
+void SneakerTraClient::slotRefreshMerchData()
+{
+    ///鞋商商铺详细信息请求
+    GlobalVars::g_merchHostPhotoMap.clear();
+    GlobalVars::g_merchInfoList->clear();
+
+    QString msgformerch = QString(CMD_TraderMerch_M) % QString("#") % GlobalVars::g_localTrader->getID();
+    for(StoreInfoList::Iterator it = GlobalVars::g_storeInfoList->begin();
+        it != GlobalVars::g_storeInfoList->end(); it++)
+    {
+        QString msg = QString("|") % it->getID();
+        msgformerch.append(msg);
+    }
+    m_msgSocket->slotSendMsg(msgformerch);
 }
 

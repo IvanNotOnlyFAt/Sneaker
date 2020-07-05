@@ -22,3 +22,4 @@ TranInfoList *GlobalVars::g_tranInfoList = new TranInfoList;
 QQueue<QString> GlobalVars::g_msgQueue;
 
 ImageMap GlobalVars::g_storeLogoImageMap;
+ImageMap GlobalVars::g_merchHostPhotoMap;

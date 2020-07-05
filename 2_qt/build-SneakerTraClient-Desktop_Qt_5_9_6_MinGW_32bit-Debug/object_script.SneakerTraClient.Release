@@ -21,6 +21,9 @@ INPUT(
 ./release/msgsocket.o
 ./release/traderstoreitem.o
 ./release/applystoreform.o
+./release/tradermerchform.o
+./release/applymerchform.o
+./release/merchadphotoform.o
 ./release/main.o
 ./release/sneakertraclient.o
 ./release/globalvars.o
@@ -41,5 +44,8 @@ INPUT(
 ./release/moc_msgsocket.o
 ./release/moc_traderstoreitem.o
 ./release/moc_applystoreform.o
+./release/moc_tradermerchform.o
+./release/moc_applymerchform.o
+./release/moc_merchadphotoform.o
 ./release/moc_sneakertraclient.o
 );

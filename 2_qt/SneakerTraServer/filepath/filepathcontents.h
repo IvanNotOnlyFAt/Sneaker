@@ -7,6 +7,8 @@ class FilePathContents
 public:
     static QString p_logoRelativePath;
     static QString getStoreLogoPath(QString id);
+    static QString p_hostPhotoRelativePath;
+    static QString getMerchPhotoPath(QString id);
 
 };
 

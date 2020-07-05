@@ -66,6 +66,7 @@ void MsgSocket::parseUserAsk(QString msg)
 
     ///鞋商命令请求
     case CMD_TraderStore_S:parseTraderStore(list.at(1));break;
+    case CMD_TraderMerch_M:parseTraderMerch(list.at(1));break;
     default:
         break;
     }
@@ -78,6 +79,7 @@ void MsgSocket::parseApplyImage(QString command, QByteArray imagpacket)
     QStringList list = command.split("#");
     switch (cmd) {
     case CMD_TraderStore_S: recvStoreImage(list.at(1), imagpacket); break;
+    case CMD_TraderMerch_M: recvMerchImage(list.at(1), imagpacket); break;
     default:
         break;
     }
@@ -220,6 +222,41 @@ void MsgSocket::parseTraderStore(QString data)
 
 }
 
+void MsgSocket::parseTraderMerch(QString data)
+{
+    qDebug() << "MsgProc::parseTraderMerch" ;
+
+    int res = data.at(0).toLatin1();
+    if(res = RES_Down)
+    {
+        QStringList merchmsg = data.split("/");
+        GlobalVars::g_merchInfoList->clear();
+        for(int i = 1; i < merchmsg.length(); i++)
+        {
+
+            QString msg = merchmsg[i];
+            QStringList list = msg.split("|");
+
+
+            QString merchid = list.at(0);
+            QString storeid = list.at(1);
+            QString merchname = list.at(2);
+            QString merchprice = list.at(3);
+            QString merchstock = list.at(4);
+            QString merchsize = list.at(5);
+            QString adphoto = list.at(6);
+            QString descri = list.at(7);
+            MerchInfo info(merchid,storeid,merchname,merchprice,merchstock,merchsize,adphoto,descri);
+            GlobalVars::g_merchInfoList->append(info);
+        }
+        emit signalGainMerchInfo(true);
+
+    }else
+    {
+        emit signalGainMerchInfo(false);
+    }
+}
+
 void MsgSocket::recvStoreImage(QString command, QByteArray imagpacket)
 {
     qDebug() << "MsgSocket::recvStoreImage" << command;
@@ -251,6 +288,42 @@ void MsgSocket::recvStoreImage(QString command, QByteArray imagpacket)
     }else
     {
         emit signalGainStoreLogo(false);
+    }
+
+}
+
+void MsgSocket::recvMerchImage(QString command, QByteArray imagpacket)
+{
+    qDebug() << "MsgSocket::recvMerchImage" << command;
+    int res = command.at(0).toLatin1();
+    QStringList list = command.split("|");
+
+    if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
+            QDataStream in(&imagpacket, QIODevice::ReadOnly);
+            in.setVersion(QDataStream::Qt_4_6);
+
+            for(int i = 2; i < list.length(); i++)
+            {
+                QImage img;         //图片信息
+                QString strSplit;   //图片分割
+
+                in >> img;          //图片信息
+                in >> strSplit;     //图片分割
+
+                GlobalVars::g_merchHostPhotoMap.insert(list.at(i), img);
+                qDebug() << list.at(i) << img.size();
+            }
+            emit signalGainMerchHostPhoto(true);
+        }else
+        {
+            emit signalGainMerchHostPhoto(false);
+        }
+    }else
+    {
+        emit signalGainMerchHostPhoto(false);
     }
 
 }

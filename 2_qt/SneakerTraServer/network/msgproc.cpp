@@ -45,6 +45,7 @@ void MsgProc::parseUserAsk(QString msg)
 
         ///解析鞋商请求命令
     case CMD_TraderStore_S:parseTraderStore(list.at(1));break;
+    case CMD_TraderMerch_M:parseTraderMerch(list.at(1));break;
     default:
         break;
     }
@@ -192,4 +193,48 @@ void MsgProc::parseStoreDelete(QString data)
         emit signalSendMsgToClient(traid,msg);
     }
 
+}
+
+void MsgProc::parseTraderMerch(QString data)
+{
+    qDebug() << "MsgProc::parseTraderMerch:" << data;
+    QStringList list = data.split("|");
+    QString traid = list.at(0);
+
+    QString msg = QString(CMD_TraderMerch_M) % QString("#!|") % traid ;//成功时的信息头部
+    for(int i = 1; i < list.length(); i++)
+    {
+        QString storeid = list.at(i);
+        ExecSQL::searchMerchInfoForStoreID(storeid);
+
+        if(!GlobalVars::g_merchInfoList->isEmpty())
+        {
+            for(MerchInfoList::iterator it = GlobalVars::g_merchInfoList->begin();
+                it != GlobalVars::g_merchInfoList->end(); it++)
+            {
+                if(storeid == it->getStore_ID())
+                {
+                    QString submsg = QString("/") % it->getID()
+                            % QString("|") % it->getStore_ID()
+                            % QString("|") % it->getName()
+                            % QString("|") % it->getPrice()
+                            % QString("|") % it->getStock()
+                            % QString("|") % it->getMerchSize()
+                            % QString("|") % it->getADPhoto()
+                            % QString("|") % it->getDescri();
+                    msg.append(submsg);
+                }
+            }
+
+
+        }else
+        {
+            QString error = QString(CMD_TraderMerch_M)
+                    % QString("#?|") % QString(traid)
+                    % "|" % QString("Error: DataError-None Merch");
+            emit signalSendMsgToClient(traid,error);
+        }
+
+    }
+    emit signalSendMsgToClient(traid,msg);
 }

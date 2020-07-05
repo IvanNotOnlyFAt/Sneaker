@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MsgSocket_t {
-    QByteArrayData data[18];
-    char stringdata0[249];
+    QByteArrayData data[20];
+    char stringdata0[294];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,26 +38,30 @@ QT_MOC_LITERAL(3, 33, 3), // "res"
 QT_MOC_LITERAL(4, 37, 22), // "signalUserLogoutResult"
 QT_MOC_LITERAL(5, 60, 18), // "signalGainFansInfo"
 QT_MOC_LITERAL(6, 79, 20), // "signalGainTraderInfo"
-QT_MOC_LITERAL(7, 100, 19), // "signalGainStoreInfo"
-QT_MOC_LITERAL(8, 120, 19), // "signalGainStoreLogo"
-QT_MOC_LITERAL(9, 140, 22), // "signalApplyStoreResult"
-QT_MOC_LITERAL(10, 163, 5), // "newID"
-QT_MOC_LITERAL(11, 169, 23), // "signalDeleteStoreResult"
-QT_MOC_LITERAL(12, 193, 13), // "slotReadyRead"
-QT_MOC_LITERAL(13, 207, 11), // "slotSendMsg"
-QT_MOC_LITERAL(14, 219, 3), // "msg"
-QT_MOC_LITERAL(15, 223, 11), // "slotSendImg"
-QT_MOC_LITERAL(16, 235, 7), // "command"
-QT_MOC_LITERAL(17, 243, 5) // "image"
+QT_MOC_LITERAL(7, 100, 19), // "signalGainMerchInfo"
+QT_MOC_LITERAL(8, 120, 19), // "signalGainStoreInfo"
+QT_MOC_LITERAL(9, 140, 19), // "signalGainStoreLogo"
+QT_MOC_LITERAL(10, 160, 24), // "signalGainMerchHostPhoto"
+QT_MOC_LITERAL(11, 185, 22), // "signalApplyStoreResult"
+QT_MOC_LITERAL(12, 208, 5), // "newID"
+QT_MOC_LITERAL(13, 214, 23), // "signalDeleteStoreResult"
+QT_MOC_LITERAL(14, 238, 13), // "slotReadyRead"
+QT_MOC_LITERAL(15, 252, 11), // "slotSendMsg"
+QT_MOC_LITERAL(16, 264, 3), // "msg"
+QT_MOC_LITERAL(17, 268, 11), // "slotSendImg"
+QT_MOC_LITERAL(18, 280, 7), // "command"
+QT_MOC_LITERAL(19, 288, 5) // "image"
 
     },
     "MsgSocket\0signalUserLoginResult\0\0res\0"
     "signalUserLogoutResult\0signalGainFansInfo\0"
-    "signalGainTraderInfo\0signalGainStoreInfo\0"
-    "signalGainStoreLogo\0signalApplyStoreResult\0"
-    "newID\0signalDeleteStoreResult\0"
-    "slotReadyRead\0slotSendMsg\0msg\0slotSendImg\0"
-    "command\0image"
+    "signalGainTraderInfo\0signalGainMerchInfo\0"
+    "signalGainStoreInfo\0signalGainStoreLogo\0"
+    "signalGainMerchHostPhoto\0"
+    "signalApplyStoreResult\0newID\0"
+    "signalDeleteStoreResult\0slotReadyRead\0"
+    "slotSendMsg\0msg\0slotSendImg\0command\0"
+    "image"
 };
 #undef QT_MOC_LITERAL
 
@@ -67,27 +71,29 @@ static const uint qt_meta_data_MsgSocket[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      13,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       8,       // signalCount
+      10,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   69,    2, 0x06 /* Public */,
-       4,    1,   72,    2, 0x06 /* Public */,
-       5,    1,   75,    2, 0x06 /* Public */,
-       6,    1,   78,    2, 0x06 /* Public */,
-       7,    1,   81,    2, 0x06 /* Public */,
-       8,    1,   84,    2, 0x06 /* Public */,
-       9,    2,   87,    2, 0x06 /* Public */,
-      11,    1,   92,    2, 0x06 /* Public */,
+       1,    1,   79,    2, 0x06 /* Public */,
+       4,    1,   82,    2, 0x06 /* Public */,
+       5,    1,   85,    2, 0x06 /* Public */,
+       6,    1,   88,    2, 0x06 /* Public */,
+       7,    1,   91,    2, 0x06 /* Public */,
+       8,    1,   94,    2, 0x06 /* Public */,
+       9,    1,   97,    2, 0x06 /* Public */,
+      10,    1,  100,    2, 0x06 /* Public */,
+      11,    2,  103,    2, 0x06 /* Public */,
+      13,    1,  108,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      12,    0,   95,    2, 0x0a /* Public */,
-      13,    1,   96,    2, 0x0a /* Public */,
-      15,    2,   99,    2, 0x0a /* Public */,
+      14,    0,  111,    2, 0x0a /* Public */,
+      15,    1,  112,    2, 0x0a /* Public */,
+      17,    2,  115,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool,    3,
@@ -96,13 +102,15 @@ static const uint qt_meta_data_MsgSocket[] = {
     QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Void, QMetaType::Bool,    3,
     QMetaType::Void, QMetaType::Bool,    3,
-    QMetaType::Void, QMetaType::Bool, QMetaType::QString,    3,   10,
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool,    3,
+    QMetaType::Void, QMetaType::Bool, QMetaType::QString,    3,   12,
     QMetaType::Void, QMetaType::Bool,    3,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   14,
-    QMetaType::Void, QMetaType::QString, QMetaType::QByteArray,   16,   17,
+    QMetaType::Void, QMetaType::QString,   16,
+    QMetaType::Void, QMetaType::QString, QMetaType::QByteArray,   18,   19,
 
        0        // eod
 };
@@ -117,13 +125,15 @@ void MsgSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 1: _t->signalUserLogoutResult((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 2: _t->signalGainFansInfo((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 3: _t->signalGainTraderInfo((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 4: _t->signalGainStoreInfo((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 5: _t->signalGainStoreLogo((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 6: _t->signalApplyStoreResult((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
-        case 7: _t->signalDeleteStoreResult((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 8: _t->slotReadyRead(); break;
-        case 9: _t->slotSendMsg((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 10: _t->slotSendImg((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
+        case 4: _t->signalGainMerchInfo((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 5: _t->signalGainStoreInfo((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: _t->signalGainStoreLogo((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 7: _t->signalGainMerchHostPhoto((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 8: _t->signalApplyStoreResult((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 9: _t->signalDeleteStoreResult((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 10: _t->slotReadyRead(); break;
+        case 11: _t->slotSendMsg((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 12: _t->slotSendImg((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -158,29 +168,43 @@ void MsgSocket::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         }
         {
             typedef void (MsgSocket::*_t)(bool );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalGainStoreInfo)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalGainMerchInfo)) {
                 *result = 4;
                 return;
             }
         }
         {
             typedef void (MsgSocket::*_t)(bool );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalGainStoreLogo)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalGainStoreInfo)) {
                 *result = 5;
                 return;
             }
         }
         {
-            typedef void (MsgSocket::*_t)(bool , QString );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalApplyStoreResult)) {
+            typedef void (MsgSocket::*_t)(bool );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalGainStoreLogo)) {
                 *result = 6;
                 return;
             }
         }
         {
             typedef void (MsgSocket::*_t)(bool );
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalDeleteStoreResult)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalGainMerchHostPhoto)) {
                 *result = 7;
+                return;
+            }
+        }
+        {
+            typedef void (MsgSocket::*_t)(bool , QString );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalApplyStoreResult)) {
+                *result = 8;
+                return;
+            }
+        }
+        {
+            typedef void (MsgSocket::*_t)(bool );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MsgSocket::signalDeleteStoreResult)) {
+                *result = 9;
                 return;
             }
         }
@@ -212,13 +236,13 @@ int MsgSocket::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 13)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 13;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 13)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 13;
     }
     return _id;
 }
@@ -252,31 +276,45 @@ void MsgSocket::signalGainTraderInfo(bool _t1)
 }
 
 // SIGNAL 4
-void MsgSocket::signalGainStoreInfo(bool _t1)
+void MsgSocket::signalGainMerchInfo(bool _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);
 }
 
 // SIGNAL 5
-void MsgSocket::signalGainStoreLogo(bool _t1)
+void MsgSocket::signalGainStoreInfo(bool _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 
 // SIGNAL 6
-void MsgSocket::signalApplyStoreResult(bool _t1, QString _t2)
+void MsgSocket::signalGainStoreLogo(bool _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 6, _a);
 }
 
 // SIGNAL 7
-void MsgSocket::signalDeleteStoreResult(bool _t1)
+void MsgSocket::signalGainMerchHostPhoto(bool _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
+}
+
+// SIGNAL 8
+void MsgSocket::signalApplyStoreResult(bool _t1, QString _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
+    QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void MsgSocket::signalDeleteStoreResult(bool _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

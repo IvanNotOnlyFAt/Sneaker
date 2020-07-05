@@ -8,8 +8,8 @@
 namespace Ui {
 class TraderStoreForm;
 }
-enum Search_Condition{
-        Search_None = 0,
+enum Search_StoreCondition{
+        Search_StoreNone = 0,
         Search_StoreID,
         Search_StoreName
 };
@@ -26,7 +26,7 @@ signals:
     void signalRefreshStoreData(void);
     void signalApplyStoreLogo(void);
     void signalDeleteStoreItem(QString msg);
-
+    void signalAroundMerch(void);
 
 
 private slots:

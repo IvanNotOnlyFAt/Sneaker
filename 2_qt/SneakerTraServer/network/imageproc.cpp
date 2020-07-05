@@ -61,6 +61,7 @@ void ImageProc::parseApplyImageAsk(QString msg)
 
         ///解析鞋商请求命令
     case CMD_TraderStore_S:parseStoreImageApply(list.at(1));break;
+    case CMD_TraderMerch_M:parseMerchImageApply(list.at(1));break;
     default:
         break;
     }
@@ -138,6 +139,56 @@ void ImageProc::parseStoreImageApply(QString data)
 void ImageProc::parseMerchImageApply(QString data)
 {
     qDebug() << "ImageProc::parseMerchImageApply" << data;
+    QByteArray imagebuffer;
+    QDataStream ds_image(&imagebuffer,QIODevice::WriteOnly);
+
+    QString filename; //反馈消息的文件名
+    QString merchid;  //商品id=S-1000000000001
+    QString merchPath;//商品路径S-100000000000100
+    bool res = true;
+    QStringList list = data.split("|");
+    QString traid = list.at(0);
+
+    for(int i = 1; i < list.length(); i++)
+    {
+        merchid = list.at(i); //商品id=S-1000000000001
+        merchPath = merchid % QString("00");//商品路径S-100000000000100
+        QImage merchimg;
+        merchimg.load(FilePathContents::getMerchPhotoPath(merchPath));//获取路径下的logo
+
+
+        if(merchimg.isNull())
+        {
+            res = false;
+        }
+
+        QString msg = QString("|") % QString(merchid);
+        filename.append(msg);
+
+        ds_image << merchimg;     //图片信息
+        ds_image << QString('%');//图片用%隔开
+
+        qDebug() << merchid << "'s hostimg.size(): " <<merchimg.size();
+    }
+
+    qDebug()<< "imagebuffer.size(): " <<imagebuffer.size();
+
+    if(res)
+    {
+        QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
+                % QString("#!|") % QString(traid);
+        command.append(filename);
+
+        emit signalSendImgToClient(traid,command,imagebuffer);
+    }else
+    {
+        QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
+                % QString("#?|")
+                % QString(traid) % QString("|")
+                % QString("Error: Merch' Image Missing");
+        emit signalSendMsgToClient(traid, command);
+    }
+
 }
 
 void ImageProc::parseStoreAddApply(QString data)

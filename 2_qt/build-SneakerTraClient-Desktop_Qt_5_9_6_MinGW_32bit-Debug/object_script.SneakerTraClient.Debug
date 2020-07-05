@@ -21,6 +21,9 @@ INPUT(
 ./debug/msgsocket.o
 ./debug/traderstoreitem.o
 ./debug/applystoreform.o
+./debug/tradermerchform.o
+./debug/applymerchform.o
+./debug/merchadphotoform.o
 ./debug/main.o
 ./debug/sneakertraclient.o
 ./debug/globalvars.o
@@ -41,5 +44,8 @@ INPUT(
 ./debug/moc_msgsocket.o
 ./debug/moc_traderstoreitem.o
 ./debug/moc_applystoreform.o
+./debug/moc_tradermerchform.o
+./debug/moc_applymerchform.o
+./debug/moc_merchadphotoform.o
 ./debug/moc_sneakertraclient.o
 );

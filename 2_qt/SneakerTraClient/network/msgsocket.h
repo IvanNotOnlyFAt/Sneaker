@@ -20,8 +20,10 @@ signals:
     void signalUserLogoutResult(bool res);
     void signalGainFansInfo(bool res);
     void signalGainTraderInfo(bool res);
+    void signalGainMerchInfo(bool res);
     void signalGainStoreInfo(bool res);
     void signalGainStoreLogo(bool res);
+    void signalGainMerchHostPhoto(bool res);
     void signalApplyStoreResult(bool res, QString newID);
     void signalDeleteStoreResult(bool res);
 public slots:
@@ -55,9 +57,12 @@ private:
 
     ///鞋商命令请求
     void parseTraderStore(QString data);
+    void parseTraderMerch(QString data);
     void recvStoreImage(QString command,  QByteArray imagpacket);
+    void recvMerchImage(QString command,  QByteArray imagpacket);
     void recvStoreApplyResult(QString data);
     void recvStoreDeleteResult(QString data);
+
 
 };
 

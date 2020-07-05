@@ -10,7 +10,7 @@ TraderStoreForm::TraderStoreForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TraderStoreForm)
 {
-    m_searchCond = Search_None;
+    m_searchCond = Search_StoreNone;
     m_applyWidget = 0;
     ui->setupUi(this);
 
@@ -26,7 +26,7 @@ void TraderStoreForm::on_cb_condition_currentIndexChanged(int index)
 {
     qDebug() << "TraderStoreForm::on_cb_condition_currentIndexChanged" << index;
     m_searchCond = index;
-    if (m_searchCond == Search_None)
+    if (m_searchCond == Search_StoreNone)
     {
         ui->le_condition->setEnabled(false);
     }else
@@ -98,7 +98,7 @@ void TraderStoreForm::slotGainStoreLogoResult(bool res)
             connect(traderStoreItem,SIGNAL(signalDeleteStore(QString)),
                     this, SLOT(slotDeleteStore(QString)));
         }
-
+    emit signalAroundMerch();
     }
 }
 
@@ -113,7 +113,7 @@ void TraderStoreForm::slotApplyStoreResult(bool res, QString msg)
     if(res)
     {
         //更新店铺列表数据
-        ui->cb_condition->setCurrentIndex(Search_None);
+        ui->cb_condition->setCurrentIndex(Search_StoreNone);
         on_pb_search_clicked();
     }
 }
@@ -123,7 +123,7 @@ void TraderStoreForm::slotDeleteStoreResult(bool res)
     if(res)
     {
         //更新店铺列表数据
-        ui->cb_condition->setCurrentIndex(Search_None);
+        ui->cb_condition->setCurrentIndex(Search_StoreNone);
         on_pb_search_clicked();
 
     }

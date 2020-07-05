@@ -35,7 +35,8 @@ enum COMMAND{
     ///鞋友请求命令
 
     ///鞋商请求命令
-    CMD_TraderStore_S = 'S'         //获取商铺id
+    CMD_TraderStore_S = 'S',         //获取商铺id
+    CMD_TraderMerch_M = 'M'         //获取商品id
 
 
 };
@@ -63,6 +64,8 @@ public:
     static QQueue<QString> g_msgQueue;
 
     static ImageMap g_storeLogoImageMap;
+    static ImageMap g_merchHostPhotoMap;
+
 };
 
 #endif // GLOBALVARS_H
