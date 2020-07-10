@@ -32,7 +32,7 @@ private:
     void parseUserLogin(QString msg);
     void parseUserExit(QString msg);
     QByteArray m_recvArray;
-    quint16 m_tcpBlockSize;
+    quint32 m_tcpBlockSize;
     QTcpSocket *m_socket;
 
 };

@@ -64,6 +64,7 @@ void MsgProc::parseRemoveInfo(QString data)
 
         ///解析鞋商请求命令
     case CMD_TraderStore_S:parseStoreDelete(list.at(1));break;
+    case CMD_TraderMerch_M:parseMerchDelete(list.at(1));break;
     default:
         break;
     }
@@ -193,6 +194,44 @@ void MsgProc::parseStoreDelete(QString data)
         emit signalSendMsgToClient(traid,msg);
     }
 
+}
+
+void MsgProc::parseMerchDelete(QString data)
+{
+    QStringList list = data.split("|");
+    qDebug() << "MsgProc::parseMerchDelete" << list;
+    QString traid = list.at(0);
+    QString merchid = list.at(1);
+    if(ExecSQL::removeMerchInfo(merchid))
+    {
+        ExecSQL::searchAllMerchInfos();
+        QString imgname = merchid % QString("00");
+        QString fileName = FilePathContents::getMerchPhotoPath(imgname);//图片保存路径
+
+        QFile hostphoto(fileName);
+        if(hostphoto.exists())
+        {
+            qDebug() <<"==图片存在，准备删除==";
+            if(hostphoto.remove())
+            {
+                qDebug() <<"==图片删除成功==";
+                QString msg = QString(CMD_RemoveInfo_D) % QString(CMD_TraderMerch_M)
+                        % QString("#!|") % QString(traid)
+                        % "|" % QString("Success Delete ") % QString(merchid);
+                emit signalSendMsgToClient(traid,msg);
+            }else
+            {
+                qDebug() <<"==图片删除失败！！！！！！！==";
+            }
+        }
+
+    }else
+    {
+        QString msg = QString(CMD_RemoveInfo_D) % QString(CMD_TraderMerch_M)
+                % QString("#?|") % QString(traid)
+                % "|" % QString("Error: Delete Merch Fail");
+        emit signalSendMsgToClient(traid,msg);
+    }
 }
 
 void MsgProc::parseTraderMerch(QString data)

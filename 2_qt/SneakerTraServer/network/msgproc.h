@@ -29,8 +29,10 @@ private:
 
     ///解析鞋商请求命令
     void parseTraderStore(QString data);
-    void parseStoreDelete(QString data);
     void parseTraderMerch(QString data);
+    void parseStoreDelete(QString data);
+    void parseMerchDelete(QString data);
+
 
 };
 

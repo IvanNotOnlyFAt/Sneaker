@@ -14,7 +14,7 @@ TraderStoreItem::TraderStoreItem(StoreInfo info, QWidget *parent) :
     ui->setupUi(this);
 
     m_storeInfo = info;
-    m_modifyStoreInfo == nullptr;
+    m_modifyStoreInfo = nullptr;
     m_storeStatus = true;
     ui->le_status->setText("营业中..");
 

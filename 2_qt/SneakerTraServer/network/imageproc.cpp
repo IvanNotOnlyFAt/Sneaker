@@ -8,6 +8,7 @@
 #include <QStringBuilder>
 #include <QDataStream>
 #include <QFile>
+#include <QBuffer>
 ImageProc::ImageProc(QObject *parent) :
     QThread(parent)
 {
@@ -78,6 +79,7 @@ void ImageProc::parseAddImageAsk(QString msg)
 
         ///解析鞋商请求命令
     case CMD_TraderStore_S:parseStoreAddApply(list.at(1));break;
+    case CMD_TraderMerch_M:parseMerchAddApply(list.at(1));break;
     default:
         break;
     }
@@ -142,52 +144,60 @@ void ImageProc::parseMerchImageApply(QString data)
     QByteArray imagebuffer;
     QDataStream ds_image(&imagebuffer,QIODevice::WriteOnly);
 
-    QString filename; //反馈消息的文件名
+
     QString merchid;  //商品id=S-1000000000001
     QString merchPath;//商品路径S-100000000000100
     bool res = true;
     QStringList list = data.split("|");
     QString traid = list.at(0);
-
+    QString packetHead = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
+            % QString("#$|") % QString(traid);
     for(int i = 1; i < list.length(); i++)
     {
+        imagebuffer.clear();//清理缓存区
+
         merchid = list.at(i); //商品id=S-1000000000001
         merchPath = merchid % QString("00");//商品路径S-100000000000100
-        QImage merchimg;
-        merchimg.load(FilePathContents::getMerchPhotoPath(merchPath));//获取路径下的logo
+
+        QImage merchimg;    //图片读取
+        merchimg.load(FilePathContents::getMerchPhotoPath(merchPath));//获取路径下的photo
 
 
-        if(merchimg.isNull())
+        if(merchimg.isNull())//图片判断
         {
             res = false;
         }
 
-        QString msg = QString("|") % QString(merchid);
-        filename.append(msg);
+        QString filename = QString("|") % QString(merchid);//反馈消息的文件名
+        QString command = packetHead % filename;
 
-        ds_image << merchimg;     //图片信息
-        ds_image << QString('%');//图片用%隔开
+        //图片装载
+        QBuffer buffer;
+        buffer.open(QIODevice::ReadWrite);
+        merchimg.save(&buffer,"jpg");
+        imagebuffer.append(buffer.data());
 
-        qDebug() << merchid << "'s hostimg.size(): " <<merchimg.size();
+
+        ///发送消息
+        if(res)
+        {
+            qDebug() << merchid << "'s hostimg.size(): " <<merchimg.size();
+            qDebug()<< "imagebuffer.size(): " <<imagebuffer.size();
+            emit signalSendImgToClient(traid,command,imagebuffer);
+        }else
+        {
+            QString errormsg = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
+                    % QString("#?|")
+                    % QString(traid) % QString("|")
+                    % QString("Error: %1 Merch' Image Missing").arg(merchid);
+            emit signalSendImgToClient(traid, errormsg,imagebuffer);
+        }
+
     }
-
-    qDebug()<< "imagebuffer.size(): " <<imagebuffer.size();
-
-    if(res)
-    {
-        QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
-                % QString("#!|") % QString(traid);
-        command.append(filename);
-
-        emit signalSendImgToClient(traid,command,imagebuffer);
-    }else
-    {
-        QString command = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
-                % QString("#?|")
-                % QString(traid) % QString("|")
-                % QString("Error: Merch' Image Missing");
-        emit signalSendMsgToClient(traid, command);
-    }
+    imagebuffer.clear();//清理缓存区
+    QString packetend = QString(CMD_ApplyImage_P) % QString(CMD_TraderMerch_M)
+            % QString("#!|") % QString(traid);
+    emit signalSendImgToClient(traid, packetend,imagebuffer);
 
 }
 
@@ -271,4 +281,89 @@ void ImageProc::parseStoreAddApply(QString data)
         emit signalSendMsgToClient(traid, command);
     }
 
+}
+
+void ImageProc::parseMerchAddApply(QString data)
+{
+    qDebug() << "ImageProc::parseMerchAddApply" << data;
+
+    ///申请增加商店
+    QStringList list = data.split("|");                         //获得商品的其他信息
+    QString traid = list.at(0);
+    QString storeid = list.at(1);
+    qDebug() <<"申请商品list" << list;
+
+    QString newMerchID = ExecSQL::getNewRegisterMerchID(storeid);  //获得新的商品ID
+    MerchInfo info = MerchInfo(newMerchID, list.at(1), list.at(2), list.at(3),
+                               list.at(4), list.at(5), list.at(6), list.at(7));
+
+    info.display();
+    /////////////////判断有么有申请成功////////////////////
+    if(ExecSQL::addNewMerchInfo(info))               //增加新商品
+    {
+        ExecSQL::searchAllMerchInfos();             //更新服务器这边的列表
+        qDebug() << traid << "的" << storeid << "店新增" << newMerchID <<" ==商品增加成功==";
+
+        ///将图片保存到本地
+        QByteArray imgbuffer = GlobalVars::g_imgQueueMap[data]; //找到配套图片
+        GlobalVars::g_imgQueueMap.remove(data);                 //释放map空间
+
+        QDataStream in(&imgbuffer, QIODevice::ReadOnly);        //目前只能按这种方式读取-->img.loadFromData(imgbuffer);是失败的
+        in.setVersion(QDataStream::Qt_4_6);
+        QImage img;
+        in >> img;
+
+        if(!img.isNull())
+        {
+            QString imgname = newMerchID % QString("00");
+            QString fileName = FilePathContents::getMerchPhotoPath(imgname);//图片保存路径
+            qDebug() <<"==商品图片缓存，准备保存到本地==";
+
+            QFile hostphoto(fileName);
+            if(hostphoto.exists())
+            {
+                qDebug() <<"==图片存在，准备删除==";
+                if(hostphoto.remove())
+                {
+                    qDebug() <<"==图片删除成功，准备重新保存==";
+                }else
+                {
+                    qDebug() <<"==图片删除失败！！！！！！！==";
+                }
+            }
+
+            //////检测文件夹中是否已经有图片-有了先删除再添加-没有则直接添加//////////
+            if(img.save(fileName))
+            {
+                qDebug() << "商品图片保存到本地：" << fileName;             //将图片保存到本地
+
+                QString command = QString(CMD_AddInfoImage_A) % QString(CMD_TraderMerch_M)
+                        % QString("#!|")
+                        % QString(traid) % QString("|")
+                        % QString(newMerchID);
+                emit signalSendMsgToClient(traid, command);
+            }else
+            {
+                //发送图片保存失败消息
+                QString command = QString(CMD_AddInfoImage_A) % QString(CMD_TraderMerch_M)
+                        % QString("#?|")
+                        % QString(traid) % QString("|")
+                        % QString("Error: newMerchs' Image Save Fail");
+                ExecSQL::removeMerchInfo(newMerchID);       //图片保存失败，连数据库的资料一起删除
+                emit signalSendMsgToClient(traid, command);
+            }
+        }else
+        {
+            qDebug() <<"==图片缓存失败！！！！==";
+        }
+        //////////////////////////////////////////////////////////////
+    }else
+    {
+        //发送失败消息
+        QString command = QString(CMD_AddInfoImage_A) % QString(CMD_TraderMerch_M)
+                % QString("#?|")
+                % QString(traid) % QString("|")
+                % QString("Error: newMerch' Append Fail");
+        emit signalSendMsgToClient(traid, command);
+    }
 }

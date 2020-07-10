@@ -15,10 +15,11 @@ public:
     explicit TraderMerchForm(MerchInfo info, QWidget *parent = 0);
     ~TraderMerchForm();
     void setMerchHostPhoto();
-
+    QString getMerchID();
+    QString getMerchStoreID();
 private:
     Ui::TraderMerchForm *ui;
     MerchInfo m_merchInfo;
 };
-typedef QList<TraderMerchForm> TraderMerchFormList;
+//typedef QList<TraderMerchForm*> TraderMerchFormList;
 #endif // TRADERMERCHFORM_H

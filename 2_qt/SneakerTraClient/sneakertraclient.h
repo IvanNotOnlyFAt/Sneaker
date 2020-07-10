@@ -54,7 +54,9 @@ private slots:
     void slotApplyStoreLogo();
     void slotApplyMerchPhoto();
     void slotAddStore(QString msg, QByteArray image);
+    void slotAddMerch(QString msg, QByteArray image);
     void slotDeleteStoreItem(QString msg);
+    void slotDeleteMerchItem(QString msg);
     void slotRefreshMerchData();
 private:
     Ui::SneakerTraClient *ui;

@@ -182,8 +182,14 @@ p, li { white-space: pre-wrap; }
             </property>
             <property name="minimumSize">
              <size>
-              <width>250</width>
+              <width>200</width>
               <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
              </size>
             </property>
             <property name="alignment">

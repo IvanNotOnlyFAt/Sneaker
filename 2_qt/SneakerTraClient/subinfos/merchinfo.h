@@ -47,6 +47,6 @@ private:
     
 };
 typedef QList<MerchInfo> MerchInfoList;
-typedef QMap<QString, MerchInfoList::iterator> MerchInfoMap;
+typedef QMap<QString, MerchInfo> MerchInfoMap;
 
 #endif // MERCHINFO_H

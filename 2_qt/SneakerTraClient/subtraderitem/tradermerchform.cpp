@@ -35,6 +35,16 @@ void TraderMerchForm::setMerchHostPhoto()
 {
     QImage img = GlobalVars::g_merchHostPhotoMap[m_merchInfo.getID()];
     QSize lbsize = ui->lb_photo->size();
-    QImage m_tempimg = img.scaled(lbsize,Qt::KeepAspectRatio);
+    QImage m_tempimg = img.scaled(lbsize,Qt::IgnoreAspectRatio);
     ui->lb_photo->setPixmap(QPixmap::fromImage(m_tempimg));
+}
+
+QString TraderMerchForm::getMerchID()
+{
+    return m_merchInfo.getID();
+}
+
+QString TraderMerchForm::getMerchStoreID()
+{
+    return m_merchInfo.getStore_ID();
 }

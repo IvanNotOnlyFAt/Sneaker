@@ -25,7 +25,18 @@ int ExecSQL::getMax(QList<int> list)
     }
     return max;
 }
-
+qlonglong ExecSQL::getQuint64Max(QList<qlonglong> list)
+{
+    qlonglong max = 0;
+    for(int i = list.length()-1; i >= 0; i--)
+    {
+        if(max < list.at(i))
+        {
+            max = list.at(i);
+        }
+    }
+    return max;
+}
 QString ExecSQL::getNewRegisterStoreID()
 {
     QString sql = QString("select id from store_info");
@@ -48,6 +59,41 @@ QString ExecSQL::getNewRegisterStoreID()
     newIDNum = getMax(storeList) + 1;
     QString newID = QString("ST-") + QString::number(newIDNum);
     qDebug() <<  "Get New Register StoreID =" << newID;
+    return newID;
+}
+
+QString ExecSQL::getNewRegisterMerchID(QString storeid)
+{
+    QString sql = QString("select id from merchandise_info where store_id = '%1'").arg(storeid);
+    QSqlQuery query;
+    QList<qlonglong> merchList;
+    qlonglong newIDNum = 0;
+
+    if(query.exec(sql))
+    {
+        int id_idx = query.record().indexOf("id");
+        while (query.next())
+        {
+            QString id = query.value(id_idx).toString();
+            QStringList list = id.split("-");
+            QString tmp = list.at(1);
+            qlonglong num = tmp.toLongLong();
+            merchList.append(num);
+        }
+    }
+    if(merchList.isEmpty()) //配置初始商品ID
+    {
+        QStringList list = storeid.split("-");
+        QString tmp = list.at(1);
+        newIDNum = ((tmp.toLongLong() - 100000) * 1000000000000) + 1;//配置出第一个id
+
+    }else
+    {
+        newIDNum = getQuint64Max(merchList) + 1;
+    }
+    qDebug() <<  "newIDNum =" << newIDNum;
+    QString newID = QString("S-") + QString::number(newIDNum);
+    qDebug() <<  "Get New Register MerchID =" << newID;
     return newID;
 }
 ///////////////////////selectLoginForInfo/////////////////////////////
@@ -675,7 +721,7 @@ bool ExecSQL::addNewMerchInfo(const MerchInfo &info)
     QSqlQuery query;
     QString queryString = QString("insert into merchandise_info values('%1', '%2', '%3', '%4', '%5', '%6','%7','%8')")
             .arg(info.getID()).arg(info.getStore_ID()).arg(info.getName()).arg(info.getPrice())
-            .arg(info.getMerchSize()).arg(info.getMerchSize()).arg(info.getADPhoto().arg(info.getDescri()));
+            .arg(info.getStock()).arg(info.getMerchSize()).arg(info.getADPhoto()).arg(info.getDescri());
     qDebug() << queryString;
     return query.exec(queryString);
 }

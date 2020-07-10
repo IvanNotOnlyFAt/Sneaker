@@ -15,7 +15,7 @@ MerchInfo::MerchInfo()
 }
 MerchInfo::MerchInfo(const QString &id, const QString &store_id,
              const QString &name, const QString &price,
-             const QString &merch_size, const QString &stock,
+             const QString &stock, const QString &merch_size,
              const QString &ad_photo,const QString &descri)
 {
     m_id = id;

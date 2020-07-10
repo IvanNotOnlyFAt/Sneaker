@@ -8,6 +8,7 @@ class ExecSQL
 public:
     ///////////////////////registeredNewInfo/////////////////////////////
     static QString getNewRegisterStoreID(void);
+    static QString getNewRegisterMerchID(QString storeid);
     ///////////////////////selectLoginForInfo/////////////////////////////
     static void selectLoginForInfo(UserInfo &info,const QString &id);
     ///////////////////////UserInfo/////////////////////////////
@@ -132,7 +133,7 @@ public:
     static bool modifyTranInfoForDTime(const QString &id, const QString &value);
 private:
     static int getMax(QList<int> list);
-
+    static qlonglong getQuint64Max(QList<qlonglong> list);
 
 
 };

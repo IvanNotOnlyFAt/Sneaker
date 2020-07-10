@@ -102,7 +102,7 @@ void MsgSocket::slotReadyRead()
         {
             if(m_tcpBlockSize == 0)
             {
-                if(m_recvArray.size() < sizeof(quint16))
+                if(m_recvArray.size() < sizeof(quint32))
                     return;
                 in >> m_tcpBlockSize;
             }
@@ -124,14 +124,15 @@ void MsgSocket::slotReadyRead()
             ///解决粘包问题
             ///返回此轮消息之后的消息，并将其重新赋给m_recvArray，循环条件为totalLen
             QByteArray tempbuffer;
-            tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint16));
+            tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint32));
             m_recvArray = tempbuffer;
             totalLen = m_recvArray.size();
             m_tcpBlockSize = 0;
             //////////////////////////////////////
         }
+        m_recvArray.clear();
     }
-    m_recvArray.clear();
+
 }
 
 void MsgSocket::processTextDate(QDataStream &in)
@@ -183,11 +184,11 @@ bool MsgSocket::slotSendMsg(QString msg)
 
     quint8 msgtype;
     msgtype = Type_Text;
-    out << (quint16)0;
+    out << (quint32)0;
     out << msgtype;
     out << msg;
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16));
+    out << (quint32)(buffer.size() - sizeof(quint32));
 
     qDebug() << "Server Send: " << msg;
     m_socket->write(buffer);
@@ -203,14 +204,15 @@ bool MsgSocket::slotSendImg(QString command, QByteArray imagebuffer)
     quint8 msgtype;
     msgtype = Type_Image;
 
-    out << (quint16)0;
+    out << (quint32)0;
     out << msgtype;
     out << command;
     out << imagebuffer;
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16));
+    out << (quint32)(buffer.size() - sizeof(quint32));
 
-    qDebug() << "Server Send image: " << command << imagebuffer.size();
+    qDebug() << "Server Send image: " << command << imagebuffer.size() ;
+
 
     return m_socket->write(buffer);
 

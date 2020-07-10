@@ -152,11 +152,19 @@ void SneakerTraClient::initTraderMs(void)
             this, SLOT(slotRefreshMerchData()));          //商品页申请
     connect(m_merchForm, SIGNAL(signalApplyMerchPhoto()),
             this, SLOT(slotApplyMerchPhoto()));                      //商品图片申请
+    connect(m_merchForm, SIGNAL(signalAddMerch(QString,QByteArray)),
+            this,SLOT(slotAddStore(QString,QByteArray)));               //申请添加商品
+    connect(m_merchForm, SIGNAL(signalDeleteMerch(QString)),
+            this, SLOT(slotDeleteMerchItem(QString)));              //申请删除商品
     ///结果
     connect(m_msgSocket, SIGNAL(signalGainMerchInfo(bool)),
             m_merchForm, SLOT(slotGainMerchInfoResult(bool)));    //商品信息结果
     connect(m_msgSocket, SIGNAL(signalGainMerchHostPhoto(bool)),
             m_merchForm, SLOT(slotGainMerchHostPhotoResult(bool)));        //商品图片结果
+    connect(m_msgSocket, SIGNAL(signalApplyMerchResult(bool,QString)),
+            m_merchForm, SLOT(slotApplyMerchResult(bool,QString)));    //商品add结果
+    connect(m_msgSocket, SIGNAL(signalDeleteMerchResult(bool)),
+            m_merchForm, SLOT(slotDeleteMerchResult(bool)));        //商品删除结果
 
     //////////////////////相关界面配置/////////////////////////
     ui->mainToolBar->removeAction(ui->actionFansChangPswd);
@@ -383,7 +391,17 @@ void SneakerTraClient::slotAddStore(QString msg, QByteArray image)
     m_msgSocket->slotSendImg(msg, image);
 }
 
+void SneakerTraClient::slotAddMerch(QString msg, QByteArray image)
+{
+    m_msgSocket->slotSendImg(msg, image);
+}
+
 void SneakerTraClient::slotDeleteStoreItem(QString msg)
+{
+    m_msgSocket->slotSendMsg(msg);
+}
+
+void SneakerTraClient::slotDeleteMerchItem(QString msg)
 {
     m_msgSocket->slotSendMsg(msg);
 }

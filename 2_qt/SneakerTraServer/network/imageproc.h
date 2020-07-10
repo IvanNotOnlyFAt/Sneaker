@@ -30,6 +30,7 @@ private:
     void parseStoreImageApply(QString data);
     void parseMerchImageApply(QString data);
     void parseStoreAddApply(QString data);
+    void parseMerchAddApply(QString data);
 
 
 };

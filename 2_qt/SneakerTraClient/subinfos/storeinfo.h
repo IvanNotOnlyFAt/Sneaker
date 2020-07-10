@@ -44,6 +44,6 @@ private:
     
 };
 typedef QList<StoreInfo> StoreInfoList;
-typedef QMap<QString, StoreInfoList::iterator> StoreInfoMap;
+typedef QMap<QString, StoreInfo> StoreInfoMap;
 
 #endif // STOREINFO_H

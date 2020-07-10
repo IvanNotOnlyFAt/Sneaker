@@ -19,7 +19,8 @@ enum Meg_Type{
 };
 enum RESPONSE{
     RES_Down = '!',
-    RES_Fail = '?'
+    RES_Fail = '?',
+    RES_Wait = '$'
 };
 
 enum COMMAND{
@@ -65,7 +66,8 @@ public:
 
     static ImageMap g_storeLogoImageMap;
     static ImageMap g_merchHostPhotoMap;
-
+    static StoreInfoMap g_storeInfoMap;
+    static MerchInfoMap g_merchInfoMap;
 };
 
 #endif // GLOBALVARS_H

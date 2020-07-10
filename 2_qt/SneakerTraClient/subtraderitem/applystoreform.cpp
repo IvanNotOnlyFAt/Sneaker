@@ -1,6 +1,5 @@
 #include "applystoreform.h"
 #include "ui_applystoreform.h"
-#include "globalvars.h"
 
 #include <QDebug>
 #include <QFileDialog>
@@ -40,7 +39,7 @@ ApplyStoreForm::ApplyStoreForm(StoreInfo info, QWidget *parent):
 
     ui->pb_modify->setEnabled(true);
     ui->pb_applystore->setEnabled(false);
-    ui->pb_selectlogo->setEnabled(false);
+
 
 
     ui->le_storeid->setText(info.getID());
@@ -127,7 +126,7 @@ void ApplyStoreForm::on_pb_selectlogo_clicked()
     QImage img(fileName);
     QSize lbsize = ui->lb_logophoto->size();
 
-    m_tempimg = img.scaled(lbsize,Qt::KeepAspectRatio);
+    m_tempimg = img.scaled(lbsize,Qt::IgnoreAspectRatio);
     ui->lb_logophoto->setPixmap(QPixmap::fromImage(m_tempimg));
 
     ui->le_logopath->setText(fileName);

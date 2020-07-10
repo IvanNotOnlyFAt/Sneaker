@@ -110,6 +110,8 @@ void TraderStoreForm::slotApplyAddStore(QString msg, QByteArray image)
 void TraderStoreForm::slotApplyStoreResult(bool res, QString msg)
 {
     m_applyWidget->applyOrModifyResult(res,msg);
+    disconnect(m_applyWidget, SIGNAL(signalApplyAddStore(QString,QByteArray)),
+            this, SLOT(slotApplyAddStore(QString,QByteArray)));
     if(res)
     {
         //更新店铺列表数据
@@ -117,6 +119,8 @@ void TraderStoreForm::slotApplyStoreResult(bool res, QString msg)
         on_pb_search_clicked();
     }
 }
+
+
 
 void TraderStoreForm::slotDeleteStoreResult(bool res)
 {

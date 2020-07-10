@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->widget_login,SIGNAL(signalLoginSuccess(UserInfo)),
             this,SLOT(slotLoginSuccess(UserInfo)));
     m_msgServer = new MsgServer;
+
 
 }
 

@@ -25,7 +25,9 @@ signals:
     void signalGainStoreLogo(bool res);
     void signalGainMerchHostPhoto(bool res);
     void signalApplyStoreResult(bool res, QString newID);
+    void signalApplyMerchResult(bool res, QString newID);
     void signalDeleteStoreResult(bool res);
+    void signalDeleteMerchResult(bool res);
 public slots:
     void slotReadyRead();
     void slotSendMsg(QString msg);//用于有线程的时候与发送信号连接
@@ -36,7 +38,7 @@ private:
     void processTextDate(QDataStream &in);
     void processImageDate(QDataStream &in);
     bool m_isExit;
-    quint16 m_tcpBlockSize;
+    quint32 m_tcpBlockSize;
 
     QTcpSocket *m_tcpSocket;
     QByteArray m_recvArray;
@@ -61,7 +63,9 @@ private:
     void recvStoreImage(QString command,  QByteArray imagpacket);
     void recvMerchImage(QString command,  QByteArray imagpacket);
     void recvStoreApplyResult(QString data);
+    void recvMerchApplyResult(QString data);
     void recvStoreDeleteResult(QString data);
+    void recvMerchDeleteResult(QString data);
 
 
 };

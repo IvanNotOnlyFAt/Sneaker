@@ -4,6 +4,7 @@
 #include <QDebug>
 #include <QImage>
 #include <QBuffer>
+#include <QImageReader>
 MsgSocket::MsgSocket(QThread *parent) :
     QThread(parent)
 {
@@ -93,6 +94,7 @@ void MsgSocket::parseAddInfoImage(QString data)
     QStringList list = data.split("#");
     switch (cmd) {
     case CMD_TraderStore_S: recvStoreApplyResult(list.at(1)); break;
+    case CMD_TraderMerch_M: recvMerchApplyResult(list.at(1)); break;
     default:
         break;
     }
@@ -105,6 +107,7 @@ void MsgSocket::parseRemoveInfo(QString data)
     QStringList list = data.split("#");
     switch (cmd) {
     case CMD_TraderStore_S: recvStoreDeleteResult(list.at(1)); break;
+    case CMD_TraderMerch_M: recvMerchDeleteResult(list.at(1)); break;
     default:
         break;
     }
@@ -192,10 +195,11 @@ void MsgSocket::parseTraderStore(QString data)
     qDebug() << "MsgProc::parseTraderStore" << data;
 
     int res = data.at(0).toLatin1();
-    if(res = RES_Down)
+    if(res == RES_Down)
     {
         QStringList storemsg = data.split("/");
         GlobalVars::g_storeInfoList->clear();
+        GlobalVars::g_storeInfoMap.clear();
         for(int i = 1; i < storemsg.length(); i++)
         {
 
@@ -211,7 +215,10 @@ void MsgSocket::parseTraderStore(QString data)
             QString storelogo = list.at(5);
             QString storedate = list.at(6);
             StoreInfo info(storeid,traid,storename,storetype,storelocation,storelogo,storedate);
+
             GlobalVars::g_storeInfoList->append(info);
+
+            GlobalVars::g_storeInfoMap.insert(info.getID(), info);
         }
         emit signalGainStoreInfo(true);
 
@@ -227,10 +234,11 @@ void MsgSocket::parseTraderMerch(QString data)
     qDebug() << "MsgProc::parseTraderMerch" ;
 
     int res = data.at(0).toLatin1();
-    if(res = RES_Down)
+    if(res == RES_Down)
     {
         QStringList merchmsg = data.split("/");
         GlobalVars::g_merchInfoList->clear();
+        GlobalVars::g_merchInfoMap.clear();
         for(int i = 1; i < merchmsg.length(); i++)
         {
 
@@ -248,6 +256,7 @@ void MsgSocket::parseTraderMerch(QString data)
             QString descri = list.at(7);
             MerchInfo info(merchid,storeid,merchname,merchprice,merchstock,merchsize,adphoto,descri);
             GlobalVars::g_merchInfoList->append(info);
+            GlobalVars::g_merchInfoMap.insert(info.getID(), info);
         }
         emit signalGainMerchInfo(true);
 
@@ -298,32 +307,44 @@ void MsgSocket::recvMerchImage(QString command, QByteArray imagpacket)
     int res = command.at(0).toLatin1();
     QStringList list = command.split("|");
 
-    if(res == RES_Down)
+    if(res == RES_Wait)
     {
         if(list.at(1) == GlobalVars::g_localTrader->getID())
         {
-            QDataStream in(&imagpacket, QIODevice::ReadOnly);
-            in.setVersion(QDataStream::Qt_4_6);
+            //图片解析
+            QBuffer buffer(&imagpacket);
+            buffer.open(QIODevice::ReadOnly);
+            QImageReader reader(&buffer,"JPG");
+            QImage img = reader.read();
 
-            for(int i = 2; i < list.length(); i++)
+            if(img.isNull())
             {
-                QImage img;         //图片信息
-                QString strSplit;   //图片分割
-
-                in >> img;          //图片信息
-                in >> strSplit;     //图片分割
-
-                GlobalVars::g_merchHostPhotoMap.insert(list.at(i), img);
-                qDebug() << list.at(i) << img.size();
+                qDebug() << "---img.isNull()----" ;
             }
+
+
+            GlobalVars::g_merchHostPhotoMap.insert(list.at(2), img);
+            imagpacket.clear();
+            qDebug() << list.at(2) << img.size() ;
+            qDebug() << "--------------------------";
+
+        }else
+        {
+            emit signalGainMerchHostPhoto(false);
+        }
+    }else if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
             emit signalGainMerchHostPhoto(true);
         }else
         {
             emit signalGainMerchHostPhoto(false);
         }
+
     }else
     {
-        emit signalGainMerchHostPhoto(false);
+        qDebug() << "!!!!!!!!!!" << command;
     }
 
 }
@@ -349,6 +370,26 @@ void MsgSocket::recvStoreApplyResult(QString data)
 
 }
 
+void MsgSocket::recvMerchApplyResult(QString data)
+{
+    qDebug() << "MsgSocket::recvMerchApplyResult" << data;
+    int res = data.at(0).toLatin1();
+    QStringList list = data.split("|");
+    if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
+            emit signalApplyMerchResult(true,list.at(2));
+        }else
+        {
+            emit signalApplyMerchResult(false,list.at(2));
+        }
+    }else
+    {
+        emit signalApplyMerchResult(false,list.at(2));
+    }
+}
+
 void MsgSocket::recvStoreDeleteResult(QString data)
 {
     qDebug() << "MsgSocket::recvStoreDeleteResult" << data;
@@ -366,6 +407,23 @@ void MsgSocket::recvStoreDeleteResult(QString data)
     }
 
 }
+
+void MsgSocket::recvMerchDeleteResult(QString data)
+{
+    qDebug() << "MsgSocket::recvMerchDeleteResult" << data;
+    int res = data.at(0).toLatin1();
+    QStringList list = data.split("|");
+    if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localTrader->getID())
+        {
+            emit signalDeleteMerchResult(true);
+        }
+    }else
+    {
+        emit signalDeleteMerchResult(false);
+    }
+}
 ///////////////////slot////////////////////
 void MsgSocket::slotReadyRead()
 {
@@ -378,22 +436,21 @@ void MsgSocket::slotReadyRead()
     }else
     {
         m_recvArray.append(m_tcpSocket->readAll());
-
     /////////////////////////////////////////////////////////////////
         QDataStream in(m_recvArray);
         in.setVersion(QDataStream::Qt_4_6);
 
         int totalLen = m_recvArray.size();
-
         while( totalLen )
         {
             if(m_tcpBlockSize == 0)
             {
-                if(m_recvArray.size() < sizeof(quint16))
+                if(m_recvArray.size() < sizeof(quint32))
                     return;
                 in >> m_tcpBlockSize;
             }
-
+//            qDebug() << "============totalLen=============" <<totalLen ;
+//            qDebug() << "===============m_tcpBlockSize==========" <<m_tcpBlockSize ;
             if(m_recvArray.size() < m_tcpBlockSize)
                 return;
             ///判断数据类型
@@ -411,14 +468,15 @@ void MsgSocket::slotReadyRead()
             ///解决粘包问题
             ///返回此轮消息之后的消息，并将其重新赋给m_recvArray，循环条件为totalLen
             QByteArray tempbuffer;
-            tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint16));
+            tempbuffer = m_recvArray.right(totalLen - m_tcpBlockSize - sizeof(quint32));
             m_recvArray = tempbuffer;
             totalLen = m_recvArray.size();
             m_tcpBlockSize = 0;
             //////////////////////////////////////
         }
+        m_recvArray.clear();
     }
-    m_recvArray.clear();
+
 }
 void MsgSocket::processTextDate(QDataStream &in)
 {
@@ -459,12 +517,12 @@ void MsgSocket::slotSendMsg(QString msg)
 
     quint8 msgtype;
     msgtype = Type_Text;
-    out << (quint16)0;
+    out << (quint32)0;
     out << msgtype;
     out << msg;
 
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16));
+    out << (quint32)(buffer.size() - sizeof(quint32));
 
     m_tcpSocket->write(buffer);
     qDebug() << "Client Send: " << msg;
@@ -479,12 +537,12 @@ void MsgSocket::slotSendImg(QString command, QByteArray image)
     quint8 msgtype;
     msgtype = Type_Image;
 
-    out << (quint16)0;
+    out << (quint32)0;
     out << msgtype;
     out << command;
     out << image;
     out.device()->seek(0);
-    out << (quint16)(buffer.size() - sizeof(quint16));
+    out << (quint32)(buffer.size() - sizeof(quint32));
 
     qDebug() << "Client Send image: " << command << buffer.size() << "其中图片：" << image.size();
 

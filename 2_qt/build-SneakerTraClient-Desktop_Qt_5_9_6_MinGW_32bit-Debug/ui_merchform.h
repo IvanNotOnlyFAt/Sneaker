@@ -166,7 +166,8 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(le_storeid->sizePolicy().hasHeightForWidth());
         le_storeid->setSizePolicy(sizePolicy4);
-        le_storeid->setMinimumSize(QSize(250, 0));
+        le_storeid->setMinimumSize(QSize(200, 0));
+        le_storeid->setMaximumSize(QSize(200, 16777215));
         le_storeid->setAlignment(Qt::AlignCenter);
 
         horizontalLayout->addWidget(le_storeid);

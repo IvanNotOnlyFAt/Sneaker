@@ -23,3 +23,5 @@ QQueue<QString> GlobalVars::g_msgQueue;
 
 ImageMap GlobalVars::g_storeLogoImageMap;
 ImageMap GlobalVars::g_merchHostPhotoMap;
+StoreInfoMap GlobalVars::g_storeInfoMap;
+MerchInfoMap GlobalVars::g_merchInfoMap;
