@@ -8,7 +8,7 @@
 #include <QSize>
 #include <QMessageBox>
 #include <QStringBuilder>
-
+#include <QRegExp>
 ApplyMerchForm::ApplyMerchForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ApplyMerchForm)
@@ -34,6 +34,12 @@ ApplyMerchForm::ApplyMerchForm(QWidget *parent) :
     }
     ui->cb_storeid->addItems(list);
 
+
+    //QRegExp正则表达式限制输入
+    QRegExp regExp("0|[1-9]\\d{0,4}");
+    QRegExpValidator *validator = new QRegExpValidator(regExp, this);
+    ui->le_merchprice->setValidator(validator);
+    ui->le_merchstock->setValidator(validator);
 }
 
 ApplyMerchForm::ApplyMerchForm(MerchInfo info, QWidget *parent) :

@@ -4,10 +4,10 @@ DEPENDPATH += $$PWD
 FORMS += \
     $$PWD/traderinfoform.ui \
     $$PWD/traderhomeform.ui \
-    $$PWD/merchform.ui \
     $$PWD/tradertranscform.ui \
     $$PWD/traderchangepswdform.ui \
-    $$PWD/traderstoreform.ui
+    $$PWD/traderstoreform.ui \
+    $$PWD/merchform.ui
 
 HEADERS += \
     $$PWD/traderinfoform.h \

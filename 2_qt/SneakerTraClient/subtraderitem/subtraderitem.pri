@@ -6,18 +6,21 @@ FORMS += \
     $$PWD/applystoreform.ui \
     $$PWD/tradermerchform.ui \
     $$PWD/applymerchform.ui \
-    $$PWD/merchadphotoform.ui
+    $$PWD/merchadphotoform.ui \
+    $$PWD/tradertranscitem.ui
 
 HEADERS += \
     $$PWD/traderstoreitem.h \
     $$PWD/applystoreform.h \
     $$PWD/tradermerchform.h \
     $$PWD/applymerchform.h \
-    $$PWD/merchadphotoform.h
+    $$PWD/merchadphotoform.h \
+    $$PWD/tradertranscitem.h
 
 SOURCES += \
     $$PWD/traderstoreitem.cpp \
     $$PWD/applystoreform.cpp \
     $$PWD/tradermerchform.cpp \
     $$PWD/applymerchform.cpp \
-    $$PWD/merchadphotoform.cpp
+    $$PWD/merchadphotoform.cpp \
+    $$PWD/tradertranscitem.cpp

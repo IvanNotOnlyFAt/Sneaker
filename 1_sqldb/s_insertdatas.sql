@@ -86,3 +86,13 @@ insert into merchandise_info values ('S-4000000000003', 'ST-100004', '李宁篮�
 
 create view fans_view as select * from fans_info natural join user_info;
 create view trader_view as select * from trader_info natural join user_info;
+
+
+
+
+
+
+
+
+
+
