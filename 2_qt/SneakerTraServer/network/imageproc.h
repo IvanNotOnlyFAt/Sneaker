@@ -25,7 +25,9 @@ private:
     ///解析通用图片请求命令 - 登录退出在MsgSocket中实现
 
     ///解析鞋友图片请求命令
-
+    void parseHomeImageApply(QString msg);
+    void parseHomeStoreApply(QString msg);
+    void parseHomeMerchApply(QString msg);
     ///解析鞋商图片请求命令
     void parseStoreImageApply(QString data);
     void parseMerchImageApply(QString data);

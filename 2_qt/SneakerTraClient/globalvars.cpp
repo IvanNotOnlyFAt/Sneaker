@@ -23,5 +23,15 @@ QQueue<QString> GlobalVars::g_msgQueue;
 
 ImageMap GlobalVars::g_storeLogoImageMap;
 ImageMap GlobalVars::g_merchHostPhotoMap;
+
 StoreInfoMap GlobalVars::g_storeInfoMap;
 MerchInfoMap GlobalVars::g_merchInfoMap;
+
+ImageMap GlobalVars::g_homeStoreLogoMap;
+ImageMap GlobalVars::g_homeMerchHostMap;
+StoreInfoMap GlobalVars::g_homeStoreInfoMap;
+MerchInfoMap GlobalVars::g_homeMerchInfoMap;
+
+QStringList *GlobalVars::g_HomeStoreInfoList = new QStringList;
+QStringList *GlobalVars::g_HomeMerchInfoList = new QStringList;
+

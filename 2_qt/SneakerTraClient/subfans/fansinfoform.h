@@ -14,6 +14,7 @@ class FansInfoForm : public QWidget
 public:
     explicit FansInfoForm(QWidget *parent = 0);
     ~FansInfoForm();
+
 public slots:
     void slotGainFansInfoResult(bool res);
 protected:

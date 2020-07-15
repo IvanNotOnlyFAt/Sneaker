@@ -51,13 +51,17 @@ private slots:
     void on_actionTraderTransc_triggered();
     void on_actionTraderChangePswd_triggered();
     void slotRefreshStoreData();
+    void slotRefreshHomeData();
     void slotApplyStoreLogo();
     void slotApplyMerchPhoto();
     void slotAddStore(QString msg, QByteArray image);
     void slotAddMerch(QString msg, QByteArray image);
     void slotDeleteStoreItem(QString msg);
     void slotDeleteMerchItem(QString msg);
+    void slotHomeStoreApply(QString msg);
+    void slotHomeMerchApply(QString msg);
     void slotRefreshMerchData();
+
 private:
     Ui::SneakerTraClient *ui;
 //    bool m_isCloseLog;

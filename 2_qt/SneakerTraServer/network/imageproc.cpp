@@ -59,7 +59,7 @@ void ImageProc::parseApplyImageAsk(QString msg)
         ///通用请求命令
 
         ///解析鞋友请求命令
-
+    case CMD_GetHomePage_Z:parseHomeImageApply(msg.right(msg.size()-1));break;
         ///解析鞋商请求命令
     case CMD_TraderStore_S:parseStoreImageApply(list.at(1));break;
     case CMD_TraderMerch_M:parseMerchImageApply(list.at(1));break;
@@ -83,6 +83,190 @@ void ImageProc::parseAddImageAsk(QString msg)
     default:
         break;
     }
+}
+
+void ImageProc::parseHomeImageApply(QString msg)
+{
+    QStringList list = msg.split("#");
+    int cmd = msg.at(0).toLatin1();
+    switch(cmd){
+        ///通用请求命令
+
+        ///解析鞋友请求命令
+    case CMD_TraderStore_S:parseHomeStoreApply(list.at(1));break;
+    case CMD_TraderMerch_M:parseHomeMerchApply(list.at(1));break;
+        ///解析鞋商请求命令
+
+    default:
+        break;
+    }
+}
+
+void ImageProc::parseHomeStoreApply(QString msg)
+{
+    qDebug() << "ImageProc::parseHomeStoreApply" << msg;
+
+    QByteArray imagebuffer;//图片缓冲区
+    bool res = true;
+    QStringList list = msg.split("|");
+    QString fanid = list.at(0);
+
+    ExecSQL::searchAllStoreInfos(); //检索所有的商店
+
+    QString packethead = QString(CMD_ApplyImage_P)
+            % QString(CMD_GetHomePage_Z)
+            % QString(CMD_TraderStore_S)
+            % QString("#");
+
+    ////////////////////////////////////////////////////
+    list.removeLast();//因为最后一个是空的
+    ////////////////////////////////////////////////////
+    for(int i = 1; i < list.length(); i++)
+    {
+        QString storeid = list.at(i);
+        QString command;
+        /////////////////////////////Info/////////////////////////////
+        if(GlobalVars::g_storeInfoMap.contains(storeid))
+        {
+            StoreInfoList::Iterator it = GlobalVars::g_storeInfoMap.value(storeid);
+            command =  packethead
+                    % QString("$|") % it->getID()
+                    % QString("|") % it->getTra_ID()
+                    % QString("|") % it->getName()
+                    % QString("|") % it->getMerType()
+                    % QString("|") % it->getLocation()
+                    % QString("|") % it->getLogo()
+                    % QString("|") % it->getDate();
+        }else
+        {
+            command =  packethead
+                    % QString("?|") % fanid
+                    % QString("|") % storeid
+                    % QString("|") % QString("Error: Stores' Info Missing");
+        }
+
+        ////////////////////////////////Image//////////////////////////
+        QImage logoimg;
+        logoimg.load(FilePathContents::getStoreLogoPath(storeid));//获取路径下的logo
+
+        if(logoimg.isNull())//图片判断
+        {
+            res = false;
+        }
+
+        //图片装载
+        imagebuffer.clear();//清理缓存区
+        QBuffer buffer;
+        buffer.open(QIODevice::ReadWrite);
+        logoimg.save(&buffer,"jpg");
+        imagebuffer.append(buffer.data());
+
+        if(res)
+        {
+            emit signalSendImgToClient(fanid,command,imagebuffer);
+        }else
+        {
+            QString errormsg = QString(CMD_ApplyImage_P)
+                    % QString(CMD_GetHomePage_Z)
+                    % QString(CMD_TraderStore_S)
+                    % QString("#?|")
+                    % QString(fanid) % QString("|")
+                    % QString("Error: %1 Store' Logo Missing").arg(storeid);
+            emit signalSendImgToClient(fanid, errormsg,imagebuffer);
+        }
+    }
+    imagebuffer.clear();//清理缓存区
+    QString packetend = packethead
+            % QString("!|")
+            % fanid;
+    emit signalSendImgToClient(fanid, packetend,imagebuffer);
+
+
+}
+
+void ImageProc::parseHomeMerchApply(QString msg)
+{
+    qDebug() << "ImageProc::parseHomeMerchApply" << msg;
+    QByteArray imagebuffer;
+
+    QString merchid;  //商品id=S-1000000000001
+    QString merchPath;//商品路径S-100000000000100
+    bool res = true;
+    QStringList list = msg.split("|");
+    QString fanid = list.at(0);
+
+    ExecSQL::searchAllMerchInfos(); //检索所有的商品
+    QString packethead = QString(CMD_ApplyImage_P)
+            % QString(CMD_GetHomePage_Z)
+            %QString(CMD_TraderMerch_M)
+            % QString("#");
+    for(int i = 1; i < list.length(); i++)
+    {
+         merchid = list.at(i); //商品id=S-1000000000001
+         QString command;
+        /////////////////////////////Info/////////////////////////////
+        if(GlobalVars::g_merchInfoMap.contains(merchid))
+        {
+            MerchInfoList::Iterator it = GlobalVars::g_merchInfoMap.value(merchid);
+            command =  packethead
+                    % QString("$|") % it->getID()
+                    % QString("|") % it->getStore_ID()
+                    % QString("|") % it->getName()
+                    % QString("|") % it->getPrice()
+                    % QString("|") % it->getStock()
+                    % QString("|") % it->getMerchSize()
+                    % QString("|") % it->getADPhoto()
+                    % QString("|") % it->getDescri();
+        }else
+        {
+            command =  packethead
+                    % QString("?|") % fanid
+                    % QString("|") % merchid
+                    % QString("|") % QString("Error: Store' Info Missing");
+        }
+        //////////////////////////////Image/////////////////////////////////
+
+        merchPath = merchid % QString("00");//商品路径S-100000000000100
+
+        QImage merchimg;    //图片读取
+        merchimg.load(FilePathContents::getMerchPhotoPath(merchPath));//获取路径下的photo
+
+        if(merchimg.isNull())//图片判断
+        {
+            res = false;
+        }
+
+        //图片装载
+        imagebuffer.clear();//清理缓存区
+        QBuffer buffer;
+        buffer.open(QIODevice::ReadWrite);
+        merchimg.save(&buffer,"jpg");
+        imagebuffer.append(buffer.data());
+
+
+        ///发送消息
+        if(res)
+        {
+//            qDebug() << merchid << "'s hostimg.size(): " <<merchimg.size();
+//            qDebug()<< "imagebuffer.size(): " <<imagebuffer.size();
+            emit signalSendImgToClient(fanid,command,imagebuffer);
+        }else
+        {
+            QString errormsg = QString(CMD_ApplyImage_P)
+                    % QString(CMD_GetHomePage_Z)
+                    % QString(CMD_TraderMerch_M)
+                    % QString("#?|")
+                    % QString(fanid) % QString("|")
+                    % QString("Error: %1 Merch' Image Missing").arg(merchid);
+            emit signalSendImgToClient(fanid, errormsg,imagebuffer);
+        }
+
+    }
+    imagebuffer.clear();//清理缓存区
+    QString packetend = packethead
+            % QString("!|")
+            % fanid;
+    emit signalSendImgToClient(fanid, packetend,imagebuffer);
 }
 
 void ImageProc::parseStoreImageApply(QString data)
@@ -142,7 +326,6 @@ void ImageProc::parseMerchImageApply(QString data)
 {
     qDebug() << "ImageProc::parseMerchImageApply" << data;
     QByteArray imagebuffer;
-    QDataStream ds_image(&imagebuffer,QIODevice::WriteOnly);
 
 
     QString merchid;  //商品id=S-1000000000001

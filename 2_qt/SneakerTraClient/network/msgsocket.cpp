@@ -81,6 +81,7 @@ void MsgSocket::parseApplyImage(QString command, QByteArray imagpacket)
     switch (cmd) {
     case CMD_TraderStore_S: recvStoreImage(list.at(1), imagpacket); break;
     case CMD_TraderMerch_M: recvMerchImage(list.at(1), imagpacket); break;
+    case CMD_GetHomePage_Z: recvHomeImage(command.right(command.size()-1), imagpacket); break;
     default:
         break;
     }
@@ -181,9 +182,32 @@ void MsgSocket::parseChangePswd(QString data)
 {
     qDebug() << "MsgProc::parseChangePswd" << data;
 }
+
 void MsgSocket::parseGetHomePage(QString data)
 {
     qDebug() << "MsgProc::parseGetHomePage" << data;
+    QStringList list = data.split("/");
+    int res = data.at(0).toLatin1();
+    if(res == RES_Down)
+    {
+        QString storemsg = list.at(1);
+        QString merchmsg = list.at(2);
+
+        QStringList storemsglist = storemsg.split("|");
+        QStringList merchmsglist = merchmsg.split("|");
+        for(int i = 0; i < storemsglist.length(); i++)
+        {
+            GlobalVars::g_HomeStoreInfoList->append(storemsglist.at(i));
+        }
+        for(int i = 0; i < merchmsglist.length(); i++)
+        {
+            GlobalVars::g_HomeMerchInfoList->append(merchmsglist.at(i));
+        }
+        emit signalGainHomeInfo(true);
+    }else
+    {
+        emit signalGainHomeInfo(false);
+    }
 }
 /////////////////////////解析鞋友请求命令/////////////////////
 
@@ -347,6 +371,116 @@ void MsgSocket::recvMerchImage(QString command, QByteArray imagpacket)
         qDebug() << "!!!!!!!!!!" << command;
     }
 
+}
+
+void MsgSocket::recvHomeImage(QString command, QByteArray imagpacket)
+{
+    int cmd = command.at(0).toLatin1();
+
+    QStringList list = command.split("#");
+    switch (cmd) {
+    case CMD_TraderStore_S: recvHomeStoreImage(list.at(1), imagpacket); break;
+    case CMD_TraderMerch_M: recvHomeMerchImage(list.at(1), imagpacket); break;
+    default:
+        break;
+    }
+
+}
+
+void MsgSocket::recvHomeStoreImage(QString command, QByteArray imagpacket)
+{
+    qDebug() << "MsgSocket::recvHomeStoreImage" << command;
+    int res = command.at(0).toLatin1();
+    QStringList list = command.split("|");
+
+    if(res == RES_Wait)
+    {
+        //信息解析
+        QString storeid = list.at(1);
+        StoreInfo info(storeid,list.at(2),list.at(3),list.at(4),list.at(5),list.at(6),list.at(7));
+        GlobalVars::g_homeStoreInfoMap.insert(storeid,info);
+        //图片解析
+        QBuffer buffer(&imagpacket);
+        buffer.open(QIODevice::ReadOnly);
+        QImageReader reader(&buffer,"JPG");
+        QImage img = reader.read();
+
+        if(img.isNull())
+        {
+            qDebug() << "---img.isNull()----" ;
+        }
+
+
+        GlobalVars::g_homeStoreLogoMap.insert(storeid, img);
+        imagpacket.clear();
+        qDebug() << storeid << img.size() ;
+        qDebug() << "--------------------------";
+
+
+    }else if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localFans->getID())
+        {
+            emit signalGainHomeStorePhoto(true);
+            qDebug() << "--------------------------";
+        }else
+        {
+            emit signalGainHomeStorePhoto(false);
+            qDebug() << "--------------------------";
+        }
+
+    }else
+    {
+        qDebug() << "!!!!!!!!!!" << command;
+    }
+}
+
+void MsgSocket::recvHomeMerchImage(QString command, QByteArray imagpacket)
+{
+    qDebug() << "MsgSocket::recvHomeMerchImage" << command;
+    int res = command.at(0).toLatin1();
+    QStringList list = command.split("|");
+
+    if(res == RES_Wait)
+    {
+        //信息解析
+        QString merchid = list.at(1);
+        MerchInfo info(merchid,list.at(2),list.at(3),list.at(4),list.at(5),list.at(6),list.at(7),list.at(8));
+        GlobalVars::g_homeMerchInfoMap.insert(merchid,info);
+        //图片解析
+        QBuffer buffer(&imagpacket);
+        buffer.open(QIODevice::ReadOnly);
+        QImageReader reader(&buffer,"JPG");
+        QImage img = reader.read();
+
+        if(img.isNull())
+        {
+            qDebug() << "---img.isNull()----" ;
+        }
+
+
+        GlobalVars::g_homeMerchHostMap.insert(merchid, img);
+        imagpacket.clear();
+        qDebug() << merchid << img.size() ;
+        qDebug() << "--------------------------";
+
+
+    }else if(res == RES_Down)
+    {
+        if(list.at(1) == GlobalVars::g_localFans->getID())
+        {
+            emit signalGainHomeMerchPhoto(true);
+            qDebug() << "--------------------------";
+        }else
+        {
+            emit signalGainHomeMerchPhoto(false);
+            qDebug() << "--------------------------";
+        }
+
+    }else
+    {
+        qDebug() << "!!!!!!!!!!" << command;
+    }
 }
 
 void MsgSocket::recvStoreApplyResult(QString data)

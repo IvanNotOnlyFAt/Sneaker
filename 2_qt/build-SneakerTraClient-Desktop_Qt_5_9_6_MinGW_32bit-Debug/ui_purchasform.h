@@ -66,7 +66,36 @@ public:
     {
         if (PurchasForm->objectName().isEmpty())
             PurchasForm->setObjectName(QStringLiteral("PurchasForm"));
-        PurchasForm->resize(700, 800);
+        PurchasForm->resize(700, 826);
+        PurchasForm->setStyleSheet(QLatin1String("QLineEdit#le_merchname{\n"
+"color: rgb(255, 0, 0);\n"
+"background-color:transparent;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+"QLineEdit{\n"
+"color: rgb(0, 0, 0);\n"
+"font: Bold;\n"
+"background-color:transparent;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+"QTextEdit{\n"
+"color: rgb(0, 0, 0);\n"
+"background-color:transparent;\n"
+"border-width:0;border-style:outset\n"
+"}\n"
+"QPushButton{	\n"
+"	\n"
+"	background-color: rgb(255, 116, 116);\n"
+"    border-style: outset;\n"
+"	border-width: 2px;\n"
+"    border-radius: 10px;\n"
+"    border-color: beige;\n"
+"    font: bold 25px;\n"
+"	\n"
+"	selection-color: rgb(0, 170, 255);\n"
+"\n"
+"    padding: 6px;\n"
+"}"));
         gridLayout_12 = new QGridLayout(PurchasForm);
         gridLayout_12->setObjectName(QStringLiteral("gridLayout_12"));
         gridLayout_11 = new QGridLayout();
@@ -79,6 +108,15 @@ public:
         gridLayout_9->setObjectName(QStringLiteral("gridLayout_9"));
         le_merchname = new QLineEdit(groupBox_3);
         le_merchname->setObjectName(QStringLiteral("le_merchname"));
+        le_merchname->setEnabled(false);
+        le_merchname->setMinimumSize(QSize(0, 35));
+        QFont font;
+        font.setFamily(QStringLiteral("Adobe Devanagari"));
+        font.setPointSize(14);
+        font.setBold(true);
+        font.setWeight(75);
+        le_merchname->setFont(font);
+        le_merchname->setAlignment(Qt::AlignCenter);
 
         gridLayout_9->addWidget(le_merchname, 0, 0, 1, 2);
 
@@ -99,6 +137,7 @@ public:
 
         le_storename = new QLineEdit(groupBox_3);
         le_storename->setObjectName(QStringLiteral("le_storename"));
+        le_storename->setEnabled(false);
         le_storename->setMinimumSize(QSize(150, 0));
 
         gridLayout_7->addWidget(le_storename, 0, 3, 1, 3);
@@ -107,11 +146,11 @@ public:
         lcdNumber_price->setObjectName(QStringLiteral("lcdNumber_price"));
         lcdNumber_price->setMinimumSize(QSize(150, 0));
         lcdNumber_price->setMaximumSize(QSize(150, 16777215));
-        QFont font;
-        font.setBold(true);
-        font.setUnderline(false);
-        font.setWeight(75);
-        lcdNumber_price->setFont(font);
+        QFont font1;
+        font1.setBold(true);
+        font1.setUnderline(false);
+        font1.setWeight(75);
+        lcdNumber_price->setFont(font1);
         lcdNumber_price->setMode(QLCDNumber::Dec);
         lcdNumber_price->setSegmentStyle(QLCDNumber::Flat);
 
@@ -126,6 +165,7 @@ public:
 
         le_storeID = new QLineEdit(groupBox_3);
         le_storeID->setObjectName(QStringLiteral("le_storeID"));
+        le_storeID->setEnabled(false);
         le_storeID->setMinimumSize(QSize(150, 0));
         le_storeID->setMaximumSize(QSize(150, 16777215));
 
@@ -173,20 +213,21 @@ public:
         gridLayout_6->setObjectName(QStringLiteral("gridLayout_6"));
         le_stock = new QLineEdit(groupBox_3);
         le_stock->setObjectName(QStringLiteral("le_stock"));
+        le_stock->setEnabled(false);
         le_stock->setMaximumSize(QSize(60, 16777215));
 
         gridLayout_6->addWidget(le_stock, 1, 0, 1, 1);
 
         pb_purchase = new QPushButton(groupBox_3);
         pb_purchase->setObjectName(QStringLiteral("pb_purchase"));
-        pb_purchase->setMinimumSize(QSize(150, 60));
+        pb_purchase->setMinimumSize(QSize(0, 60));
         pb_purchase->setMaximumSize(QSize(180, 60));
 
         gridLayout_6->addWidget(pb_purchase, 0, 2, 2, 1);
 
         pb_addTerolly = new QPushButton(groupBox_3);
         pb_addTerolly->setObjectName(QStringLiteral("pb_addTerolly"));
-        pb_addTerolly->setMinimumSize(QSize(150, 60));
+        pb_addTerolly->setMinimumSize(QSize(0, 60));
         pb_addTerolly->setMaximumSize(QSize(180, 60));
 
         gridLayout_6->addWidget(pb_addTerolly, 0, 1, 2, 1);
@@ -220,20 +261,21 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(listWidget_2->sizePolicy().hasHeightForWidth());
         listWidget_2->setSizePolicy(sizePolicy);
-        listWidget_2->setMinimumSize(QSize(0, 400));
+        listWidget_2->setMinimumSize(QSize(0, 395));
         listWidget_2->setMaximumSize(QSize(16777215, 16777215));
 
         gridLayout_5->addWidget(listWidget_2, 1, 0, 1, 1);
 
         te_descri = new QTextEdit(groupBox_4);
         te_descri->setObjectName(QStringLiteral("te_descri"));
+        te_descri->setEnabled(false);
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(te_descri->sizePolicy().hasHeightForWidth());
         te_descri->setSizePolicy(sizePolicy1);
-        te_descri->setMinimumSize(QSize(0, 80));
-        te_descri->setMaximumSize(QSize(16777215, 80));
+        te_descri->setMinimumSize(QSize(0, 50));
+        te_descri->setMaximumSize(QSize(16777215, 50));
 
         gridLayout_5->addWidget(te_descri, 0, 0, 1, 1);
 
@@ -253,8 +295,10 @@ public:
     {
         PurchasForm->setWindowTitle(QApplication::translate("PurchasForm", "Form", Q_NULLPTR));
         groupBox_3->setTitle(QApplication::translate("PurchasForm", "\345\225\206\345\223\201\350\257\246\346\203\205", Q_NULLPTR));
+        le_merchname->setText(QString());
         ib_hostPhoto->setText(QApplication::translate("PurchasForm", "=========\345\212\240\350\275\275\345\244\261\350\264\245=========", Q_NULLPTR));
         label_2->setText(QApplication::translate("PurchasForm", "\345\225\206\345\272\227\357\274\232", Q_NULLPTR));
+        le_storeID->setText(QString());
         label_3->setText(QApplication::translate("PurchasForm", "\344\273\267\346\240\274\357\274\232", Q_NULLPTR));
         label_7->setText(QApplication::translate("PurchasForm", "\345\260\272\347\240\201\357\274\232", Q_NULLPTR));
         label_8->setText(QApplication::translate("PurchasForm", "\346\225\260\351\207\217\357\274\232", Q_NULLPTR));
@@ -262,6 +306,11 @@ public:
         pb_addTerolly->setText(QApplication::translate("PurchasForm", "\345\212\240\345\205\245\350\264\255\347\211\251\350\275\246", Q_NULLPTR));
         label_6->setText(QApplication::translate("PurchasForm", " \345\272\223\345\255\230\357\274\232", Q_NULLPTR));
         groupBox_4->setTitle(QApplication::translate("PurchasForm", "\345\233\276\347\211\207\344\277\241\346\201\257", Q_NULLPTR));
+        te_descri->setHtml(QApplication::translate("PurchasForm", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 
 };

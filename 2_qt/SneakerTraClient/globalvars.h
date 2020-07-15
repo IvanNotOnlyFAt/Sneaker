@@ -1,6 +1,8 @@
 #ifndef GLOBALVARS_H
 #define GLOBALVARS_H
 
+#define HOMEPAGEMAXDIPLAY 6
+
 #include "userinfo.h"
 #include "fansinfo.h"
 #include "traderinfo.h"
@@ -68,6 +70,15 @@ public:
     static ImageMap g_merchHostPhotoMap;
     static StoreInfoMap g_storeInfoMap;
     static MerchInfoMap g_merchInfoMap;
+
+    static StoreInfoMap g_homeStoreInfoMap;
+    static MerchInfoMap g_homeMerchInfoMap;
+    static ImageMap g_homeStoreLogoMap;
+    static ImageMap g_homeMerchHostMap;
+
+
+    static QStringList *g_HomeStoreInfoList;
+    static QStringList *g_HomeMerchInfoList;
 };
 
 #endif // GLOBALVARS_H

@@ -26,7 +26,7 @@ class Ui_HomeMerchItem
 {
 public:
     QPushButton *pb_merch;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QGridLayout *gridLayout;
     QSpacerItem *horizontalSpacer;
     QLabel *label;
@@ -37,23 +37,32 @@ public:
     {
         if (HomeMerchItem->objectName().isEmpty())
             HomeMerchItem->setObjectName(QStringLiteral("HomeMerchItem"));
-        HomeMerchItem->resize(260, 300);
-        HomeMerchItem->setMinimumSize(QSize(260, 0));
-        HomeMerchItem->setMaximumSize(QSize(260, 16777215));
+        HomeMerchItem->resize(259, 325);
+        HomeMerchItem->setMinimumSize(QSize(259, 325));
+        HomeMerchItem->setMaximumSize(QSize(259, 325));
+        HomeMerchItem->setStyleSheet(QLatin1String("QPushButton{\n"
+"\n"
+"	background: transparent;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	font: Bold;\n"
+"	text-decoration: underline;\n"
+"\n"
+"}"));
         pb_merch = new QPushButton(HomeMerchItem);
         pb_merch->setObjectName(QStringLiteral("pb_merch"));
-        pb_merch->setGeometry(QRect(7, 227, 241, 61));
-        widget = new QWidget(HomeMerchItem);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 242, 214));
-        gridLayout = new QGridLayout(widget);
+        pb_merch->setGeometry(QRect(10, 230, 241, 81));
+        layoutWidget = new QWidget(HomeMerchItem);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 10, 242, 214));
+        gridLayout = new QGridLayout(layoutWidget);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
         gridLayout->setContentsMargins(0, 0, 0, 0);
         horizontalSpacer = new QSpacerItem(13, 197, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout->addItem(horizontalSpacer, 0, 0, 1, 1);
 
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(200, 200));
         label->setMaximumSize(QSize(200, 200));

@@ -22,6 +22,9 @@ signals:
     void signalGainTraderInfo(bool res);
     void signalGainMerchInfo(bool res);
     void signalGainStoreInfo(bool res);
+    void signalGainHomeInfo(bool res);
+    void signalGainHomeStorePhoto(bool res);
+    void signalGainHomeMerchPhoto(bool res);
     void signalGainStoreLogo(bool res);
     void signalGainMerchHostPhoto(bool res);
     void signalApplyStoreResult(bool res, QString newID);
@@ -62,6 +65,10 @@ private:
     void parseTraderMerch(QString data);
     void recvStoreImage(QString command,  QByteArray imagpacket);
     void recvMerchImage(QString command,  QByteArray imagpacket);
+    void recvHomeImage(QString command,  QByteArray imagpacket);
+    void recvHomeStoreImage(QString command,  QByteArray imagpacket);
+    void recvHomeMerchImage(QString command,  QByteArray imagpacket);
+
     void recvStoreApplyResult(QString data);
     void recvMerchApplyResult(QString data);
     void recvStoreDeleteResult(QString data);

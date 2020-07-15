@@ -30,9 +30,18 @@ public:
     {
         if (HomeStoreItem->objectName().isEmpty())
             HomeStoreItem->setObjectName(QStringLiteral("HomeStoreItem"));
-        HomeStoreItem->resize(250, 111);
-        HomeStoreItem->setMinimumSize(QSize(250, 0));
-        HomeStoreItem->setMaximumSize(QSize(250, 16777215));
+        HomeStoreItem->resize(250, 110);
+        HomeStoreItem->setMinimumSize(QSize(250, 110));
+        HomeStoreItem->setMaximumSize(QSize(250, 110));
+        HomeStoreItem->setStyleSheet(QLatin1String("QPushButton{\n"
+" \n"
+"	background: transparent;\n"
+"}\n"
+"QPushButton:hover{\n"
+"	font: Bold;\n"
+"	text-decoration: underline;\n"
+"\n"
+"}"));
         lb_logo = new QLabel(HomeStoreItem);
         lb_logo->setObjectName(QStringLiteral("lb_logo"));
         lb_logo->setGeometry(QRect(10, 10, 103, 81));

@@ -112,7 +112,38 @@ void MsgProc::parseChangePswd(QString data)
 }
 void MsgProc::parseGetHomePage(QString data)
 {
+    QString("/") ;
     qDebug() << "MsgProc::parseGetHomePage" << data;
+    QString fansid = data;
+
+    QString msg = QString(CMD_GetHomePage_Z) % QString("#!|") % fansid % QString("/");
+
+    ExecSQL::searchAllStoreInfos();
+    if(!GlobalVars::g_storeInfoList->isEmpty())
+    {
+
+        for(StoreInfoList::iterator it = GlobalVars::g_storeInfoList->begin();
+            it != GlobalVars::g_storeInfoList->end(); it++)
+        {
+            QString submsg =  it->getID() % QString("|");
+            msg.append(submsg);
+        }
+    }
+
+    msg.append("/");//店铺与商品分隔符
+
+    ExecSQL::searchAllMerchInfos();
+    if(!GlobalVars::g_merchInfoList->isEmpty())
+    {
+        for(MerchInfoList::iterator it = GlobalVars::g_merchInfoList->begin();
+            it != GlobalVars::g_merchInfoList->end(); it++)
+        {
+            QString submsg =  it->getID() % QString("|");
+            msg.append(submsg);
+        }
+    }
+
+    emit signalSendMsgToClient(fansid,msg);
 }
 
 ///解析鞋友请求命令

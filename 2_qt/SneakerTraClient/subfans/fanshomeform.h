@@ -1,12 +1,15 @@
 #ifndef FANSHOMEFORM_H
 #define FANSHOMEFORM_H
-#include "applymerchform.h"
-#include "tradermerchform.h"
+#include "homemerchitem.h"
+#include "homestoreitem.h"
+#include "purchasform.h"
+#include "storeinfo.h"
+#include "merchinfo.h"
 
 #include <QListWidget>
 #include <QList>
 #include <QWidget>
-
+#include <QTableWidgetItem>
 namespace Ui {
 class FansHomeForm;
 }
@@ -26,6 +29,10 @@ public:
             Search_MerchName
 
     };
+signals:
+    void signalRefreshHomeData();
+    void signalHomeStoreApply(QString msg);
+    void signalHomeMerchApply(QString msg);
 private slots:
     void on_pb_search_clicked();
 
@@ -33,8 +40,29 @@ private slots:
 
     void on_pb_change_clicked();
 
+//    void on_listWidget_itemClicked(QListWidgetItem *item);
+
+    void slotGainHomeInfo(bool res);
+    void slotGainHomeStorePhoto(bool res);
+    void slotGainHomeMerchPhoto(bool res);
+    void slotPBPurchase(QString merchID);
+//    void on_tableWidget_cellClicked(int row, int column);
+
 private:
     Ui::FansHomeForm *ui;
+    void deleteAllItem();
+    QList<HomeMerchItem*> itemWidgetList;
+    int m_searchCond;
+    int m_merchIndex;
+    QStringList m_storeDisplayList;
+    QStringList m_merchDisplayList;
+
+    QString m_currentMerchID;
+    QString m_currentStoreID;
+    PurchasForm *m_puchasWidget;
+
+
+
 };
 
 #endif // FANSHOMEFORM_H

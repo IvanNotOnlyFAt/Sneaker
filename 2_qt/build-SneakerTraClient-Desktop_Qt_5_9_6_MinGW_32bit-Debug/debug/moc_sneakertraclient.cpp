@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SneakerTraClient_t {
-    QByteArrayData data[31];
-    char stringdata0[600];
+    QByteArrayData data[34];
+    char stringdata0[658];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -53,15 +53,18 @@ QT_MOC_LITERAL(18, 350, 24), // "on_actionMerch_triggered"
 QT_MOC_LITERAL(19, 375, 31), // "on_actionTraderTransc_triggered"
 QT_MOC_LITERAL(20, 407, 35), // "on_actionTraderChangePswd_tri..."
 QT_MOC_LITERAL(21, 443, 20), // "slotRefreshStoreData"
-QT_MOC_LITERAL(22, 464, 18), // "slotApplyStoreLogo"
-QT_MOC_LITERAL(23, 483, 19), // "slotApplyMerchPhoto"
-QT_MOC_LITERAL(24, 503, 12), // "slotAddStore"
-QT_MOC_LITERAL(25, 516, 3), // "msg"
-QT_MOC_LITERAL(26, 520, 5), // "image"
-QT_MOC_LITERAL(27, 526, 12), // "slotAddMerch"
-QT_MOC_LITERAL(28, 539, 19), // "slotDeleteStoreItem"
-QT_MOC_LITERAL(29, 559, 19), // "slotDeleteMerchItem"
-QT_MOC_LITERAL(30, 579, 20) // "slotRefreshMerchData"
+QT_MOC_LITERAL(22, 464, 19), // "slotRefreshHomeData"
+QT_MOC_LITERAL(23, 484, 18), // "slotApplyStoreLogo"
+QT_MOC_LITERAL(24, 503, 19), // "slotApplyMerchPhoto"
+QT_MOC_LITERAL(25, 523, 12), // "slotAddStore"
+QT_MOC_LITERAL(26, 536, 3), // "msg"
+QT_MOC_LITERAL(27, 540, 5), // "image"
+QT_MOC_LITERAL(28, 546, 12), // "slotAddMerch"
+QT_MOC_LITERAL(29, 559, 19), // "slotDeleteStoreItem"
+QT_MOC_LITERAL(30, 579, 19), // "slotDeleteMerchItem"
+QT_MOC_LITERAL(31, 599, 18), // "slotHomeStoreApply"
+QT_MOC_LITERAL(32, 618, 18), // "slotHomeMerchApply"
+QT_MOC_LITERAL(33, 637, 20) // "slotRefreshMerchData"
 
     },
     "SneakerTraClient\0slotUserLogin\0\0id\0"
@@ -78,10 +81,12 @@ QT_MOC_LITERAL(30, 579, 20) // "slotRefreshMerchData"
     "on_actionMerch_triggered\0"
     "on_actionTraderTransc_triggered\0"
     "on_actionTraderChangePswd_triggered\0"
-    "slotRefreshStoreData\0slotApplyStoreLogo\0"
-    "slotApplyMerchPhoto\0slotAddStore\0msg\0"
-    "image\0slotAddMerch\0slotDeleteStoreItem\0"
-    "slotDeleteMerchItem\0slotRefreshMerchData"
+    "slotRefreshStoreData\0slotRefreshHomeData\0"
+    "slotApplyStoreLogo\0slotApplyMerchPhoto\0"
+    "slotAddStore\0msg\0image\0slotAddMerch\0"
+    "slotDeleteStoreItem\0slotDeleteMerchItem\0"
+    "slotHomeStoreApply\0slotHomeMerchApply\0"
+    "slotRefreshMerchData"
 };
 #undef QT_MOC_LITERAL
 
@@ -91,7 +96,7 @@ static const uint qt_meta_data_SneakerTraClient[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      27,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -99,30 +104,33 @@ static const uint qt_meta_data_SneakerTraClient[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,  134,    2, 0x0a /* Public */,
-       5,    1,  139,    2, 0x0a /* Public */,
-       7,    0,  142,    2, 0x0a /* Public */,
-       8,    1,  143,    2, 0x0a /* Public */,
-       9,    0,  146,    2, 0x0a /* Public */,
-      10,    0,  147,    2, 0x08 /* Private */,
-      11,    0,  148,    2, 0x08 /* Private */,
-      12,    0,  149,    2, 0x08 /* Private */,
-      13,    0,  150,    2, 0x08 /* Private */,
-      14,    0,  151,    2, 0x08 /* Private */,
-      15,    0,  152,    2, 0x08 /* Private */,
-      16,    0,  153,    2, 0x08 /* Private */,
-      17,    0,  154,    2, 0x08 /* Private */,
-      18,    0,  155,    2, 0x08 /* Private */,
-      19,    0,  156,    2, 0x08 /* Private */,
-      20,    0,  157,    2, 0x08 /* Private */,
-      21,    0,  158,    2, 0x08 /* Private */,
-      22,    0,  159,    2, 0x08 /* Private */,
-      23,    0,  160,    2, 0x08 /* Private */,
-      24,    2,  161,    2, 0x08 /* Private */,
-      27,    2,  166,    2, 0x08 /* Private */,
-      28,    1,  171,    2, 0x08 /* Private */,
-      29,    1,  174,    2, 0x08 /* Private */,
-      30,    0,  177,    2, 0x08 /* Private */,
+       1,    2,  149,    2, 0x0a /* Public */,
+       5,    1,  154,    2, 0x0a /* Public */,
+       7,    0,  157,    2, 0x0a /* Public */,
+       8,    1,  158,    2, 0x0a /* Public */,
+       9,    0,  161,    2, 0x0a /* Public */,
+      10,    0,  162,    2, 0x08 /* Private */,
+      11,    0,  163,    2, 0x08 /* Private */,
+      12,    0,  164,    2, 0x08 /* Private */,
+      13,    0,  165,    2, 0x08 /* Private */,
+      14,    0,  166,    2, 0x08 /* Private */,
+      15,    0,  167,    2, 0x08 /* Private */,
+      16,    0,  168,    2, 0x08 /* Private */,
+      17,    0,  169,    2, 0x08 /* Private */,
+      18,    0,  170,    2, 0x08 /* Private */,
+      19,    0,  171,    2, 0x08 /* Private */,
+      20,    0,  172,    2, 0x08 /* Private */,
+      21,    0,  173,    2, 0x08 /* Private */,
+      22,    0,  174,    2, 0x08 /* Private */,
+      23,    0,  175,    2, 0x08 /* Private */,
+      24,    0,  176,    2, 0x08 /* Private */,
+      25,    2,  177,    2, 0x08 /* Private */,
+      28,    2,  182,    2, 0x08 /* Private */,
+      29,    1,  187,    2, 0x08 /* Private */,
+      30,    1,  190,    2, 0x08 /* Private */,
+      31,    1,  193,    2, 0x08 /* Private */,
+      32,    1,  196,    2, 0x08 /* Private */,
+      33,    0,  199,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    3,    4,
@@ -144,10 +152,13 @@ static const uint qt_meta_data_SneakerTraClient[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QByteArray,   25,   26,
-    QMetaType::Void, QMetaType::QString, QMetaType::QByteArray,   25,   26,
-    QMetaType::Void, QMetaType::QString,   25,
-    QMetaType::Void, QMetaType::QString,   25,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QByteArray,   26,   27,
+    QMetaType::Void, QMetaType::QString, QMetaType::QByteArray,   26,   27,
+    QMetaType::Void, QMetaType::QString,   26,
+    QMetaType::Void, QMetaType::QString,   26,
+    QMetaType::Void, QMetaType::QString,   26,
+    QMetaType::Void, QMetaType::QString,   26,
     QMetaType::Void,
 
        0        // eod
@@ -176,13 +187,16 @@ void SneakerTraClient::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 14: _t->on_actionTraderTransc_triggered(); break;
         case 15: _t->on_actionTraderChangePswd_triggered(); break;
         case 16: _t->slotRefreshStoreData(); break;
-        case 17: _t->slotApplyStoreLogo(); break;
-        case 18: _t->slotApplyMerchPhoto(); break;
-        case 19: _t->slotAddStore((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
-        case 20: _t->slotAddMerch((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
-        case 21: _t->slotDeleteStoreItem((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 22: _t->slotDeleteMerchItem((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 23: _t->slotRefreshMerchData(); break;
+        case 17: _t->slotRefreshHomeData(); break;
+        case 18: _t->slotApplyStoreLogo(); break;
+        case 19: _t->slotApplyMerchPhoto(); break;
+        case 20: _t->slotAddStore((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
+        case 21: _t->slotAddMerch((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
+        case 22: _t->slotDeleteStoreItem((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 23: _t->slotDeleteMerchItem((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 24: _t->slotHomeStoreApply((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 25: _t->slotHomeMerchApply((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 26: _t->slotRefreshMerchData(); break;
         default: ;
         }
     }
@@ -213,13 +227,13 @@ int SneakerTraClient::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 27)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 27;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 27)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 24;
+        _id -= 27;
     }
     return _id;
 }

@@ -619,6 +619,7 @@ void ExecSQL::updateMerchInfoList(const QString &sql)
 {
     QSqlQuery query;
     GlobalVars::g_merchInfoList->clear();
+    GlobalVars::g_merchInfoMap.clear();
     if(query.exec(sql))
     {
         int id_idx = query.record().indexOf("id");
@@ -647,6 +648,11 @@ void ExecSQL::updateMerchInfoList(const QString &sql)
 
             GlobalVars::g_merchInfoList->append(info);
 //            info.display();
+        }
+        for(MerchInfoList::iterator it = GlobalVars::g_merchInfoList->begin();
+            it != GlobalVars::g_merchInfoList->end(); it++)
+        {
+            GlobalVars::g_merchInfoMap.insert(it->getID(),it);
         }
     }
 
